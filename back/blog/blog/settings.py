@@ -77,8 +77,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_URL = '/articles/'
+MEDIA_URL = '/api/articles/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'articles')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'api/articles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
