@@ -1,7 +1,8 @@
 from django.urls import path
 from .views import *
 
+app_name="article"
 urlpatterns = [
-		path('category/', category),
-    path('article/<str:category>/<str:title>/', article),
+		path('article/create', create_article, name='create'),
+		path('article/delete/<int:pk>', delete_article)
 ]

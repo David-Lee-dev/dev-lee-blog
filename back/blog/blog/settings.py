@@ -35,7 +35,7 @@ ROOT_URLCONF = 'blog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -77,8 +77,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_URL = '/api/articles/'
+MEDIA_URL = '/articles/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'api/articles')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'articles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
