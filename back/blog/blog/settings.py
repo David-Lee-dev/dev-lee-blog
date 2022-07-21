@@ -11,6 +11,7 @@ ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'post.apps.PostConfig',
+    'note.apps.NoteConfig',
     'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -77,8 +78,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_URL = '/articles/'
+MEDIA_URL = '/files/'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'articles')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'files')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

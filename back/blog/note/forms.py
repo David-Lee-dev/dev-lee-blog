@@ -1,10 +1,10 @@
 from django import forms
-from .models import Post
+from .models import Note
 
 
-class PostForm(forms.ModelForm):
+class NoteForm(forms.ModelForm):
 		class Meta:
-				model = Post
+				model = Note
 				field = '__all__'
 				exclude = ('contents_url', 'category')
 

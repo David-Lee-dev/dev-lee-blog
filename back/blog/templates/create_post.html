@@ -5,9 +5,9 @@
 		<title>글 작성</title>
 	</head>
 	<body>
-		<form action={% url 'article:create' %} enctype="multipart/form-data" method="POST">
+		<form action={% url 'post:create' %} enctype="multipart/form-data" method="POST">
 			{% csrf_token %}
-			{{article_form.as_p}}
+			{{post_form.as_p}}
 			{{upload_form.as_p}}
 			<input type="submit" />
 		</form>

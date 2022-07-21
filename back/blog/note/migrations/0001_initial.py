@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Post',
+            name='Note',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=150)),
@@ -23,25 +23,25 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='PostCategory',
+            name='NoteCategory',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=50)),
             ],
         ),
         migrations.CreateModel(
-            name='PostComment',
+            name='NoteComment',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('email', models.CharField(max_length=100)),
                 ('contents', models.TextField()),
-                ('article', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='post.post')),
-                ('comments', models.ForeignKey(default=None, null=True, on_delete=django.db.models.deletion.CASCADE, to='post.postcomment')),
+                ('comments', models.ForeignKey(default=None, null=True, on_delete=django.db.models.deletion.CASCADE, to='note.notecomment')),
+                ('note', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='note.note')),
             ],
         ),
         migrations.AddField(
-            model_name='post',
+            model_name='note',
             name='category',
-            field=models.ForeignKey(default=None, null=True, on_delete=django.db.models.deletion.SET_NULL, to='post.postcategory'),
+            field=models.ForeignKey(default=None, null=True, on_delete=django.db.models.deletion.SET_NULL, to='note.notecategory'),
         ),
     ]
