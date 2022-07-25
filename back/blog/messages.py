@@ -12,6 +12,11 @@ DA000 = {'code': 'DA000', 'status': True, 'message': '포스트가 삭제되었�
 DA001 = {'code': 'DA001', 'status': False, 'message': '본문 파일이 없어 포스트를 삭제할 수 없습니다.'}
 DA002 = {'code': 'DA002', 'status': False, 'message': '존재하지 않는 포스트입니다.'}
 
+# Get Article
+GA000 = {'code': 'GA000', 'status': True, 'message': '포스트(리스트)를 불러왔습니다.'}
+GA001 = {'code': 'GA001', 'status': True, 'message': '존재하지 않는 카테고리입니다.'}
+GA002 = {'code': 'GA002', 'status': True, 'message': '존재하지 않는 포스트(리스트)입니다.'}
+
 # Create Note
 CN000 = {'code': 'CN000', 'status': True, 'message': '노트가 작성되었습니다.'}
 CN001 = {'code': 'CN001', 'status': False, 'message': '같은 제목 노트 또는 같은 이름의 파일이 존재합니다.'}
@@ -22,3 +27,8 @@ CN003 = {'code': 'CN003', 'status': False, 'message': '빈 필드가 존재합�
 DN000 = {'code': 'DN000', 'status': True, 'message': '노트가 삭제되었습니다.'}
 DN001 = {'code': 'DN001', 'status': False, 'message': '본문 파일이 없어 노트를 삭제할 수 없습니다.'}
 DN002 = {'code': 'DN002', 'status': False, 'message': '존재하지 않는 노트입니다.'}
+
+# Get Note
+GN000 = {'code': 'GN000', 'status': True, 'message': '노트(리스트)를 불러왔습니다.'}
+GN001 = {'code': 'GN001', 'status': True, 'message': '존재하지 않는 카테고리입니다.'}
+GN002 = {'code': 'GN002', 'status': True, 'message': '존재하지 않는 노트(리스트)입니다.'}
