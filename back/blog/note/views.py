@@ -120,7 +120,6 @@ def get_note_detail(request, note_pk):
 		f = open(note['contents_url'], 'r')
 		contents = f.readlines()
 		note['contents'] = contents
-		del note['contents_url']
 
 		data = deepcopy(GN000)
 		data['note'] = note

@@ -120,7 +120,6 @@ def get_post_detail(request, post_pk):
 		f = open(post['contents_url'], 'r')
 		contents = f.readlines()
 		post['contents'] = contents
-		del post['contents_url']
 
 		data = deepcopy(GA000)
 		data['post'] = post
