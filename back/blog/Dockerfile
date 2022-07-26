@@ -5,10 +5,11 @@ WORKDIR /app
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
 
-COPY . .
-
 RUN python3 manage.py makemigrations
 RUN python3 manage.py migrate
+
+COPY . .
+
 CMD ["python3", "manage.py", "runserver", "0:8000"]
 
 EXPOSE 8000
