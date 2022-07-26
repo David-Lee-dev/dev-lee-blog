@@ -17,6 +17,7 @@ from .forms import NoteForm, UploadForm
 
 
 @require_http_methods(["GET", "POST"])
+@csrf_exempt
 def create_note(request):
 		if request.method == "GET":
 				note_form = NoteForm()

@@ -15,7 +15,9 @@ from env import POST_PASSWORD
 from .models import Post, PostCategory
 from .forms import PostForm, UploadForm
 
+
 @require_http_methods(["GET", "POST"])
+@csrf_exempt
 def create_post(request):
 		if request.method == "GET":
 				post_form = PostForm()
