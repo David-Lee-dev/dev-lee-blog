@@ -5,7 +5,7 @@ WORKDIR /app
 
 RUN apt update
 RUN apt upgrade -y
-RUN apt-get install -y python3-dev libmysqlclient-dev mysql-client-8.0
+RUN apt-get install -y python3-dev default-libmysqlclient-dev default-mysql-client
 
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
