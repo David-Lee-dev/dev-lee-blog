@@ -7,6 +7,7 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
+RUN apt-get install -y libmysqlclient-dev
 RUN python3 manage.py makemigrations
 RUN python3 manage.py migrate
 
