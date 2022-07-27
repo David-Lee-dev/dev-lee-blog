@@ -8,8 +8,8 @@ RUN pip install -r requirements.txt
 COPY . .
 
 RUN apt update
-RUN apt upgrade -y
-RUN apt-get install -y libmysqlclient-dev
+RUN apt upgrade
+RUN apt-get install -y python3-dev libmysqlclient-dev mysql-client-8.0
 RUN python3 manage.py migrate
 
 CMD ["python3", "manage.py", "runserver", "0:8000"]
