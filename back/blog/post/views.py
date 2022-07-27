@@ -126,3 +126,12 @@ def get_post_detail(request, post_pk):
 		data = deepcopy(GA000)
 		data['post'] = post
 		return make_json_response(200, data)
+
+
+@require_http_methods(["GET"])
+def get_category_list(request):
+		category = list(PostCategory.objects.all().values())
+
+		data = deepcopy(GC000)
+		data['category'] = category
+		return make_json_response(200, data)

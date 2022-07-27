@@ -32,3 +32,6 @@ DN002 = {'code': 'DN002', 'status': False, 'message': '존재하지 않는 노�
 GN000 = {'code': 'GN000', 'status': True, 'message': '노트(리스트)를 불러왔습니다.'}
 GN001 = {'code': 'GN001', 'status': True, 'message': '존재하지 않는 카테고리입니다.'}
 GN002 = {'code': 'GN002', 'status': True, 'message': '존재하지 않는 노트(리스트)입니다.'}
+
+# Get Category
+GC000 = {'code': 'GC000', 'status': True, 'message': '카테고리 리스트를 불러왔습니다.'}

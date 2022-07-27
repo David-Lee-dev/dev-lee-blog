@@ -125,3 +125,12 @@ def get_note_detail(request, note_pk):
 		data = deepcopy(GN000)
 		data['note'] = note
 		return make_json_response(200, data)
+
+
+@require_http_methods(["GET"])
+def get_category_list(request):
+		category = list(NoteCategory.objects.all().values())
+
+		data = deepcopy(GC000)
+		data['category'] = category
+		return make_json_response(200, data)
