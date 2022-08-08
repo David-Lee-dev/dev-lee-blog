@@ -1,3 +1,5 @@
-export default function Blog() {
-  return 'Blog';
+import { useEffect, useState } from 'react';
+
+export default function Home() {
+  return <></>;
 }

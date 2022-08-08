@@ -1,29 +1,38 @@
 .nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: fixed;
   width: 100vw;
-  height: 100px;
-  background-color: $black-color;
-  color: $point-color--light;
-  font-size: 2.5rem;
-  font-weight: bold;
-}
+  background-color: $black;
 
-.menus {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  .menus {
+    display: flex;
+    justify-content: center;
+  }
 
-  & > li {
-    margin: 0 1rem;
-    cursor: pointer;
+  .menu {
+    padding: 16px;
+    color: $point-dark;
+    font-size: 36px;
+    font-weight: bold;
+    transition: color 0.2s;
+    list-style: none;
 
     &:hover {
-      transform: scale(1.1);
+      color: $point-light;
     }
-    &.active {
-      color: $point-color--dark;
-    }
+  }
+
+  .active {
+    color: $point-light !important;
+  }
+
+  .gauge__bar {
+    height: 12px;
+    background-color: $point-light;
+  }
+
+  .scroll__gauge {
+    height: 12px;
+    background-color: $point-dark;
+    transition: width 0.1s;
   }
 }

@@ -1,0 +1,50 @@
+.side__menu {
+  width: 400px;
+  height: 100vh;
+  background-color: $black;
+  transition: transform 0.2s;
+  ul {
+    width: 50%;
+  }
+
+  &.close {
+    transform: translateX(-350px);
+  }
+
+  .sell {
+    padding: 8px;
+    font-size: 24px;
+    font-weight: 500;
+    color: $point-dark;
+
+    span {
+      cursor: pointer;
+      &:hover {
+        color: $point-light;
+      }
+    }
+  }
+
+  .button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
+    transform: rotateZ(180deg);
+    transition: transform 0.5s;
+    cursor: pointer;
+
+    img {
+      width: 100% !important;
+    }
+
+    &:hover {
+      transform: rotateZ(180deg);
+    }
+
+    &.rotate {
+      transform: rotateZ(0);
+    }
+  }
+}

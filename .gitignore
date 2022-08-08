@@ -387,5 +387,6 @@ $RECYCLE.BIN/
 env.py
 venv
 .vscode
+files
 
 # End of https://www.toptal.com/developers/gitignore/api/django,nextjs,react,visualstudiocode,python,venv,windows,linux,macos
