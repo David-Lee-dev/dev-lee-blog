@@ -16,3 +16,11 @@ export async function getArticleListApi(
   const respone = await api.get(`api/${type}/list/${category}/${page}`);
   return respone.data.data.posts;
 }
+
+export async function getArticleDetailApi(
+  type: string,
+  id: string
+): Promise<Article> {
+  const respone = await api.get(`api/${type}/detail/${id}`);
+  return respone.data.data[type];
+}

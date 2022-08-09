@@ -15,6 +15,7 @@ export interface Article {
   tags: string;
   created_at: string;
   category: Category;
+  contents: string;
 }
 
 export const defaultArticle = {
@@ -24,4 +25,5 @@ export const defaultArticle = {
   tags: '',
   created_at: '',
   category: defaultCategory,
+  contents: '',
 };

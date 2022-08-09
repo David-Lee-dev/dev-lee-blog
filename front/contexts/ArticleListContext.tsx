@@ -18,10 +18,10 @@ export const articleContext = createContext<ValueType>({
 
 export default function ArticleProvider({ children }: Props) {
   const [articles, setArticle] = useState<Article[]>([]);
-  const updateArticle = useCallback((articles: Article[]) => {
-    setArticle(articles);
-    console.log('asdfasjfkasdsdfh');
-  }, []);
+  const updateArticle = useCallback(
+    (articles: Article[]) => setArticle(articles),
+    []
+  );
   const value = { articles, updateArticle };
 
   return (
