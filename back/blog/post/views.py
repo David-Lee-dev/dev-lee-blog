@@ -121,7 +121,7 @@ def get_post_detail(request, post_pk):
 				return make_json_response(400, GA002)
 
 		f = open(post['contents_url'], 'r')
-		contents = ' '.join(f.readlines())
+		contents = '<br />'.join(f.readlines())
 		post['contents'] = contents.replace('![img](', '![img](http://im-dev-lee.site/files/posts/home_server/')
 
 		data = deepcopy(GA000)
