@@ -1,7 +1,8 @@
-.nav {
+.header {
   position: fixed;
   width: 100vw;
-  background-color: $black;
+  background-color: $bw-90;
+  z-index: 1000;
 
   .menus {
     display: flex;
@@ -10,14 +11,14 @@
 
   .menu {
     padding: 16px;
-    color: $point-dark;
+    color: $bw-60;
     font-size: 36px;
     font-weight: bold;
     transition: color 0.2s;
     list-style: none;
 
     &:hover {
-      color: $point-light;
+      color: $bw-10;
     }
   }
 
@@ -27,12 +28,12 @@
 
   .gauge__bar {
     height: 12px;
-    background-color: $point-light;
+    background-color: $bw-10;
   }
 
   .scroll__gauge {
     height: 12px;
-    background-color: $point-dark;
+    background-color: $bw-60;
     transition: width 0.1s;
   }
 }

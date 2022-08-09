@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 import ArticleProvider from '../contexts/ArticleListContext';
 import CategoryProvider from '../contexts/CategoryContext';
@@ -23,13 +24,16 @@ function MyApp({ Component, pageProps }: AppProps) {
         ></link>
       </Head>
       <Header />
-      <section style={{ paddingTop: '84px', minHeight: '200vh' }}>
+      <section className="contents" style={{ paddingTop: '80px' }}>
         <CategoryProvider>
           <ArticleProvider>
-            <Component {...pageProps} />
+            <div className="inner">
+              <Component {...pageProps} />
+            </div>
           </ArticleProvider>
         </CategoryProvider>
       </section>
+      <Footer />
     </>
   );
 }

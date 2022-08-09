@@ -1,23 +1,15 @@
-$black: rgb(30, 32, 34);
-$black-80: rgba(30, 32, 34, 0.8);
-$black-60: rgba(30, 32, 34, 0.6);
-$black-40: rgba(30, 32, 34, 0.4);
-$black-20: rgba(30, 32, 34, 0.2);
+$bw-100: #000;
+$bw-90: #212529;
+$bw-80: #343a40;
+$bw-70: #495057;
+$bw-60: #6c757d;
+$bw-50: #adb5bd;
+$bw-40: #ced4da;
+$bw-30: #dee2e6;
+$bw-20: #e9ecef;
+$bw-10: #f8f9fa;
+$bw-10: #f8f9fa;
+$bw-00: #ffffff;
 
-$white: rgb(240, 245, 249);
-$white-80: rgba(240, 245, 249, 0.8);
-$white-60: rgba(240, 245, 249, 0.6);
-$white-40: rgba(240, 245, 249, 0.4);
-$white-20: rgba(240, 245, 249, 0.2);
-
-$point-light: rgb(201, 214, 223);
-$point-light-80: rgba(201, 214, 223, 0.8);
-$point-light-60: rgba(201, 214, 223, 0.6);
-$point-light-40: rgba(201, 214, 223, 0.4);
-$point-light-20: rgba(201, 214, 223, 0.2);
-
-$point-dark: rgb(82, 97, 107);
-$point-dark-80: rgb(82, 97, 107, 0.8);
-$point-dark-60: rgb(82, 97, 107, 0.6);
-$point-dark-40: rgb(82, 97, 107, 0.4);
-$point-dark-20: rgb(82, 97, 107, 0.2);
+$point-light: #fca311;
+$point-dark: #14213d;

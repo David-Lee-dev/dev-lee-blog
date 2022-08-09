@@ -4,7 +4,6 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { throttle } from 'lodash';
 
 import s from '../styles/Header.module.scss';
-import SideMenu from './SideMenu';
 
 export default function Header() {
   const pathname = useRouter().pathname.split('?')[0];
@@ -12,10 +11,14 @@ export default function Header() {
 
   const scrollHandler = useCallback(
     throttle(() => {
-      const totalHeight = window.innerHeight + 84;
-      const calc = 100 - ((totalHeight - window.scrollY) / totalHeight) * 100;
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
 
-      setScrollGuage(calc);
+      setScrollGuage(scrolled);
     }, 50),
     []
   );
@@ -29,40 +32,29 @@ export default function Header() {
   }, []);
 
   return (
-    <>
-      <header className={s.nav}>
-        <nav className={s.menus}>
-          {navMenu.map((menu) => (
-            <li
-              key={menu.name}
-              className={`${
-                pathname === `/${menu.route.split('?')[0]}` ? s.active : ''
-              } 
+    <header className={s.header}>
+      <nav className={s.menus}>
+        {navMenu.map((menu) => (
+          <li
+            key={menu.name}
+            className={`${
+              pathname === `/${menu.route.split('?')[0]}` ? s.active : ''
+            } 
               ${s.menu}`}
-            >
-              <Link href={`/${menu.route}`}>
-                <a>{menu.name}</a>
-              </Link>
-            </li>
-          ))}
-        </nav>
-        <div className={s.gauge__bar}>
-          <div
-            className={s.scroll__gauge}
-            style={{ width: `${scrollGuage}%` }}
-          ></div>
-        </div>
-        {(pathname === '/blog' || pathname === '/note') && (
-          <div style={{ position: 'absolute' }}>
-            <SideMenu
-              type={`${pathname === '/blog' ? 'post' : ''}${
-                pathname === '/note' ? 'note' : ''
-              }`}
-            />
-          </div>
-        )}
-      </header>
-    </>
+          >
+            <Link href={`/${menu.route}`}>
+              <a>{menu.name}</a>
+            </Link>
+          </li>
+        ))}
+      </nav>
+      <div className={s.gauge__bar}>
+        <div
+          className={s.scroll__gauge}
+          style={{ width: `${scrollGuage}%` }}
+        ></div>
+      </div>
+    </header>
   );
 }
 
@@ -72,8 +64,8 @@ const navMenu = [
     route: '',
   },
   {
-    name: 'BLOG',
-    route: 'blog?category=all',
+    name: 'POST',
+    route: 'post?category=all',
   },
   {
     name: 'NOTE',
