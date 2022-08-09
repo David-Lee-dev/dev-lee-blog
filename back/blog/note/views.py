@@ -120,7 +120,6 @@ def get_note_detail(request, note_pk):
 
 		f = open(note['contents_url'], 'r')
 		contents = ''.join(f.readlines())
-		contents = contents.replace('\n', '<br />')
 		note['contents'] = contents.replace('![img](', '![img](http://im-dev-lee.site/files/posts/home_server/')
 
 		data = deepcopy(GN000)

@@ -122,7 +122,6 @@ def get_post_detail(request, post_pk):
 
 		f = open(post['contents_url'], 'r')
 		contents = ''.join(f.readlines())
-		contents = contents.replace('\n', '<br />')
 		post['contents'] = contents.replace('![img](', '![img](http://im-dev-lee.site/files/posts/home_server/')
 
 		data = deepcopy(GA000)
