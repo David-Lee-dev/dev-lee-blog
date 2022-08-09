@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import Footer from '../components/Footer';
 import Header from '../components/Header';
 import ArticleProvider from '../contexts/ArticleListContext';
 import CategoryProvider from '../contexts/CategoryContext';
@@ -30,6 +31,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           </ArticleProvider>
         </CategoryProvider>
       </section>
+      <Footer />
     </>
   );
 }

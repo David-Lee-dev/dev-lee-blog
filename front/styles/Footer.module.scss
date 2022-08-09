@@ -1,0 +1,21 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100px;
+  background-color: $black;
+  color: $point-light;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.copyright {
+  margin-bottom: 1rem;
+}
+
+.github {
+  width: 20px;
+  height: 20px;
+}
