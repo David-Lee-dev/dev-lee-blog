@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         ></link>
       </Head>
       <Header />
-      <section style={{ paddingTop: '84px', minHeight: '200vh' }}>
+      <section className="contents" style={{ paddingTop: '84px' }}>
         <CategoryProvider>
           <ArticleProvider>
             <Component {...pageProps} />

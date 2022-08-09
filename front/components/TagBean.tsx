@@ -2,7 +2,7 @@ import React from 'react';
 import s from '../styles/TagBean.module.scss';
 
 export default function TagBean({ children }: Props) {
-  return <div className={s.bean}>{children}</div>;
+  return <span className={s.bean}>{children}</span>;
 }
 
 interface Props {

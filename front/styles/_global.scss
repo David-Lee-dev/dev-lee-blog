@@ -3,7 +3,7 @@
 }
 
 body {
-  background-color: $white;
+  background-color: $black;
 }
 
 body::-webkit-scrollbar {
@@ -17,4 +17,14 @@ a {
 
 button {
   all: unset;
+}
+
+.contents {
+  width: 100vw;
+  max-width: 850px;
+  min-width: 500px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
 }

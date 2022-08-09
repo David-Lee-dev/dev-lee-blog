@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
-import s from '../styles/Home.module.scss';
 import { articleContext } from '../contexts/ArticleListContext';
 import { getArticleListApi } from '../api/requests';
+
 import ArticlePreview from '../components/ArticlePreview';
 
 export default function Home() {
@@ -16,10 +16,10 @@ export default function Home() {
   }, []);
 
   return (
-    <section className={s.contents}>
+    <>
       {articles.map((article) => (
         <ArticlePreview key={article.id} article={article} />
       ))}
-    </section>
+    </>
   );
 }

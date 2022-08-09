@@ -1,7 +1,8 @@
-.nav {
+.header {
   position: fixed;
   width: 100vw;
   background-color: $black;
+  z-index: 1000;
 
   .menus {
     display: flex;
