@@ -134,9 +134,8 @@ def get_category_list(request):
 		data = deepcopy(GC000)
 		data['category'] = []
 		for c in category:
-				cnt = len(list(Post.objects.filter(category=c.get(id))))
+				cnt = len(list(Post.objects.filter(category_id=c.get('id'))))
 				if cnt > 0:
 						data['category'].append(c)
 
-		
 		return make_json_response(200, data)
