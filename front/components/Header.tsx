@@ -4,7 +4,6 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { throttle } from 'lodash';
 
 import s from '../styles/Header.module.scss';
-import SideMenu from './SideMenu';
 
 export default function Header() {
   const pathname = useRouter().pathname.split('?')[0];
@@ -55,15 +54,6 @@ export default function Header() {
           style={{ width: `${scrollGuage}%` }}
         ></div>
       </div>
-      {(pathname === '/post' || pathname === '/note') && (
-        <div style={{ position: 'absolute' }}>
-          <SideMenu
-            type={`${pathname === '/post' ? 'post' : ''}${
-              pathname === '/note' ? 'note' : ''
-            }`}
-          />
-        </div>
-      )}
     </header>
   );
 }

@@ -3,7 +3,7 @@
 }
 
 body {
-  background-color: $black;
+  background-color: $bw-90;
 }
 
 body::-webkit-scrollbar {
@@ -20,6 +20,11 @@ button {
 }
 
 .contents {
+  position: relative;
+  width: 100vw;
+}
+
+.inner {
   width: 100vw;
   max-width: 850px;
   min-width: 500px;

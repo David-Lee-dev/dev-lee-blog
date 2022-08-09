@@ -1,25 +1,35 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { getCategoryListApi } from '../api/requests';
 import Image from 'next/image';
-import { Category } from '../types';
+import { categoryContext } from '../contexts/CategoryContext';
+
 import s from '../styles/SideMenu.module.scss';
 
 export default function SideMenu({ type }: Props) {
-  const [category, setCategory] = useState<Category[]>([]);
+  const { category, updateCategory } = useContext(categoryContext);
   const [openCategory, setOpenCategory] = useState<boolean>(false);
+  const [selected, setSelected] = useState<number>(-1);
 
-  const sideMenuHandler = () => {
-    setOpenCategory((prev) => !prev);
-  };
+  const sideMenuHandler = () => setOpenCategory((prev) => !prev);
+  const selectedHandler = (id: number) => setSelected(id);
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    (async () => {
+      const response = await getCategoryListApi(type);
+      updateCategory(response);
+    })();
+  }, []);
 
   return (
     <aside className={`${s.side__menu} ${openCategory ? 'open' : s.close}`}>
       <ul>
-        {category.map((c, i) => (
-          <li className={s.sell} key={i}>
-            <span>{c.name}</span>
+        {category.map((c) => (
+          <li
+            className={s.sell}
+            key={c.id}
+            onClick={() => selectedHandler(c.id)}
+          >
+            <span className={c.id === selected ? s.active : ''}>{c.name}</span>
           </li>
         ))}
       </ul>

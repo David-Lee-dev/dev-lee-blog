@@ -5,7 +5,7 @@ export interface Category {
 
 export const defaultCategory = {
   id: -1,
-  name: '',
+  name: 'all',
 };
 
 export interface Article {

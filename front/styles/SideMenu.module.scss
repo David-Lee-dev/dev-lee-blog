@@ -1,8 +1,13 @@
 .side__menu {
+  position: fixed;
   width: 400px;
   height: 100vh;
-  background-color: $black;
+  left: 0;
+  background-color: $bw-90;
+  border-right: 2px solid $bw-10;
   transition: transform 0.2s;
+  z-index: 1000;
+
   ul {
     width: 50%;
   }
@@ -15,14 +20,18 @@
     padding: 8px;
     font-size: 24px;
     font-weight: 500;
-    color: $point-dark;
+    color: $bw-60;
 
     span {
       cursor: pointer;
       &:hover {
-        color: $point-light;
+        color: $bw-10;
       }
     }
+  }
+
+  .active {
+    color: $point-light !important;
   }
 
   .button {

@@ -24,10 +24,12 @@ function MyApp({ Component, pageProps }: AppProps) {
         ></link>
       </Head>
       <Header />
-      <section className="contents" style={{ paddingTop: '84px' }}>
+      <section className="contents" style={{ paddingTop: '80px' }}>
         <CategoryProvider>
           <ArticleProvider>
-            <Component {...pageProps} />
+            <div className="inner">
+              <Component {...pageProps} />
+            </div>
           </ArticleProvider>
         </CategoryProvider>
       </section>
