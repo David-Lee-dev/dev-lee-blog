@@ -131,7 +131,12 @@ def get_post_detail(request, post_pk):
 @require_http_methods(["GET"])
 def get_category_list(request):
 		category = list(PostCategory.objects.all().values())
-
 		data = deepcopy(GC000)
-		data['category'] = category
+		data['category'] = []
+		for c in category:
+				cnt = len(list(Post.objects.filter(category=c.get(id))))
+				if cnt > 0:
+						data['category'].append(c)
+
+		
 		return make_json_response(200, data)
