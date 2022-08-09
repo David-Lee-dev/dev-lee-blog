@@ -1,4 +1,5 @@
 # pakages
+import http
 import os
 from shutil import rmtree
 from copy import deepcopy
@@ -120,8 +121,8 @@ def get_post_detail(request, post_pk):
 				return make_json_response(400, GA002)
 
 		f = open(post['contents_url'], 'r')
-		contents = f.readlines()
-		post['contents'] = contents
+		contents = ' '.join(f.readlines())
+		post['contents'] = contents.replace('![img](', '![img](http://im-dev-lee.site/files/posts/home_server/')
 
 		data = deepcopy(GA000)
 		data['post'] = post
@@ -134,9 +135,8 @@ def get_category_list(request):
 		data = deepcopy(GC000)
 		data['category'] = []
 		for c in category:
-				cnt = len(list(Post.objects.filter(category=c.get(id))))
+				cnt = len(list(Post.objects.filter(category_id=c.get('id'))))
 				if cnt > 0:
 						data['category'].append(c)
 
-		
 		return make_json_response(200, data)
