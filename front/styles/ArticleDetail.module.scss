@@ -1,0 +1,22 @@
+@function h__tag__size($level) {
+  @return (5 - $level) * 8px;
+}
+
+.contents {
+  @for $i from 1 through 4 {
+    h#{$i} {
+      font: {
+        size: h__tag__size($i);
+        weight: bold;
+      }
+      margin: {
+        bottom: h__tag__size($i);
+      }
+    }
+    p {
+      font: {
+        size: 20px;
+      }
+    }
+  }
+}

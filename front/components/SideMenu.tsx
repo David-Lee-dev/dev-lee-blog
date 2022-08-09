@@ -1,24 +1,15 @@
-import { useContext, useEffect, useState } from 'react';
-import { getCategoryListApi } from '../api/requests';
+import { useState } from 'react';
 import Image from 'next/image';
-import { categoryContext } from '../contexts/CategoryContext';
 
+import { Category } from '../types';
 import s from '../styles/SideMenu.module.scss';
 
-export default function SideMenu({ type }: Props) {
-  const { category, updateCategory } = useContext(categoryContext);
+export default function SideMenu({ category }: Props) {
   const [openCategory, setOpenCategory] = useState<boolean>(false);
   const [selected, setSelected] = useState<number>(-1);
 
   const sideMenuHandler = () => setOpenCategory((prev) => !prev);
   const selectedHandler = (id: number) => setSelected(id);
-
-  useEffect(() => {
-    (async () => {
-      const response = await getCategoryListApi(type);
-      updateCategory(response);
-    })();
-  }, []);
 
   return (
     <aside className={`${s.side__menu} ${openCategory ? 'open' : s.close}`}>
@@ -44,5 +35,5 @@ export default function SideMenu({ type }: Props) {
 }
 
 interface Props {
-  type: string;
+  category: Category[];
 }

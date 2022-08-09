@@ -6,7 +6,7 @@ import { throttle } from 'lodash';
 import s from '../styles/Header.module.scss';
 
 export default function Header() {
-  const pathname = useRouter().pathname.split('?')[0];
+  const pathname = useRouter().pathname;
   const [scrollGuage, setScrollGuage] = useState<number>(0);
 
   const scrollHandler = useCallback(
@@ -37,12 +37,10 @@ export default function Header() {
         {navMenu.map((menu) => (
           <li
             key={menu.name}
-            className={`${
-              pathname === `/${menu.route.split('?')[0]}` ? s.active : ''
-            } 
-              ${s.menu}`}
+            className={`
+              ${pathname.search(menu.route) >= 0 ? s.active : ''} ${s.menu}`}
           >
-            <Link href={`/${menu.route}`}>
+            <Link href={`${menu.route}`}>
               <a>{menu.name}</a>
             </Link>
           </li>
@@ -61,18 +59,18 @@ export default function Header() {
 const navMenu = [
   {
     name: 'HOME',
-    route: '',
+    route: '/home',
   },
   {
     name: 'POST',
-    route: 'post?category=all',
+    route: '/article/post',
   },
   {
     name: 'NOTE',
-    route: 'note?category=all',
+    route: '/article/note',
   },
   {
     name: 'RESUME',
-    route: 'resume',
+    route: '/resume',
   },
 ];
