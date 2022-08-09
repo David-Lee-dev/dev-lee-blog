@@ -1,4 +1,7 @@
 import { marked } from 'marked';
+import { useEffect } from 'react';
+import Prism from 'prismjs';
+import 'prismjs/themes/prism-tomorrow.css';
 
 import { Article } from '../types';
 import s from '../styles/ArticleDetail.module.scss';
@@ -19,6 +22,10 @@ export default function ArticleDetail({ article }: Props) {
   const contentsUrl = article.contents_url ? article.contents_url : '';
   const tags = article.tags ? article.tags.split(' ') : '';
   const contents = article.contents ? marked.parse(article.contents) : '';
+
+  useEffect(() => {
+    (async () => await Prism.highlightAll())();
+  }, [article]);
 
   return (
     <article>
