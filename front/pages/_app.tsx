@@ -1,10 +1,9 @@
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
-
-//style
-import '../styles/global.scss';
+import ArticleProvider from '../contexts/ArticleListContext';
+import CategoryProvider from '../contexts/CategoryContext';
+import '../styles/_global.scss';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -23,15 +22,14 @@ function MyApp({ Component, pageProps }: AppProps) {
           type="text/css"
         ></link>
       </Head>
-      <div className="wrapper">
-        <div className="header">
-          <Header />
-        </div>
-        <div className="contents">
-          <Component {...pageProps} />
-          <Footer />
-        </div>
-      </div>
+      <Header />
+      <section style={{ paddingTop: '84px', minHeight: '200vh' }}>
+        <CategoryProvider>
+          <ArticleProvider>
+            <Component {...pageProps} />
+          </ArticleProvider>
+        </CategoryProvider>
+      </section>
     </>
   );
 }

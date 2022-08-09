@@ -1,3 +1,3 @@
-export default function Resume() {
-  return 'resume';
+export default function Home() {
+  return <></>;
 }

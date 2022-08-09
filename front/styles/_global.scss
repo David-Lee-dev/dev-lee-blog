@@ -1,0 +1,20 @@
+* {
+  font-family: 'Spoqa Han Sans Neo', 'sans-serif' !important;
+}
+
+body {
+  background-color: $white;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+a {
+  all: unset;
+  cursor: pointer;
+}
+
+button {
+  all: unset;
+}

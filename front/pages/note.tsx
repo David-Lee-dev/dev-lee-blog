@@ -1,3 +1,3 @@
-export default function Note() {
-  return 'Note';
+export default function Home() {
+  return <></>;
 }
