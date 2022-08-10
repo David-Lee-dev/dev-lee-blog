@@ -1,7 +1,9 @@
 import { useContext, useEffect } from 'react';
-import { getCategoryListApi } from '../../../api/requests';
+
 import ArticlesList from '../../../components/ArticlesList';
 import SideMenu from '../../../components/SideMenu';
+
+import { getCategoryListApi } from '../../../api/requests';
 import { categoryContext } from '../../../contexts/CategoryContext';
 
 export default function Post() {

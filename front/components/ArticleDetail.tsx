@@ -18,13 +18,10 @@ marked.use({
 });
 
 export default function ArticleDetail({ article }: Props) {
-  const title = article.title ? article.title : '';
-  const contentsUrl = article.contents_url ? article.contents_url : '';
-  const tags = article.tags ? article.tags.split(' ') : '';
   const contents = article.contents ? marked.parse(article.contents) : '';
 
   useEffect(() => {
-    (async () => await Prism.highlightAll())();
+    Prism.highlightAll();
   }, [article]);
 
   return (
@@ -32,7 +29,7 @@ export default function ArticleDetail({ article }: Props) {
       <div
         className={s.contents}
         dangerouslySetInnerHTML={{ __html: contents }}
-        style={{ marginTop: '30px' }}
+        style={{ paddingTop: '30px' }}
       ></div>
     </article>
   );
@@ -41,3 +38,5 @@ export default function ArticleDetail({ article }: Props) {
 interface Props {
   article: Article;
 }
+
+const test = JSON.stringify('');

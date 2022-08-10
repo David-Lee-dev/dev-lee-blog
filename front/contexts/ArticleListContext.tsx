@@ -1,5 +1,5 @@
 import { createContext, useCallback, useState } from 'react';
-import { getArticleListApi } from '../api/requests';
+
 import { Article, defaultArticle } from '../types';
 
 interface ValueType {

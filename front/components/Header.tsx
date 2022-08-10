@@ -30,7 +30,6 @@ export default function Header() {
       window.removeEventListener('scroll', scrollHandler);
     };
   }, []);
-
   return (
     <header className={s.header}>
       <nav className={s.menus}>
@@ -38,7 +37,11 @@ export default function Header() {
           <li
             key={menu.name}
             className={`
-              ${pathname.search(menu.route) >= 0 ? s.active : ''} ${s.menu}`}
+              ${
+                pathname === menu.route || pathname.search(menu.key) >= 0
+                  ? s.active
+                  : ''
+              } ${s.menu}`}
           >
             <Link href={`${menu.route}`}>
               <a>{menu.name}</a>
@@ -59,18 +62,22 @@ export default function Header() {
 const navMenu = [
   {
     name: 'HOME',
-    route: '/home',
+    route: '/',
+    key: 'home',
   },
   {
     name: 'POST',
     route: '/article/post',
+    key: 'post',
   },
   {
     name: 'NOTE',
     route: '/article/note',
+    key: 'note',
   },
   {
     name: 'RESUME',
     route: '/resume',
+    key: 'resume',
   },
 ];
