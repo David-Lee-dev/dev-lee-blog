@@ -119,8 +119,9 @@ def get_note_detail(request, note_pk):
 				return make_json_response(400, GN002)
 
 		f = open(note['contents_url'], 'r')
-		contents = ''.join(f.readlines())
-		note['contents'] = contents.replace('![img](', '![img](http://im-dev-lee.site/files/posts/home_server/')
+		contents = '<br />'.join(f.readlines())
+		directory = '/'.join(note['contents_url'].split('/')[:-1])
+		note['contents'] = contents.replace('![img](', f'![img](http://im-dev-lee.site/{directory}/')
 
 		data = deepcopy(GN000)
 		data['note'] = note
