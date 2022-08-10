@@ -119,7 +119,7 @@ def get_note_detail(request, note_pk):
 				return make_json_response(400, GN002)
 
 		f = open(note['contents_url'], 'r')
-		contents = f.readlines()
+		contents = ''.join(f.readlines())
 		directory = '/'.join(note['contents_url'].split('/')[:-1])
 		note['contents'] = contents.replace('![img](', f'![img](http://im-dev-lee.site/{directory}/')
 

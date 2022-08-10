@@ -122,7 +122,7 @@ def get_post_detail(request, post_pk):
 				return make_json_response(400, GA002)
 
 		f = open(post['contents_url'], 'r')
-		contents = f.readlines()
+		contents = ''.join(f.readlines())
 		directory = '/'.join(post['contents_url'].split('/')[:-1])
 		post['contents'] = contents.replace('![img](', f'![img](http://im-dev-lee.site/{directory}/')
 
