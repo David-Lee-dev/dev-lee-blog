@@ -1,5 +1,6 @@
 # pakages
 import http
+from ntpath import join
 import os
 from shutil import rmtree
 from copy import deepcopy
@@ -122,7 +123,8 @@ def get_post_detail(request, post_pk):
 
 		f = open(post['contents_url'], 'r')
 		contents = '<br />'.join(f.readlines())
-		post['contents'] = contents.replace('![img](', '![img](http://im-dev-lee.site/files/posts/home_server/')
+		directory = '/'.join(post['contents_url'].split('/')[:-1])
+		post['contents'] = contents.replace('![img](', f'![img](http://im-dev-lee.site/{directory}/')
 
 		data = deepcopy(GA000)
 		data['post'] = post
