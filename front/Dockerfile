@@ -1,19 +1,13 @@
-FROM node:alpine
-
-RUN mkdir -p /usr/src/app
-ENV PORT 3000
+FROM node:16.13.1:alpine
 
 WORKDIR /usr/src/app
 
-COPY package.json /usr/src/app
-COPY yarn.lock /usr/src/app
+COPY package.json ./
+COPY yarn.lock ./
 
-# Production use node instead of root
-# USER node
+RUN yarn
 
-RUN yarn install --production
-
-COPY . /usr/src/app
+COPY . .
 
 RUN yarn build
 
