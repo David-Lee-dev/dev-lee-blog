@@ -1,6 +1,4 @@
 # pakages
-import http
-from ntpath import join
 import os
 from shutil import rmtree
 from copy import deepcopy
@@ -61,7 +59,6 @@ def create_post(request):
 				except PostCategory.DoesNotExist:
 						category = PostCategory.objects.create(name=category)
 						category.save()
-				print(tags)
 				post = Post.objects.create(
 					title=title,	
 					tags=' '.join(tags),	
@@ -75,6 +72,9 @@ def create_post(request):
 @require_http_methods(["DELETE"])
 @csrf_exempt
 def delete_post(request, post_pk):
+		key = request.headers.get('key')
+		if key == 'null' or key != POST_PASSWORD:
+				return make_json_response(403, DA003)
 		try:
 				post = Post.objects.get(pk=post_pk)
 		except:

@@ -11,6 +11,7 @@ CA003 = {'code': 'CA003', 'status': False, 'message': '빈 필드가 존재합�
 DA000 = {'code': 'DA000', 'status': True, 'message': '포스트가 삭제되었습니다.'}
 DA001 = {'code': 'DA001', 'status': False, 'message': '본문 파일이 없어 포스트를 삭제할 수 없습니다.'}
 DA002 = {'code': 'DA002', 'status': False, 'message': '존재하지 않는 포스트입니다.'}
+DA003 = {'code': 'DA003', 'status': False, 'message': '권한이 없습니다'}
 
 # Get Article
 GA000 = {'code': 'GA000', 'status': True, 'message': '포스트(리스트)를 불러왔습니다.'}

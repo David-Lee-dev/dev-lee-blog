@@ -62,7 +62,7 @@ def create_note(request):
 
 				note = Note.objects.create(
 					title=title,	
-					tags=str(tags),	
+					tags=' '.join(tags),
 					contents_url=contents_url,
 					category=category
 				)
