@@ -11,6 +11,7 @@ export default function Articles({ type }: Props) {
   useEffect(() => {
     (async () => {
       const response = await getArticleListApi(type, 'all', currentPage);
+      console.log(response);
       updateArticle(response);
     })();
   }, []);

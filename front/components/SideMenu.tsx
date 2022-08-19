@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -7,9 +7,12 @@ import s from '../styles/SideMenu.module.scss';
 import { articleContext } from '../contexts/ArticleListContext';
 import { getArticleListApi } from '../api/requests';
 import { categoryContext } from '../contexts/CategoryContext';
+import { useRouter } from 'next/router';
 
 export default function SideMenu({ category }: Props) {
-  const type = getArticleType();
+  const pathname = useRouter().pathname;
+
+  const type = useMemo(() => getArticleType(pathname), []);
   const [openCategory, setOpenCategory] = useState<boolean>(false);
 
   const { updateArticle } = useContext(articleContext);
@@ -54,8 +57,7 @@ interface Props {
   category: Category[];
 }
 
-function getArticleType(): string | null {
-  const pathname = window.location.pathname;
+function getArticleType(pathname: string): string | null {
   if (pathname.search('post') > 0) return 'post';
   else if (pathname.search('note') > 0) return 'note';
   else return null;

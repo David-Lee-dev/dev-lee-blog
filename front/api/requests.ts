@@ -14,7 +14,9 @@ export async function getArticleListApi(
   page = 1
 ): Promise<Article[]> {
   const respone = await api.get(`api/${type}/list/${category}/${page}`);
-  return respone.data.data.posts;
+
+  if (type === 'post') return respone.data.data.posts;
+  return respone.data.data.notes;
 }
 
 export async function getArticleDetailApi(
