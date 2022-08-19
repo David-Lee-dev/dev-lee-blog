@@ -6,6 +6,7 @@ const nextConfig = {
     includePaths: [path.join(__dirname, 'styles')],
     prependData: `@import "styles/_variables.scss"; @import "styles/_mixins.scss";`, // prependData 옵션 추가
   },
+  distDir: 'build',
 };
 
 module.exports = nextConfig;

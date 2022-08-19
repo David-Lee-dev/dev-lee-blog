@@ -11,7 +11,6 @@ export default function Articles({ type }: Props) {
   useEffect(() => {
     (async () => {
       const response = await getArticleListApi(type, 'all', currentPage);
-      console.log(response);
       updateArticle(response);
     })();
   }, []);
@@ -20,7 +19,7 @@ export default function Articles({ type }: Props) {
     <>
       {articles &&
         articles.map((article) => (
-          <ArticlePreview key={article.id} article={article} />
+          <ArticlePreview key={article.id} article={article} type={type} />
         ))}
     </>
   );
