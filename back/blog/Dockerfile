@@ -4,7 +4,6 @@ FROM python:3.9.6
 WORKDIR /app
 
 RUN apt update
-RUN apt upgrade -y
 RUN apt-get install -y python3-dev default-libmysqlclient-dev default-mysql-client
 
 COPY requirements.txt ./
