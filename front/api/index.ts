@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+const BASE_URL = 'http://im-dev-lee.site/';
 
 const createAxiosInstance = () => {
   const axiosInstance = axios.create({
