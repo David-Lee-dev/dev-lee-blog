@@ -8,13 +8,23 @@
   transition: transform 0.2s;
   z-index: 1000;
 
+  &.close {
+    transform: translateX(-350px);
+  }
+
+  @include mobile {
+    display: none;
+    width: 200px;
+
+    &.close {
+      transform: translateX(-150px);
+    }
+  }
+
   ul {
     width: 50%;
   }
 
-  &.close {
-    transform: translateX(-350px);
-  }
 
   .sell {
     padding: 8px;

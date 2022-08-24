@@ -1,5 +1,17 @@
 @mixin shortening {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+@mixin mobile{
+  @media (max-width: 767px){ 
+    @content;
+  }
+}
+
+@mixin tablet{
+  @media (min-width: 768px) and (max-width: 1023px){
+    @content;
+  }
 }

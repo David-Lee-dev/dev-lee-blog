@@ -22,14 +22,26 @@ button {
 .contents {
   position: relative;
   width: 100vw;
+  padding-top: 80px;
 }
+
 
 .inner {
   width: 100vw;
   max-width: 850px;
-  min-width: 500px;
+  min-width: 850px;
   min-height: 100vh;
   margin: 0 auto;
   padding: 0 20px;
   box-sizing: border-box;
+}
+
+@include mobile {
+  .contents {
+    padding-top: 60px;
+  }
+
+  .inner {
+    min-width: 100vw;
+  }
 }

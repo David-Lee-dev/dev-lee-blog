@@ -22,7 +22,6 @@
 .bottom {
   display: flex;
   justify-content: space-between;
-  font-size: 20px;
 }
 
 .tags {
@@ -32,4 +31,32 @@
 .created__date {
   padding-top: 12px;
   font-size: 16px;
+}
+
+@include mobile {
+  .article__preview {
+    padding: 8px;
+    margin-bottom: 16px;
+    border-bottom: 2px solid $bw-10;
+  }
+  
+  .title {
+    margin-bottom: 12px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  
+  .bottom {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .tags {
+    display: flex;
+  }
+  
+  .created__date {
+    padding-top: 12px;
+    font-size: 14px;
+  }
 }

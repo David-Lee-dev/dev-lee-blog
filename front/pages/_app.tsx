@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         ></link>
       </Head>
       <Header />
-      <section className="contents" style={{ paddingTop: '80px' }}>
+      <section className="contents">
         <CategoryProvider>
           <ArticleProvider>
             <div className="inner">
