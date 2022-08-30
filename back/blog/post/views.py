@@ -96,7 +96,7 @@ def delete_post(request, post_pk):
 def get_post_list(request, category_name, page):
 		# 전체 카테고리 요청
 		if category_name == 'all':
-				posts = list(Post.objects.all()[10 * (page - 1): 10 * page].values())
+				posts = list(Post.objects.all().order_by('-created_at')[10 * (page - 1): 10 * page].values())
 		# 특정 카테고리 요청
 		else:
 				try:

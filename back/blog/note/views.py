@@ -93,7 +93,7 @@ def delete_note(request, note_pk):
 def get_note_list(request, category_name, page):
 		# 전체 카테고리 요청
 		if category_name == 'all':
-				notes = list(Note.objects.all()[10 * (page - 1): 10 * page].values())
+				notes = list(Note.objects.all().order_by('-created_at')[10 * (page - 1): 10 * page].values())
 		# 특정 카테고리 요청
 		else:
 				try:
