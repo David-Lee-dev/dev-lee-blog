@@ -6,6 +6,8 @@ import 'prismjs/themes/prism-tomorrow.css';
 import { Article } from '../types';
 import s from '../styles/ArticleDetail.module.scss';
 
+const renderer = new marked.Renderer();
+
 marked.use({
   pedantic: false,
   gfm: true,
@@ -15,6 +17,7 @@ marked.use({
   smartypants: false,
   xhtml: false,
   headerIds: false,
+  renderer
 });
 
 export default function ArticleDetail({ article }: Props) {

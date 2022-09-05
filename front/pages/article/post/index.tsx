@@ -7,10 +7,11 @@ import { getCategoryListApi } from '../../../api/requests';
 import { categoryContext } from '../../../contexts/CategoryContext';
 
 export default function Post() {
-  const { category, updateCategory } = useContext(categoryContext);
+  const { updateCategory } = useContext(categoryContext);
 
   useEffect(() => {
     (async () => {
+      console.log('cate')
       const response = await getCategoryListApi('post');
       updateCategory(response);
     })();
@@ -18,7 +19,7 @@ export default function Post() {
 
   return (
     <>
-      <SideMenu category={category} />
+      <SideMenu />
       <ArticlesList type="post" />
     </>
   );

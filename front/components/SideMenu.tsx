@@ -9,14 +9,14 @@ import { getArticleListApi } from '../api/requests';
 import { categoryContext } from '../contexts/CategoryContext';
 import { useRouter } from 'next/router';
 
-export default function SideMenu({ category }: Props) {
+export default function SideMenu() {
   const pathname = useRouter().pathname;
 
   const type = useMemo(() => getArticleType(pathname), []);
   const [openCategory, setOpenCategory] = useState<boolean>(false);
 
   const { updateArticle } = useContext(articleContext);
-  const { selected, changeSelectedCatetory } = useContext(categoryContext);
+  const { category, selected, changeSelectedCatetory } = useContext(categoryContext);
 
   const sideMenuHandler = () => setOpenCategory((prev) => !prev);
   const selectedHandler = async (id: number, name: string) => {
@@ -51,10 +51,6 @@ export default function SideMenu({ category }: Props) {
       </button>
     </aside>
   );
-}
-
-interface Props {
-  category: Category[];
 }
 
 function getArticleType(pathname: string): string | null {
