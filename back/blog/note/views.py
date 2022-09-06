@@ -121,7 +121,7 @@ def get_note_detail(request, note_pk):
 		f = open(note['contents_url'], 'r')
 		contents = ''.join(f.readlines())
 		directory = '/'.join(note['contents_url'].split('/')[:-1])
-		note['contents'] = contents.replace('![img](', f'![img](http://im-dev-lee.site/{directory}/')
+		note['contents'] = contents.replace('![img](', f'![img](http://www.im-dev-lee.site/{directory}/')
 
 		data = deepcopy(GN000)
 		data['note'] = note

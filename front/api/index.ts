@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://im-dev-lee.site/';
+const BASE_URL = 'http://www.im-dev-lee.site/';
 
 const createAxiosInstance = () => {
   const axiosInstance = axios.create({
