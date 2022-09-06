@@ -9,7 +9,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:3000', 'http://localhost:3000']
+CORS_ORIGIN_WHITELIST = ['http://127.0.0.1:3000', 'http://localhost:3000', 'http://im-dev-lee.site', 'http://www.im-dev-lee.site']
 
 CORS_ALLOW_HEADERS = [
     'accept',
