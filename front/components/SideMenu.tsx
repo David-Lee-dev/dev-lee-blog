@@ -2,7 +2,6 @@ import { useContext, useMemo, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { Category } from '../types';
 import s from '../styles/SideMenu.module.scss';
 import { articleContext } from '../contexts/ArticleListContext';
 import { getArticleListApi } from '../api/requests';
@@ -16,7 +15,8 @@ export default function SideMenu() {
   const [openCategory, setOpenCategory] = useState<boolean>(false);
 
   const { updateArticle } = useContext(articleContext);
-  const { category, selected, changeSelectedCatetory } = useContext(categoryContext);
+  const { category, selected, changeSelectedCatetory } =
+    useContext(categoryContext);
 
   const sideMenuHandler = () => setOpenCategory((prev) => !prev);
   const selectedHandler = async (id: number, name: string) => {

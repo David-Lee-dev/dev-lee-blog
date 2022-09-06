@@ -1,0 +1,17 @@
+.search__bar {
+	width: 100%;
+	padding: 20px 0px 30px;
+	box-sizing: border-box;
+
+	input {
+		all: unset;
+		width: 100%;
+		padding: 5px 10px;
+		background-color: $bw-20;
+		box-sizing: border-box;
+		color: $bw-80;
+		font-size: 20px;
+		font-weight: bold;
+		border-radius: 10px;
+	}
+}

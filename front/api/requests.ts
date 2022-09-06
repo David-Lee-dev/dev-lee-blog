@@ -26,3 +26,14 @@ export async function getArticleDetailApi(
   const respone = await api.get(`api/${type}/detail/${id}`);
   return respone.data.data[type];
 }
+
+export async function searchArticleListApi(
+  type: string,
+  searchWord: string,
+  page = 1
+): Promise<Article[]> {
+  const respone = await api.get(`api/${type}/search/${searchWord}/${page}`);
+
+  if (type === 'post') return respone.data.data.posts;
+  return respone.data.data.notes;
+}

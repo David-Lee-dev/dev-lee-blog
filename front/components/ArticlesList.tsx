@@ -1,22 +1,23 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 
 import { getArticleListApi } from '../api/requests';
 import { articleContext } from '../contexts/ArticleListContext';
 import ArticlePreview from './ArticlePreview';
+import SearchBar from './SearchBar';
 
 export default function Articles({ type }: Props) {
   const { articles, updateArticle } = useContext(articleContext);
-  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     (async () => {
-      const response = await getArticleListApi(type, 'all', currentPage);
+      const response = await getArticleListApi(type, 'all', 1);
       updateArticle(response);
     })();
   }, []);
 
   return (
     <>
+      <SearchBar type={type} />
       {articles &&
         articles.map((article) => (
           <ArticlePreview key={article.id} article={article} type={type} />

@@ -1,5 +1,5 @@
 from pathlib import Path
-import env, os
+import env as env, os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 

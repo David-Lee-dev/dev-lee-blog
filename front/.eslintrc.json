@@ -2,20 +2,37 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions":  {
     "ecmaVersion":  6,  // 최신 문법 지원
-    "sourceType":  "module",  // 모듈 시스템 사용시
+    "sourceType":  "module"  // 모듈 시스템 사용시
   },
   "plugins": ["react", "@typescript-eslint", "prettier"],
   "extends": [
     "plugin:react/recommended", // 리액트 추천 룰셋
     "plugin:@typescript-eslint/recommended", // 타입스크립트 추천 룰셋
-      // eslint의 typescript 포매팅 기능을 제거(eslint-config-prettier)
-    "prettier/@typescript-eslint",  
+    // eslint의 typescript 포매팅 기능을 제거(eslint-config-prettier)
     // eslint의 포매팅 기능을 prettier로 사용함. 항상 마지막에 세팅 되어야 함.            
-    "plugin:prettier/recommended"  // (eslint-plugin-prettier)
+    "plugin:prettier/recommended",  // (eslint-plugin-prettier)
+    "prettier" 
   ],
   "settings":  {
     "react":  {
       "version":  "detect"  // eslint-plugin-react가 자동 리액트버전탐지
     }
+  },
+  "rules": {
+    /** 함수의 명시적 타입 리턴을 명시적으로 써주지 않아도 되도록 하는 옵션. 이건 off 하는게 맞을까? */
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "no-empty-function": "off",
+    "no-unused-vars": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ]
   }
 }

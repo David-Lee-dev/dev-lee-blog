@@ -2,11 +2,13 @@
 import os
 from shutil import rmtree
 from copy import deepcopy
+from turtle import title
 from django.shortcuts import render
 from django.forms.models import model_to_dict
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 from django.core.files.storage import FileSystemStorage
+from django.db.models import Q
 
 #modules
 from messages import *
@@ -107,6 +109,27 @@ def get_post_list(request, category_name, page):
 		
 		for idx in range(len(posts)):
 				posts[idx]['category'] = model_to_dict(PostCategory.objects.get(pk=posts[idx]['category_id']))
+				del posts[idx]['category_id']
+
+		data = deepcopy(GA000)
+		data['posts'] = posts
+		return make_json_response(200, data)
+
+
+@require_http_methods(["GET"])
+def search_post(request, query_string, page):
+		try:
+				posts = list(Post.objects.filter(
+					Q(title__icontains = query_string) |
+					Q(tags__icontains = query_string))
+					.distinct()[10 * (page - 1): 10 * page]
+					.values()
+				)
+		except PostCategory.DoesNotExist:
+				return make_json_response(404, GA001)
+		
+		for idx in range(len(posts)):
+				posts[idx]['category'] = {'id': -1, 'name': 'all'}
 				del posts[idx]['category_id']
 
 		data = deepcopy(GA000)

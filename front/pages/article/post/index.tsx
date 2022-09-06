@@ -11,7 +11,6 @@ export default function Post() {
 
   useEffect(() => {
     (async () => {
-      console.log('cate')
       const response = await getCategoryListApi('post');
       updateCategory(response);
     })();

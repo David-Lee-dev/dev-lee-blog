@@ -7,6 +7,7 @@ from django.forms.models import model_to_dict
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 from django.core.files.storage import FileSystemStorage
+from django.db.models import Q
 
 #modules
 from messages import *
@@ -107,6 +108,27 @@ def get_note_list(request, category_name, page):
 				del notes[idx]['category_id']
 
 		data = deepcopy(GN000)
+		data['notes'] = notes
+		return make_json_response(200, data)
+
+
+@require_http_methods(["GET"])
+def search_note(request, query_string, page):
+		try:
+				notes = list(Note.objects.filter(
+					Q(title__icontains = query_string) |
+					Q(tags__icontains = query_string))
+					.distinct()[10 * (page - 1): 10 * page]
+					.values()
+				)
+		except NoteCategory.DoesNotExist:
+				return make_json_response(404, GA001)
+		
+		for idx in range(len(notes)):
+				notes[idx]['category'] = {'id': -1, 'name': 'all'}
+				del notes[idx]['category_id']
+
+		data = deepcopy(GA000)
 		data['notes'] = notes
 		return make_json_response(200, data)
 
