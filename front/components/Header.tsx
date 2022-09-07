@@ -75,9 +75,4 @@ const navMenu = [
     route: '/article/note',
     key: 'note',
   },
-  {
-    name: 'RESUME',
-    route: '/resume',
-    key: 'resume',
-  },
 ];

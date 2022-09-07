@@ -7,14 +7,17 @@ import s from '../styles/SearchBar.module.scss';
 
 export default function SearchBar({ type }: Props) {
   const [value, setValue] = useState('');
-  const { updateArticle } = useContext(articleContext);
+  const { updateArticle, updatePages } = useContext(articleContext);
 
   const searchArticles = useCallback(
     debounce(async (value) => {
       let response = null;
+
       if (!value) response = await getArticleListApi(type, 'all', 1);
       else response = await searchArticleListApi(type, value, 1);
-      updateArticle(response);
+
+      updateArticle(response.articles);
+      updatePages(response.cnt);
     }, 500),
     []
   );

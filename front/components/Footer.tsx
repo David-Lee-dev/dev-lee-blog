@@ -10,6 +10,7 @@ export default function Footer() {
         className={s.github}
         href="https://github.com/David-Lee-dev"
         target="_blank"
+        rel="noreferrer"
       >
         <Image src="/github.png" width="20px" height="20px"></Image>
       </a>

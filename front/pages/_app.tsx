@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>I'm dev-lee</title>
+        <title>I&apos;m dev-lee</title>
         <meta name="description" content="dev-lee's blog" />
         <link rel="icon" href="/favicon.ico" />
         <link

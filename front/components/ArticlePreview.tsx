@@ -1,9 +1,10 @@
-import { Article } from '../types';
-import s from '../styles/ArticlePreview.module.scss';
-import TagBean from './TagBean';
-import Link from 'next/link';
-import { categoryContext } from '../contexts/CategoryContext';
 import { useContext } from 'react';
+import Link from 'next/link';
+
+import { Article } from '../types';
+import TagBean from './TagBean';
+import { categoryContext } from '../contexts/CategoryContext';
+import s from '../styles/ArticlePreview.module.scss';
 
 export default function ArticlePreview({ article, type }: Props) {
   const tags = article.tags.split(' ');

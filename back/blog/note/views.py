@@ -94,8 +94,8 @@ def delete_note(request, note_pk):
 def get_note_list(request, category_name, page):
 		# 전체 카테고리 요청
 		if category_name == 'all':
-				notes = list(Note.objects.all().order_by('-created_at')[10 * (page - 1): 10 * page].values())
-		# 특정 카테고리 요청
+				notes = list(Note.objects.all().order_by('-created_at').values())
+				cnt = len(notes)		# 특정 카테고리 요청
 		else:
 				try:
 						category = model_to_dict(NoteCategory.objects.get(name=category_name))
@@ -108,7 +108,8 @@ def get_note_list(request, category_name, page):
 				del notes[idx]['category_id']
 
 		data = deepcopy(GN000)
-		data['notes'] = notes
+		data['notes'] = notes[10 * (page - 1): 10 * page]
+		data['cnt'] = cnt
 		return make_json_response(200, data)
 
 
@@ -118,9 +119,10 @@ def search_note(request, query_string, page):
 				notes = list(Note.objects.filter(
 					Q(title__icontains = query_string) |
 					Q(tags__icontains = query_string))
-					.distinct()[10 * (page - 1): 10 * page]
+					.distinct()
 					.values()
 				)
+				cnt = len(notes)
 		except NoteCategory.DoesNotExist:
 				return make_json_response(404, GA001)
 		
@@ -129,7 +131,8 @@ def search_note(request, query_string, page):
 				del notes[idx]['category_id']
 
 		data = deepcopy(GA000)
-		data['notes'] = notes
+		data['notes'] = notes[10 * (page - 1): 10 * page]
+		data['cnt'] = cnt
 		return make_json_response(200, data)
 
 

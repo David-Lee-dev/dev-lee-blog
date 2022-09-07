@@ -3,15 +3,19 @@ import { useContext, useEffect } from 'react';
 import { getArticleListApi } from '../api/requests';
 import { articleContext } from '../contexts/ArticleListContext';
 import ArticlePreview from './ArticlePreview';
+import PageNav from './PageNav';
 import SearchBar from './SearchBar';
 
 export default function Articles({ type }: Props) {
-  const { articles, updateArticle } = useContext(articleContext);
+  const { articles, updateArticle, pages, updatePages } =
+    useContext(articleContext);
 
   useEffect(() => {
     (async () => {
       const response = await getArticleListApi(type, 'all', 1);
-      updateArticle(response);
+
+      updateArticle(response.articles);
+      updatePages(response.cnt);
     })();
   }, []);
 
@@ -22,6 +26,7 @@ export default function Articles({ type }: Props) {
         articles.map((article) => (
           <ArticlePreview key={article.id} article={article} type={type} />
         ))}
+      {pages.length > 1 && <PageNav type={type} />}
     </>
   );
 }

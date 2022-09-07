@@ -14,13 +14,17 @@ export default function SideMenu() {
   const type = useMemo(() => getArticleType(pathname), []);
   const [openCategory, setOpenCategory] = useState<boolean>(false);
 
-  const { updateArticle } = useContext(articleContext);
+  const { updateArticle, updatePages } = useContext(articleContext);
   const { category, selected, changeSelectedCatetory } =
     useContext(categoryContext);
 
   const sideMenuHandler = () => setOpenCategory((prev) => !prev);
   const selectedHandler = async (id: number, name: string) => {
-    if (type) updateArticle(await getArticleListApi(type, name, 1));
+    if (type) {
+      const response = await getArticleListApi(type, name, 1);
+      updateArticle(response.articles);
+      updatePages(response.cnt);
+    }
     changeSelectedCatetory(id);
   };
 

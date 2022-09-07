@@ -4,7 +4,10 @@ import { useContext, useEffect, useState } from 'react';
 import SideMenu from '../../../../components/SideMenu';
 import ArticleDetail from '../../../../components/ArticleDetail';
 
-import { getArticleDetailApi, getCategoryListApi } from '../../../../api/requests';
+import {
+  getArticleDetailApi,
+  getCategoryListApi,
+} from '../../../../api/requests';
 import { Article, defaultArticle } from '../../../../types';
 import { categoryContext } from '../../../../contexts/CategoryContext';
 
@@ -20,7 +23,10 @@ export default function Detail() {
       const catetoryResponse = await getCategoryListApi('post');
       updateCategory(catetoryResponse);
 
-      const contentsResponse = await getArticleDetailApi('note', `${router.query.id}`);
+      const contentsResponse = await getArticleDetailApi(
+        'note',
+        `${router.query.id}`
+      );
       setArticle(contentsResponse);
     })();
   }, [router.isReady]);

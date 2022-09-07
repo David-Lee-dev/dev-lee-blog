@@ -17,7 +17,7 @@ marked.use({
   smartypants: false,
   xhtml: false,
   headerIds: false,
-  renderer
+  renderer,
 });
 
 export default function ArticleDetail({ article }: Props) {

@@ -12,11 +12,15 @@ export async function getArticleListApi(
   type: string,
   category: string,
   page = 1
-): Promise<Article[]> {
+): Promise<{ articles: Article[]; cnt: number }> {
   const respone = await api.get(`api/${type}/list/${category}/${page}`);
 
-  if (type === 'post') return respone.data.data.posts;
-  return respone.data.data.notes;
+  let articles = null;
+
+  if (type === 'post') articles = respone.data.data.posts;
+  else articles = respone.data.data.notes;
+
+  return { articles, cnt: respone.data.data.cnt };
 }
 
 export async function getArticleDetailApi(
@@ -31,9 +35,13 @@ export async function searchArticleListApi(
   type: string,
   searchWord: string,
   page = 1
-): Promise<Article[]> {
+): Promise<{ articles: Article[]; cnt: number }> {
   const respone = await api.get(`api/${type}/search/${searchWord}/${page}`);
 
-  if (type === 'post') return respone.data.data.posts;
-  return respone.data.data.notes;
+  let articles = null;
+
+  if (type === 'post') articles = respone.data.data.posts;
+  else articles = respone.data.data.notes;
+
+  return { articles, cnt: respone.data.data.cnt };
 }
