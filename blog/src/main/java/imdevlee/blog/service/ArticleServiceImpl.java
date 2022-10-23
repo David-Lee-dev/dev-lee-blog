@@ -6,6 +6,7 @@ import imdevlee.blog.domain.Category;
 import imdevlee.blog.repository.ArticleRepository;
 import imdevlee.blog.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -75,8 +76,7 @@ public class ArticleServiceImpl implements ArticleService{
         return true;
     }
 
-    @Override
-    public List<Article> search(Long id, String searchQuery, String categoryName, String type) {
+    public List<Article> search(@Nullable Long id, @Nullable String searchQuery, @Nullable String categoryName, String type) {
 
         // 단일 검색
         if (id != null) {
