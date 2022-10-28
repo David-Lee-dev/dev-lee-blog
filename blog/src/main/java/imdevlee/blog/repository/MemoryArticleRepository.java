@@ -27,7 +27,6 @@ public class MemoryArticleRepository implements ArticleRepository{
     public Article updateArticle(Long articleId, Article article, Category category) {
         Article foundArticle = findArticleById(articleId);
         foundArticle.setTitle(article.getTitle());
-        foundArticle.setContentsPath(article.getContentsPath());
         foundArticle.setTags(article.getTags());
         foundArticle.setCategory(category);
 

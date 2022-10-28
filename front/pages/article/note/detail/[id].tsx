@@ -8,26 +8,23 @@ import {
   getArticleDetailApi,
   getCategoryListApi,
 } from '../../../../api/requests';
-import { Article, defaultArticle } from '../../../../types';
 import { categoryContext } from '../../../../contexts/CategoryContext';
 
 export default function Detail() {
   const router = useRouter();
-  const [article, setArticle] = useState<Article>(defaultArticle);
+  const [article, setArticle] = useState<string>('');
   const { updateCategory } = useContext(categoryContext);
 
   useEffect(() => {
     (async () => {
       if (!router.isReady) return;
 
-      const catetoryResponse = await getCategoryListApi('post');
+      const catetoryResponse = await getCategoryListApi('note');
       updateCategory(catetoryResponse);
 
-      const contentsResponse = await getArticleDetailApi(
-        'note',
-        `${router.query.id}`
-      );
-      setArticle(contentsResponse);
+      const contents = await getArticleDetailApi('note', `${router.query.id}`);
+      console.log(contents);
+      setArticle(contents);
     })();
   }, [router.isReady]);
 

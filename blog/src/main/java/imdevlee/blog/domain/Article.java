@@ -10,16 +10,18 @@ public class Article {
     private Long id;
     private String type;
     private String title;
-    private String contentsPath;
+    private String contents;
+    private String[] images;
     private String[] tags;
     private String createdTime;
     private Category category;
 
-    public Article(String title, String type, String contentsPath, String[] tags, String createdTime) {
+    public Article(String title, String type,String contents, String[] images, String[] tags, String createdTime) {
         this.title = title;
         this.type = type;
-        this.contentsPath = contentsPath;
         this.tags = tags;
+        this.contents = contents;
+        this.images = images;
         this.createdTime = createdTime;
     }
 }

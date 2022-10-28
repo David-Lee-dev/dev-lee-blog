@@ -8,6 +8,6 @@ public interface CategoryRepository {
     Category createCategory(Category category);
     void deleteCategory(Long CategoryId);
 
-    Category findCategoryByName(String name);
+    Category findCategoryByName(String name, String type);
     List<Category> findCategories();
 }

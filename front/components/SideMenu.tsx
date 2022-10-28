@@ -21,9 +21,9 @@ export default function SideMenu() {
   const sideMenuHandler = () => setOpenCategory((prev) => !prev);
   const selectedHandler = async (id: number, name: string) => {
     if (type) {
-      const response = await getArticleListApi(type, name, 1);
+      const response = await getArticleListApi(type, 1, { categoryName: name });
       updateArticle(response.articles);
-      updatePages(response.cnt);
+      updatePages(response.len);
     }
     changeSelectedCatetory(id);
   };

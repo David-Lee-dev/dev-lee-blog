@@ -12,10 +12,10 @@ export default function Articles({ type }: Props) {
 
   useEffect(() => {
     (async () => {
-      const response = await getArticleListApi(type, 'all', 1);
+      const response = await getArticleListApi(type);
 
       updateArticle(response.articles);
-      updatePages(response.cnt);
+      updatePages(response.len);
     })();
   }, []);
 

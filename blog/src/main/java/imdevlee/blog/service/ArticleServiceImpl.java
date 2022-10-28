@@ -27,41 +27,41 @@ public class ArticleServiceImpl implements ArticleService{
     public Long create(
             String title,
             String type,
+            String contents,
+            String[] images,
             String[] tags,
             String categoryName
     ) {
-        /**
-         * contents path는 파일 저장 구현 후 추가 예정
-         */
-        String dummyContentsPath = "dummy";
         Article article;
         if (ArticleType.POST.toString().equals(type)){
-            article = new Article(title, type, dummyContentsPath, tags, LocalDate.now().toString());
+            article = new Article(title, type, contents, images, tags, LocalDate.now().toString());
         } else if (ArticleType.NOTE.toString().equals(type)) {
-            article = new Article(title, type, dummyContentsPath, tags, LocalDate.now().toString());
+            article = new Article(title, type, contents, images, tags, LocalDate.now().toString());
         } else {
             return null;
         }
 
-        Category category = categoryRepository.createCategory(new Category(categoryName));
+        Category category = categoryRepository.createCategory(new Category(categoryName, type));
 
         articleRepository.createArticle(article, category);
         return article.getId();
     }
 
     @Override
-    public Long update(Long id, String title, String type, String[] tags, String categoryName) {
+    public Long update(
+            Long id,
+            String title,
+            String contents,
+            String[] images,
+            String[] tags,
+            String categoryName) {
         Article target = articleRepository.findArticleById(id);
 
-        /**
-         * contents path는 파일 저장 구현 후 추가 예정
-         */
-        String dummyContentsPath = "dummy";
 
         if (target == null) return null;
-        Category category = categoryRepository.createCategory(new Category(categoryName));
+        Category category = categoryRepository.createCategory(new Category(categoryName, target.getType()));
 
-        articleRepository.updateArticle(target.getId(), new Article(title, target.getType(), dummyContentsPath, tags, target.getCreatedTime()), category);
+        articleRepository.updateArticle(target.getId(), new Article(title, target.getType(),contents, images, tags, target.getCreatedTime()), category);
 
         return id;
     }
@@ -87,7 +87,7 @@ public class ArticleServiceImpl implements ArticleService{
             return new ArrayList<>(Arrays.asList(article));
         }
 
-        Stream<Article> articles = articleRepository.findArticles().stream().filter(article -> article.getType().toString().equals(type));
+        Stream<Article> articles = articleRepository.findArticles().stream().filter(article -> article.getType().equals(type));
 
         // 검색어 이용 검색
         if (searchQuery != null) {

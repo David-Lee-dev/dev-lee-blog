@@ -14,7 +14,7 @@ public class MemoryCategoryRepository implements CategoryRepository{
 
     @Override
     public Category createCategory(Category category) {
-        Category foundCategory = findCategoryByName(category.getName());
+        Category foundCategory = findCategoryByName(category.getName(), category.getType());
 
         if (foundCategory == null) {
             category.setId(++sequence);
@@ -32,11 +32,11 @@ public class MemoryCategoryRepository implements CategoryRepository{
     }
 
     @Override
-    public Category findCategoryByName(String name) {
+    public Category findCategoryByName(String name, String type) {
         List<Category> categoryList = findCategories();
 
         for (Category category : categoryList) {
-            if (category.getName() == name) {
+            if (category.getType().equals(type) && category.getName().equals(name)) {
                 return category;
             }
         }
