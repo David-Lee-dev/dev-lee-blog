@@ -1,11 +1,13 @@
-package imdevlee.blog;
+package imdevlee.blog.config;
 
 
-import imdevlee.blog.repository.ArticleRepository;
-import imdevlee.blog.repository.CategoryRepository;
-import imdevlee.blog.repository.MemoryArticleRepository;
-import imdevlee.blog.repository.MemoryCategoryRepository;
+import imdevlee.blog.repository.*;
+import imdevlee.blog.repository.interfaces.ArticleRepository;
+import imdevlee.blog.repository.interfaces.CategoryRepository;
+import imdevlee.blog.repository.mapper.ArticleMapper;
+import imdevlee.blog.repository.mapper.CategoryMapper;
 import imdevlee.blog.web.interceptor.LogInterceptor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -13,7 +15,11 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
+@RequiredArgsConstructor
 public class AppConfig  implements WebMvcConfigurer {
+
+    private final CategoryMapper categoryMapper;
+    private final ArticleMapper articleMapper;
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
@@ -22,12 +28,12 @@ public class AppConfig  implements WebMvcConfigurer {
 
     @Bean
     public CategoryRepository categoryRepository() {
-        return new MemoryCategoryRepository();
+        return new JdbcCategoryRepository(categoryMapper);
     }
 
     @Bean
     public ArticleRepository articleRepository() {
-        return new MemoryArticleRepository();
+        return new JdbcArticleRepository(articleMapper);
     }
 
     @Override
