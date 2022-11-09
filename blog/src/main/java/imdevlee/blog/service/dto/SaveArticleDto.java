@@ -15,6 +15,10 @@ public class SaveArticleDto {
     private String[] tags;
     private String categoryName;
 
+    public SaveArticleDto() {
+
+    }
+
     public SaveArticleDto(String title, String type,String contents, String[] images, String[] tags, String categoryName) {
         this.title = title;
         this.type = type;
