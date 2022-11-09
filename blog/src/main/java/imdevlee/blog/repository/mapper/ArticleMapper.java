@@ -2,7 +2,6 @@ package imdevlee.blog.repository.mapper;
 
 import imdevlee.blog.domain.Article;
 import imdevlee.blog.repository.dto.ArticleSearchConditionDto;
-import imdevlee.blog.repository.dto.UpdateArticleDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -18,7 +17,7 @@ public interface ArticleMapper {
 
     void update(
             @Param("id") Long id,
-            @Param("updateParam") UpdateArticleDto updateParam
+            @Param("updateArticle") Article updateArticle
     );
 
     void delete(Long id);

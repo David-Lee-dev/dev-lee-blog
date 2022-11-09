@@ -2,7 +2,6 @@ package imdevlee.blog.repository;
 
 import imdevlee.blog.domain.Article;
 import imdevlee.blog.repository.dto.ArticleSearchConditionDto;
-import imdevlee.blog.repository.dto.UpdateArticleDto;
 import imdevlee.blog.repository.interfaces.ArticleRepository;
 import imdevlee.blog.repository.mapper.ArticleMapper;
 import lombok.RequiredArgsConstructor;
@@ -23,8 +22,8 @@ public class JdbcArticleRepository implements ArticleRepository {
     }
 
     @Override
-    public void update(Long id, UpdateArticleDto updateParam) {
-        articleMapper.update(id, updateParam);
+    public void update(Long id, Article updateArticle) {
+        articleMapper.update(id, updateArticle);
     }
 
     @Override

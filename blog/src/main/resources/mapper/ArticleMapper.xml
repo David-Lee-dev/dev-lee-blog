@@ -7,11 +7,11 @@
     </insert>
     <update id="update">
         update article
-        set title = #{updateParam.title},
-            contents = #{updateParam.contents},
-            images = #{updateParam.images},
-            tags = #{updateParam.tags},
-            category_id = #{updateParam.categoryId}
+        set title = #{updateArticle.title},
+            contents = #{updateArticle.contents},
+            images = #{updateArticle.images},
+            tags = #{updateArticle.tags},
+            category_id = #{updateArticle.categoryId}
         where id = #{id}
     </update>
     <delete id="delete">

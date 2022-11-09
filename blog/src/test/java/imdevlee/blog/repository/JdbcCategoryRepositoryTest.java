@@ -9,11 +9,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @SpringBootTest
 @Transactional
-class CategoryRepositoryTest {
+class JdbcCategoryRepositoryTest {
 
     @Autowired
     CategoryRepository categoryRepository;

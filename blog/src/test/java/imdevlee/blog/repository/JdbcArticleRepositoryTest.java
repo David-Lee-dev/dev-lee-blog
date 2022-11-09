@@ -3,10 +3,8 @@ package imdevlee.blog.repository;
 import imdevlee.blog.domain.Article;
 import imdevlee.blog.domain.Category;
 import imdevlee.blog.repository.dto.ArticleSearchConditionDto;
-import imdevlee.blog.repository.dto.UpdateArticleDto;
 import imdevlee.blog.repository.interfaces.ArticleRepository;
 import imdevlee.blog.repository.interfaces.CategoryRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -40,21 +38,22 @@ class JdbcArticleRepositoryTest {
         Category category = categoryRepository.save(new Category("test cate", "post"));
         Article article = articleRepository.save(makeTestData("1"), category.getId());
 
-        UpdateArticleDto updateParam = new UpdateArticleDto(
+        Article updateArticle = new Article(
                 "updated title",
+                "post",
                 "updated contents",
                 new String[]{"updated1", "updated2"},
                 new String[]{"updated1", "updated2"},
-                category.getId()
+                "updated time"
         );
 
-        articleRepository.update(article.getId(), updateParam);
+        articleRepository.update(article.getId(), updateArticle);
         Article updated = articleRepository.findById(article.getId());
 
-        assertThat(updated.getTitle()).isEqualTo(updateParam.getTitle());
-        assertThat(updated.getContents()).isEqualTo(updateParam.getContents());
-        assertThat(updated.getTags()).isEqualTo(updateParam.getTags());
-        assertThat(updated.getImages()).isEqualTo(updateParam.getImages());
+        assertThat(updated.getTitle()).isEqualTo(updateArticle.getTitle());
+        assertThat(updated.getContents()).isEqualTo(updateArticle.getContents());
+        assertThat(updated.getTags()).isEqualTo(updateArticle.getTags());
+        assertThat(updated.getImages()).isEqualTo(updateArticle.getImages());
     }
 
     @Test
