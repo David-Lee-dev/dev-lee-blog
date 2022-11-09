@@ -389,5 +389,6 @@ venv
 .vscode
 files
 application.properties
+test
 
 # End of https://www.toptal.com/developers/gitignore/api/django,nextjs,react,visualstudiocode,python,venv,windows,linux,macos
