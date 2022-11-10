@@ -19,9 +19,10 @@ export default function SideMenu() {
     useContext(categoryContext);
 
   const sideMenuHandler = () => setOpenCategory((prev) => !prev);
-  const selectedHandler = async (id: number, name: string) => {
+  const selectedHandler = async (id: number) => {
     if (type) {
-      const response = await getArticleListApi(type, 1, { categoryName: name });
+      const response = await getArticleListApi(type, 1, { categoryId: id });
+
       updateArticle(response.articles);
       updatePages(response.len);
     }
@@ -35,7 +36,7 @@ export default function SideMenu() {
           <li
             className={s.sell}
             key={c.id}
-            onClick={() => selectedHandler(c.id, c.name)}
+            onClick={() => selectedHandler(c.id)}
           >
             <Link href={`/article/${type}`}>
               <a>

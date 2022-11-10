@@ -13,45 +13,28 @@ export async function getArticleListApi(
   type: string,
   page = 1,
   queries?: {
-    id?: number;
+    categoryId?: number;
     searchQuery?: string;
-    categoryName?: string;
   }
 ): Promise<{ articles: Article[]; len: number }> {
   let queryString = '';
 
-  if (queries && queries.id) queryString += `id=${queries.id}&`;
   if (queries && queries.searchQuery)
-    queryString += `searchQuery=${queries.searchQuery}&`;
-  if (queries && queries.categoryName)
-    queryString += `categoryName=${queries.categoryName}&`;
+    queryString += `queryString=${queries.searchQuery}&`;
+  if (queries && queries.categoryId)
+    queryString += `categoryId=${
+      queries.categoryId > 0 ? queries.categoryId : ''
+    }&`;
 
-  const list = (await api.get(`api/article/${type}?${queryString}page=${page}`))
-    .data;
+  const list = (
+    await api.get(`api/article?type=${type}&${queryString}page=${page}`)
+  ).data;
 
   return { articles: list, len: list.length };
 }
 
-export async function getArticleDetailApi(
-  type: string,
-  id: string
-): Promise<string> {
-  const contents = (await api.get(`api/article/${type}/${id}`)).data;
+export async function getArticleDetailApi(id: string): Promise<string> {
+  const contents = (await api.get(`api/article/${id}`)).data;
 
   return contents;
-}
-
-export async function searchArticleListApi(
-  type: string,
-  searchWord: string,
-  page = 1
-): Promise<{ articles: Article[]; cnt: number }> {
-  const respone = await api.get(`api/${type}/search/${searchWord}/${page}`);
-
-  let articles = null;
-
-  if (type === 'post') articles = respone.data.data.posts;
-  else articles = respone.data.data.notes;
-
-  return { articles, cnt: respone.data.data.cnt };
 }

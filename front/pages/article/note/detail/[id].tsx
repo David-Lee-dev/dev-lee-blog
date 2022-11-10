@@ -22,8 +22,7 @@ export default function Detail() {
       const catetoryResponse = await getCategoryListApi('note');
       updateCategory(catetoryResponse);
 
-      const contents = await getArticleDetailApi('note', `${router.query.id}`);
-      console.log(contents);
+      const contents = await getArticleDetailApi(`${router.query.id}`);
       setArticle(contents);
     })();
   }, [router.isReady]);
