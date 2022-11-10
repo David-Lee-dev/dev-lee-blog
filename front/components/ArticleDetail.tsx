@@ -21,7 +21,7 @@ marked.use({
 });
 
 export default function ArticleDetail({ article }: Props) {
-  const contents = article.contents ? marked.parse(article.contents) : '';
+  const contents = article ? marked.parse(article) : '';
 
   useEffect(() => {
     Prism.highlightAll();
@@ -39,7 +39,7 @@ export default function ArticleDetail({ article }: Props) {
 }
 
 interface Props {
-  article: Article;
+  article: string;
 }
 
 const test = JSON.stringify('');

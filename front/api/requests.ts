@@ -4,44 +4,37 @@ import { axiosInstance } from './index';
 const api = axiosInstance;
 
 export async function getCategoryListApi(type: string): Promise<Category[]> {
-  const respone = await api.get(`api/${type}/category/`);
-  return respone.data.data.category;
+  const categories = (await api.get(`api/category/${type}`)).data;
+
+  return categories;
 }
 
 export async function getArticleListApi(
   type: string,
-  category: string,
-  page = 1
-): Promise<{ articles: Article[]; cnt: number }> {
-  const respone = await api.get(`api/${type}/list/${category}/${page}`);
+  page = 1,
+  queries?: {
+    categoryId?: number;
+    searchQuery?: string;
+  }
+): Promise<{ articles: Article[]; len: number }> {
+  let queryString = '';
 
-  let articles = null;
+  if (queries && queries.searchQuery)
+    queryString += `queryString=${queries.searchQuery}&`;
+  if (queries && queries.categoryId)
+    queryString += `categoryId=${
+      queries.categoryId > 0 ? queries.categoryId : ''
+    }&`;
 
-  if (type === 'post') articles = respone.data.data.posts;
-  else articles = respone.data.data.notes;
+  const list = (
+    await api.get(`api/article?type=${type}&${queryString}page=${page}`)
+  ).data;
 
-  return { articles, cnt: respone.data.data.cnt };
+  return { articles: list, len: list.length };
 }
 
-export async function getArticleDetailApi(
-  type: string,
-  id: string
-): Promise<Article> {
-  const respone = await api.get(`api/${type}/detail/${id}`);
-  return respone.data.data[type];
-}
+export async function getArticleDetailApi(id: string): Promise<string> {
+  const contents = (await api.get(`api/article/${id}`)).data;
 
-export async function searchArticleListApi(
-  type: string,
-  searchWord: string,
-  page = 1
-): Promise<{ articles: Article[]; cnt: number }> {
-  const respone = await api.get(`api/${type}/search/${searchWord}/${page}`);
-
-  let articles = null;
-
-  if (type === 'post') articles = respone.data.data.posts;
-  else articles = respone.data.data.notes;
-
-  return { articles, cnt: respone.data.data.cnt };
+  return contents;
 }

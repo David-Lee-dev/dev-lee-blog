@@ -8,12 +8,11 @@ import {
   getArticleDetailApi,
   getCategoryListApi,
 } from '../../../../api/requests';
-import { Article, defaultArticle } from '../../../../types';
 import { categoryContext } from '../../../../contexts/CategoryContext';
 
 export default function Detail() {
   const router = useRouter();
-  const [article, setArticle] = useState<Article>(defaultArticle);
+  const [article, setArticle] = useState<string>('');
   const { updateCategory } = useContext(categoryContext);
 
   useEffect(() => {
@@ -23,11 +22,8 @@ export default function Detail() {
       const catetoryResponse = await getCategoryListApi('post');
       updateCategory(catetoryResponse);
 
-      const contentsResponse = await getArticleDetailApi(
-        'post',
-        `${router.query.id}`
-      );
-      setArticle(contentsResponse);
+      const contents = await getArticleDetailApi(`${router.query.id}`);
+      setArticle(contents);
     })();
   }, [router.isReady]);
 

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="imdevlee.blog.repository.mapper.ArticleMapper">
+    <insert id="save" useGeneratedKeys="true" keyProperty="article.id">
+        insert into article (type, title, contents, images, tags, created_time, category_id)
+        values (#{article.type}, #{article.title}, #{article.contents}, #{article.images}, #{article.tags}, #{article.createdTime}, #{categoryId})
+    </insert>
+    <update id="update">
+        update article
+        set title = #{updateArticle.title},
+            contents = #{updateArticle.contents},
+            images = #{updateArticle.images},
+            tags = #{updateArticle.tags},
+            category_id = #{updateArticle.categoryId}
+        where id = #{id}
+    </update>
+    <delete id="delete">
+        delete from article
+        where id = #{id}
+    </delete>
+    <select id="findById" resultType="Article">
+        select *
+        from article
+        where id = #{id}
+    </select>
+    <select id="findAll" resultType="Article">
+        select *
+        from article
+        where type = #{searchQuery.type}
+        <choose>
+            <when test="searchQuery.queryString != null and searchQuery.queryString != ''">
+                and (title like concat('%',#{searchQuery.queryString},'%')
+                or tags like concat('%',#{searchQuery.queryString},'%'))
+            </when>
+            <when test="searchQuery.categoryId != null">
+                and category_id = #{searchQuery.categoryId}
+            </when>
+        </choose>
+    </select>
+</mapper>

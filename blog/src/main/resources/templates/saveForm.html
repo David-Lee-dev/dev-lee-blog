@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link href="../css/bootstrap.min.css"
+          th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+    <style>
+     .container {
+     margin-top: 100px;
+      max-width: 560px;
+      }
+ </style>
+</head>
+<body>
+<div class="container">
+    <form th:action th:object="${saveParam}" method="post" enctype="multipart/form-data">
+        <div>
+            <label for="title">제목</label>
+            <input type="text" id="title" th:field="*{title}" class="form-control" placeholder="제목을 입력하세요">
+        </div>
+        <br />
+        <div>상품 종류</div>
+        <div class="form-check form-check-inline">
+            <input type="radio" id="post" th:field="*{type}" value="post" class="form-check-input">
+            <label for="post" class="form-check-label">
+                POST
+            </label>
+        </div>
+        <br />
+        <div class="form-check form-check-inline">
+            <input type="radio" id="note" th:field="*{type}" value="note" class="form-check-input">
+            <label for="note" class="form-check-label">
+                NOTE
+            </label>
+        </div>
+        <br />
+        <div>
+            <label for="title">태그 (','로 구분)</label>
+            <input type="text" id="tags" th:field="*{tags}" class="form-control" placeholder="태그를 입력하세요">
+        </div>
+        <div>
+            <label for="category">카테고리 (단일)</label>
+            <input type="text" id="category" th:field="*{categoryName}" class="form-control" placeholder="카테고리를 입력하세요">
+        </div>
+        <br />
+        <br />
+        <ul>
+            <li>본문 파일<input type="file" name="contentsFile" ></li>
+            <li>이미지 파일들<input type="file" multiple="multiple" name="imageFiles" ></li>
+        </ul>
+        <br />
+        <div class="row">
+            <div class="col">
+                <button class="w-100 btn btn-primary btn-lg" type="submit">등록</button>
+            </div>
+        </div>
+    </form>
+</div> <!-- /container -->
+</body>
+</html>

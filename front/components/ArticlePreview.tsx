@@ -7,7 +7,6 @@ import { categoryContext } from '../contexts/CategoryContext';
 import s from '../styles/ArticlePreview.module.scss';
 
 export default function ArticlePreview({ article, type }: Props) {
-  const tags = article.tags.split(' ');
   const { changeSelectedCatetory } = useContext(categoryContext);
 
   return (
@@ -17,11 +16,11 @@ export default function ArticlePreview({ article, type }: Props) {
           <h1 className={s.title}>{article.title}</h1>
           <div className={s.bottom}>
             <div className={s.tags}>
-              {tags.map((tag, idx) => (
+              {article.tags.map((tag, idx) => (
                 <TagBean key={`${idx}--${tag}`}>{tag}</TagBean>
               ))}
             </div>
-            <span className={s.created__date}>{article.created_at}</span>
+            <span className={s.created__date}>{article.createdTime}</span>
           </div>
         </a>
       </Link>

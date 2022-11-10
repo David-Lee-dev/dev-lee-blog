@@ -1,7 +1,7 @@
 import { useCallback, useContext, useState } from 'react';
 import { debounce } from 'lodash';
 
-import { getArticleListApi, searchArticleListApi } from '../api/requests';
+import { getArticleListApi } from '../api/requests';
 import { articleContext } from '../contexts/ArticleListContext';
 import s from '../styles/SearchBar.module.scss';
 
@@ -13,8 +13,8 @@ export default function SearchBar({ type }: Props) {
     debounce(async (value) => {
       let response = null;
 
-      if (!value) response = await getArticleListApi(type, 'all', 1);
-      else response = await searchArticleListApi(type, value, 1);
+      if (!value) response = await getArticleListApi(type, 1);
+      else response = await getArticleListApi(type, 1, { searchQuery: value });
 
       updateArticle(response.articles);
       updatePages(response.cnt);

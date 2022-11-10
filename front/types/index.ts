@@ -1,6 +1,7 @@
 export interface Category {
   id: number;
   name: string;
+  type: string;
 }
 
 export const defaultCategory = {
@@ -9,21 +10,27 @@ export const defaultCategory = {
 };
 
 export interface Article {
-  id: number;
-  title: string;
-  contents_url: string;
-  tags: string;
-  created_at: string;
   category: Category;
   contents: string;
+  createdTime: string;
+  id: number;
+  images: string[];
+  tags: string[];
+  title: string;
+  type: string;
 }
 
 export const defaultArticle = {
-  id: -1,
-  title: '',
-  contents_url: '',
-  tags: '',
-  created_at: '',
-  category: defaultCategory,
+  category: {
+    id: -1,
+    name: '',
+    type: '',
+  },
   contents: '',
+  createdTime: '',
+  id: -1,
+  images: [],
+  tags: [],
+  title: '',
+  type: '',
 };
