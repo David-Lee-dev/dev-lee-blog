@@ -21,12 +21,12 @@ public class Article {
     public Article() {
     }
 
-    public Article(String title, String type,String contents, String[] images, String[] tags, String createdTime) {
+    public Article(String title, String type,String contents, String images, String tags, String createdTime) {
         this.title = title;
         this.type = type;
-        this.tags = Arrays.toString(tags);
+        this.tags = tags;
         this.contents = contents;
-        this.images = Arrays.toString(images);
+        this.images = images;
         this.createdTime = createdTime;
     }
 }

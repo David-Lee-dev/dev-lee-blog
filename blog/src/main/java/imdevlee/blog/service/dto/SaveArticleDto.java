@@ -11,8 +11,8 @@ public class SaveArticleDto {
     private String type;
     private String title;
     private String contents;
-    private String[] images;
-    private String[] tags;
+    private String images;
+    private String tags;
     private String categoryName;
 
     public SaveArticleDto() {
@@ -23,8 +23,17 @@ public class SaveArticleDto {
         this.title = title;
         this.type = type;
         this.contents = contents;
-        this.images = images;
-        this.tags = tags;
+        this.images = arrToString(images);
+        this.tags = arrToString(tags);
         this.categoryName = categoryName;
+    }
+
+    private String arrToString(String[] arr) {
+        String result = "";
+        for (String el : arr) {
+            result += el + " ";
+        }
+
+        return result;
     }
 }

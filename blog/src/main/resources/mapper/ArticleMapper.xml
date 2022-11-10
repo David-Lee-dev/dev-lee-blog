@@ -33,8 +33,7 @@
                 or tags like concat('%',#{searchQuery.queryString},'%'))
             </when>
             <when test="searchQuery.categoryId != null">
-                and (title like concat('%',#{searchQuery.queryString},'%')
-                or tags like concat('%',#{searchQuery.queryString},'%'))
+                and category_id = #{searchQuery.categoryId}
             </when>
         </choose>
     </select>

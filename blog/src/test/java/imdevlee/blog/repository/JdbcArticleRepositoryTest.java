@@ -42,8 +42,8 @@ class JdbcArticleRepositoryTest {
                 "updated title",
                 "post",
                 "updated contents",
-                new String[]{"updated1", "updated2"},
-                new String[]{"updated1", "updated2"},
+                "updated1 ,updated2",
+                "updated1, updated2",
                 "updated time"
         );
 

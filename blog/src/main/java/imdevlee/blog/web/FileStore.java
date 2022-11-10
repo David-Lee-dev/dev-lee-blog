@@ -22,8 +22,11 @@ public class FileStore {
     }
 
     public String getDirName(MultipartFile multipartFile) {
-        String a = multipartFile.getOriginalFilename().split(".md")[0];
-        return a;
+        return multipartFile.getOriginalFilename().split(".md")[0];
+    }
+
+    public String getDirName(String contents) {
+       return contents.split(".md")[0];
     }
 
     public String[] storeFiles(List<MultipartFile> multipartFiles, String dirName) throws IOException {
