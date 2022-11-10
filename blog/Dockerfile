@@ -6,4 +6,4 @@ COPY ${JAR_FILE} /
 
 RUN mkdir articles
 
-ENTRYPOINT ["java", "-jar","/app.jar"]
+# ENTRYPOINT ["java", "-jar","/app.jar"]
