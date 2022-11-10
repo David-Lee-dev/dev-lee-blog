@@ -4,6 +4,8 @@ WORKDIR /app
 
 ARG JAR_FILE="build/libs/*.jar"
 
-COPY ${JAR_FILE} app.jar
+COPY ${JAR_FILE} /
 
 ENTRYPOINT ["java", "-jar","/app.jar"]
+
+EXPOSE 9000
