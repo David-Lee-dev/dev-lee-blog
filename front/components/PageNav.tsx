@@ -13,9 +13,8 @@ export default function PageNav({ type }: Props) {
     else if (page < 1) setCurrentPage(1);
     else setCurrentPage(page);
 
-    const response = await getArticleListApi(type, 'all', page);
+    const response = await getArticleListApi(type, page);
     updateArticle(response.articles);
-    updatePages(response.cnt);
   };
 
   return (
