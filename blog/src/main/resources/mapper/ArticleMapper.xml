@@ -36,5 +36,6 @@
                 and category_id = #{searchQuery.categoryId}
             </when>
         </choose>
+        order by created_time DESC
     </select>
 </mapper>

@@ -7,6 +7,7 @@ import imdevlee.blog.service.ArticleService;
 import imdevlee.blog.service.CategoryService;
 import imdevlee.blog.web.FileStore;
 import imdevlee.blog.web.controller.dto.ResponseArticleDto;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -70,7 +71,7 @@ public class BlogController {
 
     @ResponseBody
     @GetMapping("/article")
-    public List<ResponseArticleDto> getArticleList(
+    public ArticlesResponseEntity getArticleList(
             @RequestParam String type,
             @RequestParam int page,
             @RequestParam(required = false) Long categoryId,
@@ -79,16 +80,28 @@ public class BlogController {
         List<Article> articleList = articleService.getArticleList(type, categoryId, queryString);
         System.out.println("queryString = " + queryString);
 
-        List<ResponseArticleDto> response = new ArrayList<>();
+        List<ResponseArticleDto> articles = new ArrayList<>();
         articleList.forEach(article -> {
-            response.add(new ResponseArticleDto(article));
+            articles.add(new ResponseArticleDto(article));
         });
 
         int fromIndex = 10 * (page - 1);
         int toIndex = 10 * page;
 
-        if (response.size() < toIndex) toIndex = response.size();
+        if (articles.size() < toIndex) toIndex = articles.size();
 
-        return new ArrayList<>(response.subList(fromIndex, toIndex));
+
+
+        return new ArticlesResponseEntity(new ArrayList<>(articles.subList(fromIndex, toIndex)), articles.size());
+    }
+
+    private class ArticlesResponseEntity {
+        private List<ResponseArticleDto> articles;
+        private int count;
+
+        public ArticlesResponseEntity(List<ResponseArticleDto> articles, int count){
+            this.articles = articles;
+            this.count = count;
+        }
     }
 }
