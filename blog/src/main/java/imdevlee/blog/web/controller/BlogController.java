@@ -90,7 +90,7 @@ public class BlogController {
 
         Map<String, Object> response = new HashMap<>();
         response.put("articles", new ArrayList<>(articles.subList(fromIndex, toIndex)));
-        response.put("count", articles.size() / 10);
+        response.put("count", articleList.size() / 10);
 
         return response;
     }
