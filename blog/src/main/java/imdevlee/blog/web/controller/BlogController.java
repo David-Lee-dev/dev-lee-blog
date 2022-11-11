@@ -8,6 +8,7 @@ import imdevlee.blog.service.CategoryService;
 import imdevlee.blog.web.FileStore;
 import imdevlee.blog.web.controller.dto.ResponseArticleDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
@@ -25,6 +26,9 @@ import java.util.List;
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class BlogController {
+
+    @Value("${main.url}")
+    public String mainUrl;
 
     private final ArticleService articleService;
     private final CategoryService categoryService;
@@ -49,7 +53,7 @@ public class BlogController {
         String result = "";
         String str;
         while ((str = bf.readLine()) != null) {
-            str = str.replace("![img](", "![img](http://localhost:8080/api/images/" + dirName + "/");
+            str = str.replace("![img](", "![img](" + mainUrl + "images/" + dirName + "/");
             result += str + "\n";
         }
         bf.close();
