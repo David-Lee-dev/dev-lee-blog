@@ -5,7 +5,7 @@ import { Article, defaultArticle } from '../types';
 interface ValueType {
   articles: Article[];
   updateArticle: (articles: Article[]) => void;
-  pages: number[];
+  pages: number;
   updatePages: (cnt: number) => void;
 }
 
@@ -16,24 +16,21 @@ interface Props {
 export const articleContext = createContext<ValueType>({
   articles: [defaultArticle],
   updateArticle: (articles: Article[]) => {},
-  pages: [],
-  updatePages: (cnt: number) => {},
+  pages: 0,
+  updatePages: (count: number) => {},
 });
 
 export default function ArticleProvider({ children }: Props) {
   const [articles, setArticle] = useState<Article[]>([]);
-  const [pages, setPageCount] = useState<number[]>([]);
+  const [pages, setPageCount] = useState<number>(1);
 
   const updateArticle = useCallback(
     (articles: Article[]) => setArticle(articles),
     []
   );
 
-  const updatePages = useCallback((cnt: number) => {
-    const tmp = [];
-    for (let i = 1; i <= Math.ceil(cnt / 10); i++) tmp.push(i);
-
-    setPageCount(tmp);
+  const updatePages = useCallback((count: number) => {
+    setPageCount(count);
   }, []);
   const value = { articles, updateArticle, pages, updatePages };
 

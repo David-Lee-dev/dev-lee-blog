@@ -4,6 +4,8 @@ import { useContext, useEffect, useState } from 'react';
 import SideMenu from '../../../../components/SideMenu';
 import ArticleDetail from '../../../../components/ArticleDetail';
 
+import Grid from '@mui/material/Grid';
+
 import {
   getArticleDetailApi,
   getCategoryListApi,
@@ -28,9 +30,14 @@ export default function Detail() {
   }, [router.isReady]);
 
   return (
-    <>
-      <SideMenu />
-      <ArticleDetail article={article} />
-    </>
+    <Grid container spacing={2}>
+      <Grid item xl={3} lg={2.5} md={2}>
+        <SideMenu />
+      </Grid>
+      <Grid item xl={6} lg={7} md={8}>
+        <ArticleDetail article={article} />
+      </Grid>
+      <Grid item xl={3} lg={2.5} md={2}></Grid>
+    </Grid>
   );
 }

@@ -2,8 +2,6 @@ import { marked } from 'marked';
 import { useEffect } from 'react';
 import Prism from 'prismjs';
 import 'prismjs/themes/prism-tomorrow.css';
-
-import { Article } from '../types';
 import s from '../styles/ArticleDetail.module.scss';
 
 const renderer = new marked.Renderer();

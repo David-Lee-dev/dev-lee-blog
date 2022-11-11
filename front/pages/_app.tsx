@@ -1,5 +1,7 @@
+import { CssBaseline } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/system';
 import type { AppProps } from 'next/app';
-import Head from 'next/head';
 
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -7,37 +9,58 @@ import Header from '../components/Header';
 import ArticleProvider from '../contexts/ArticleListContext';
 import CategoryProvider from '../contexts/CategoryContext';
 import '../styles/_global.scss';
+import { Container } from '@mui/material';
+import Box from '@mui/material/Box';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Head>
-        <title>I&apos;m dev-lee</title>
-        <meta name="description" content="dev-lee's blog" />
-        <link rel="icon" href="/favicon.ico" />
-        <link
-          rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
-        ></link>
-        <link
-          href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css"
-          rel="stylesheet"
-          type="text/css"
-        ></link>
-      </Head>
-      <Header />
-      <section className="contents">
+      <CssBaseline />
+      <ThemeProvider theme={theme}>
+        <Header />
         <CategoryProvider>
           <ArticleProvider>
-            <div className="inner">
+            <Box
+              sx={{
+                paddingTop: 5,
+                minHeight: '100vh',
+              }}
+              bgcolor="background.default"
+            >
               <Component {...pageProps} />
-            </div>
+            </Box>
           </ArticleProvider>
         </CategoryProvider>
-      </section>
-      <Footer />
+        <Footer />
+      </ThemeProvider>
     </>
   );
 }
 
 export default MyApp;
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#393e46',
+    },
+    secondary: {
+      main: '#929aab',
+    },
+    warning: {
+      main: '#f0a500',
+    },
+    error: {
+      main: '#ff5656',
+    },
+    info: {
+      main: '#2185d5',
+    },
+    success: {
+      main: '#6d9886',
+    },
+  },
+  typography: {
+    fontFamily: ['Spoqa Han Sans Neo', 'sans-serif'].join(','),
+  },
+});

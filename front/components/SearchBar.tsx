@@ -3,7 +3,9 @@ import { debounce } from 'lodash';
 
 import { getArticleListApi } from '../api/requests';
 import { articleContext } from '../contexts/ArticleListContext';
-import s from '../styles/SearchBar.module.scss';
+// import s from '../styles/SearchBar.module.scss';
+import TextField from '@mui/material/TextField';
+import { Box } from '@mui/material';
 
 export default function SearchBar({ type }: Props) {
   const [value, setValue] = useState('');
@@ -17,6 +19,7 @@ export default function SearchBar({ type }: Props) {
       else response = await getArticleListApi(type, 1, { searchQuery: value });
 
       updateArticle(response.articles);
+      updatePages(response.count);
     }, 500),
     []
   );
@@ -27,13 +30,18 @@ export default function SearchBar({ type }: Props) {
   };
 
   return (
-    <div className={s.search__bar}>
-      <input
-        type="text"
+    <Box
+      sx={{ position: 'sticky', top: 45, margin: '20px 0' }}
+      bgcolor="secondary.main"
+    >
+      <TextField
         value={value}
+        variant="standard"
+        label="제목, 태그로 검색하기"
         onChange={(e) => inputHandler(e.target.value)}
+        sx={{ width: '100%' }}
       />
-    </div>
+    </Box>
   );
 }
 

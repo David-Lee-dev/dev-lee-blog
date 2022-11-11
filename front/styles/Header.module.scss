@@ -1,46 +1,10 @@
-.header {
-  position: fixed;
-  width: 100vw;
-  background-color: $bw-90;
-  z-index: 1000;
+.gauge__bar {
+  height: 4px;
+  background-color: $bw-10;
+}
 
-  .menus {
-    display: flex;
-    justify-content: center;
-  }
-
-  .menu {
-    padding: 16px;
-    color: $bw-60;
-    font-size: 36px;
-    font-weight: bold;
-    transition: color 0.2s;
-    list-style: none;
-
-    &:hover {
-      color: $bw-10;
-    }
-  }
-
-  @include mobile {
-    .menu {
-      padding: 12px;
-      font-size: 24px;
-    }
-  }
-
-  .active {
-    color: $point-light !important;
-  }
-
-  .gauge__bar {
-    height: 4px;
-    background-color: $bw-10;
-  }
-
-  .scroll__gauge {
-    height: 4px;
-    background-color: $bw-60;
-    transition: width 0.1s;
-  }
+.scroll__gauge {
+  height: 4px;
+  background-color: $bw-60;
+  transition: width 0.1s;
 }

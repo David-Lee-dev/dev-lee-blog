@@ -16,7 +16,7 @@ export async function getArticleListApi(
     categoryId?: number;
     searchQuery?: string;
   }
-): Promise<{ articles: Article[]; len: number }> {
+): Promise<{ articles: Article[]; count: number }> {
   let queryString = '';
 
   if (queries && queries.searchQuery)
@@ -26,11 +26,16 @@ export async function getArticleListApi(
       queries.categoryId > 0 ? queries.categoryId : ''
     }&`;
 
-  const list = (
+  const response = (
     await api.get(`api/article?type=${type}&${queryString}page=${page}`)
   ).data;
 
-  return { articles: list, len: list.length };
+  console.log(response);
+
+  const articles = response.articles;
+  const count = response.count;
+
+  return { articles, count };
 }
 
 export async function getArticleDetailApi(id: string): Promise<string> {

@@ -2,11 +2,13 @@ import { useContext, useMemo, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-import s from '../styles/SideMenu.module.scss';
 import { articleContext } from '../contexts/ArticleListContext';
 import { getArticleListApi } from '../api/requests';
 import { categoryContext } from '../contexts/CategoryContext';
 import { useRouter } from 'next/router';
+
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 
 export default function SideMenu() {
   const pathname = useRouter().pathname;
@@ -20,41 +22,49 @@ export default function SideMenu() {
 
   const sideMenuHandler = () => setOpenCategory((prev) => !prev);
   const selectedHandler = async (id: number) => {
+    console.log(type);
     if (type) {
       const response = await getArticleListApi(type, 1, { categoryId: id });
 
       updateArticle(response.articles);
-      updatePages(response.len);
+      updatePages(response.count);
     }
     changeSelectedCatetory(id);
   };
 
   return (
-    <aside className={`${s.side__menu} ${openCategory ? 'open' : s.close}`}>
-      <ul>
-        {category.map((c) => (
-          <li
-            className={s.sell}
-            key={c.id}
-            onClick={() => selectedHandler(c.id)}
-          >
-            <Link href={`/article/${type}`}>
-              <a>
-                <span className={c.id === selected ? s.active : ''}>
-                  {c.name}
-                </span>
-              </a>
-            </Link>
-          </li>
-        ))}
-      </ul>
-      <button
-        className={`${s.button} ${openCategory ? '' : s.rotate}`}
-        onClick={sideMenuHandler}
+    <Box
+      sx={{
+        width: '100%',
+        position: 'sticky',
+        top: 80,
+        padding: '16px 16px 16px 100px',
+      }}
+    >
+      <Typography
+        sx={{
+          padding: '0 5px',
+        }}
       >
-        <Image src="/fast-forward.png" width="32px" height="32px"></Image>
-      </button>
-    </aside>
+        Category
+      </Typography>
+      <hr />
+      {category.map((c) => (
+        <Typography
+          key={c.id}
+          onClick={() => selectedHandler(c.id)}
+          sx={{
+            fontSize: 16,
+            marginBottom: 1,
+            padding: '0 5px',
+          }}
+        >
+          <Link href={`/article/${type}`}>
+            <a>{c.name}</a>
+          </Link>
+        </Typography>
+      ))}
+    </Box>
   );
 }
 

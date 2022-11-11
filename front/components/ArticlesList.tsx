@@ -6,7 +6,10 @@ import ArticlePreview from './ArticlePreview';
 import PageNav from './PageNav';
 import SearchBar from './SearchBar';
 
-export default function Articles({ type }: Props) {
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
+
+export default function ArticleList({ type }: Props) {
   const { articles, updateArticle, pages, updatePages } =
     useContext(articleContext);
 
@@ -15,18 +18,29 @@ export default function Articles({ type }: Props) {
       const response = await getArticleListApi(type);
 
       updateArticle(response.articles);
-      updatePages(response.len);
+      updatePages(response.count);
     })();
   }, []);
 
   return (
     <>
       <SearchBar type={type} />
-      {articles &&
-        articles.map((article) => (
-          <ArticlePreview key={article.id} article={article} type={type} />
-        ))}
-      {pages.length > 1 && <PageNav type={type} />}
+      <Box
+        sx={{
+          flexGrow: 1,
+        }}
+        component="article"
+      >
+        <Grid container spacing={2} sx={{ minHeight: 300 }}>
+          {articles &&
+            articles.map((article) => (
+              <Grid item xs={12} key={article.id}>
+                <ArticlePreview article={article} type={type} />
+              </Grid>
+            ))}
+          {pages >= 1 && <PageNav type={type} />}
+        </Grid>
+      </Box>
     </>
   );
 }

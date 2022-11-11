@@ -1,5 +1,4 @@
 body {
-  background-color: $bw-90;
   font-family: 'Spoqa Han Sans Neo', 'sans-serif';
 }
 
@@ -14,23 +13,6 @@ a {
 
 button {
   all: unset;
-}
-
-.contents {
-  position: relative;
-  width: 100vw;
-  padding-top: 72px;
-}
-
-
-.inner {
-  width: 100vw;
-  max-width: 850px;
-  min-width: 850px;
-  min-height: 100vh;
-  margin: 0 auto;
-  padding: 0 20px;
-  box-sizing: border-box;
 }
 
 @include mobile {

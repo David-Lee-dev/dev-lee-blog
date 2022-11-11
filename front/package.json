@@ -9,6 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@mui/icons-material": "^5.10.9",
+    "@mui/material": "^5.10.13",
+    "@mui/styles": "^5.10.10",
     "axios": "^0.27.2",
     "env-cmd": "^10.1.0",
     "lodash": "^4.17.21",
