@@ -77,7 +77,6 @@ public class BlogController {
             @RequestParam(required = false) String queryString
     ) {
         List<Article> articleList = articleService.getArticleList(type, categoryId, queryString);
-        System.out.println("queryString = " + queryString);
 
         List<ResponseArticleDto> articles = new ArrayList<>();
         articleList.forEach(article -> {
@@ -91,7 +90,7 @@ public class BlogController {
 
         Map<String, Object> response = new HashMap<>();
         response.put("articles", new ArrayList<>(articles.subList(fromIndex, toIndex)));
-        response.put("count", articles.size());
+        response.put("count", articles.size() / 10);
 
         return response;
     }
