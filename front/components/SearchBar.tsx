@@ -17,7 +17,6 @@ export default function SearchBar({ type }: Props) {
       else response = await getArticleListApi(type, 1, { searchQuery: value });
 
       updateArticle(response.articles);
-      updatePages(response.cnt);
     }, 500),
     []
   );
