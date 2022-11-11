@@ -20,8 +20,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Controller
 @RequestMapping("/api")
@@ -71,7 +70,7 @@ public class BlogController {
 
     @ResponseBody
     @GetMapping("/article")
-    public ArticlesResponseEntity getArticleList(
+    public Map<String, Object> getArticleList(
             @RequestParam String type,
             @RequestParam int page,
             @RequestParam(required = false) Long categoryId,
@@ -90,18 +89,10 @@ public class BlogController {
 
         if (articles.size() < toIndex) toIndex = articles.size();
 
+        Map<String, Object> response = new HashMap<>();
+        response.put("articles", new ArrayList<>(articles.subList(fromIndex, toIndex)));
+        response.put("count", articles.size());
 
-
-        return new ArticlesResponseEntity(new ArrayList<>(articles.subList(fromIndex, toIndex)), articles.size());
-    }
-
-    private class ArticlesResponseEntity {
-        private List<ResponseArticleDto> articles;
-        private int count;
-
-        public ArticlesResponseEntity(List<ResponseArticleDto> articles, int count){
-            this.articles = articles;
-            this.count = count;
-        }
+        return response;
     }
 }
