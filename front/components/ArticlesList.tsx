@@ -38,7 +38,7 @@ export default function ArticleList({ type }: Props) {
                 <ArticlePreview article={article} type={type} />
               </Grid>
             ))}
-          {pages >= 1 && <PageNav type={type} />}
+          {pages > 1 && <PageNav type={type} />}
         </Grid>
       </Box>
     </>
