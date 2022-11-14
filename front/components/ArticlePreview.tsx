@@ -1,23 +1,18 @@
-import { useContext } from 'react';
 import Link from 'next/link';
 
 import { Article } from '../types';
-import { categoryContext } from '../contexts/CategoryContext';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 
 export default function ArticlePreview({ article, type }: Props) {
-  const { changeSelectedCatetory } = useContext(categoryContext);
-
   return (
     <Card>
       <Link href={`/article/${type}/detail/${article.id}`}>
-        <a onClick={() => changeSelectedCatetory(article.category.id)}>
+        <a>
           <Grid
             sx={{
               display: 'flex',
@@ -28,12 +23,17 @@ export default function ArticlePreview({ article, type }: Props) {
             <Grid xs={3} item>
               <CardMedia
                 component="img"
+                width="200"
                 height="200"
-                image="/default_thumbnail.png"
+                image={
+                  article.thumbnail
+                    ? `${process.env.NEXT_PUBLIC_REQUEST_BASE_URL}api/images/${article.thumbnail}`
+                    : `/default_thumbnail.png`
+                }
                 alt="default image"
               />
             </Grid>
-            <Grid item>
+            <Grid xs={9} item>
               <CardContent>
                 <Typography
                   gutterBottom

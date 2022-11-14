@@ -9,6 +9,13 @@ import { useRouter } from 'next/router';
 
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import { styled } from '@mui/material/styles';
+
+const StyledBox = styled('div')(({ theme }) => ({
+  [theme.breakpoints.down('lg')]: {
+    display: 'none',
+  },
+}));
 
 export default function SideMenu() {
   const pathname = useRouter().pathname;
@@ -17,8 +24,7 @@ export default function SideMenu() {
   const [openCategory, setOpenCategory] = useState<boolean>(false);
 
   const { updateArticle, updatePages } = useContext(articleContext);
-  const { category, selected, changeSelectedCatetory } =
-    useContext(categoryContext);
+  const { category } = useContext(categoryContext);
 
   const sideMenuHandler = () => setOpenCategory((prev) => !prev);
   const selectedHandler = async (id: number) => {
@@ -29,11 +35,10 @@ export default function SideMenu() {
       updateArticle(response.articles);
       updatePages(response.count);
     }
-    changeSelectedCatetory(id);
   };
 
   return (
-    <Box
+    <StyledBox
       sx={{
         width: '100%',
         position: 'sticky',
@@ -64,7 +69,7 @@ export default function SideMenu() {
           </Link>
         </Typography>
       ))}
-    </Box>
+    </StyledBox>
   );
 }
 

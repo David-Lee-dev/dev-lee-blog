@@ -12,5 +12,5 @@ public interface ArticleRepository {
 
     Article findById(Long id);
 
-    public List<Article> findAll(ArticleSearchConditionDto searchQuery);
+    List<Article> findAll(ArticleSearchConditionDto searchQuery);
 }

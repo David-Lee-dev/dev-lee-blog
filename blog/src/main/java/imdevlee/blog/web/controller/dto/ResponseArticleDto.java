@@ -1,7 +1,6 @@
 package imdevlee.blog.web.controller.dto;
 
 import imdevlee.blog.domain.Article;
-import imdevlee.blog.domain.Category;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,13 +12,15 @@ public class ResponseArticleDto {
     private String type;
     private String title;
     private String[] tags;
+    private String thumbnail;
     private String createdTime;
 
-    public ResponseArticleDto(Article article) {
+    public ResponseArticleDto(Article article, String thumbnail) {
         this.id = article.getId();
         this.type = article.getType();
         this.title = article.getTitle();
         this.tags = article.getTags().split(" ");
+        this.thumbnail = thumbnail;
         this.createdTime = article.getCreatedTime();
     }
 }

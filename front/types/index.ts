@@ -11,26 +11,20 @@ export const defaultCategory = {
 };
 
 export interface Article {
-  category: Category;
   contents: string;
   createdTime: string;
   id: number;
-  images: string[];
+  thumbnail: string;
   tags: string[];
   title: string;
   type: string;
 }
 
 export const defaultArticle = {
-  category: {
-    id: -1,
-    name: '',
-    type: '',
-  },
   contents: '',
   createdTime: '',
   id: -1,
-  images: [],
+  thumbnail: '',
   tags: [],
   title: '',
   type: '',

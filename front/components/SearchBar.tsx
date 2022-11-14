@@ -3,7 +3,6 @@ import { debounce } from 'lodash';
 
 import { getArticleListApi } from '../api/requests';
 import { articleContext } from '../contexts/ArticleListContext';
-// import s from '../styles/SearchBar.module.scss';
 import TextField from '@mui/material/TextField';
 import { Box } from '@mui/material';
 
@@ -31,7 +30,7 @@ export default function SearchBar({ type }: Props) {
 
   return (
     <Box
-      sx={{ position: 'sticky', top: 45, margin: '20px 0' }}
+      sx={{ position: 'sticky', top: 41, margin: '20px 0' }}
       bgcolor="secondary.main"
     >
       <TextField

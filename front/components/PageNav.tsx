@@ -5,8 +5,6 @@ import { articleContext } from '../contexts/ArticleListContext';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
-// import s from '../styles/PageNav.module.scss';
-
 export default function PageNav({ type }: Props) {
   const [currentPage, setCurrentPage] = useState(1);
   const { updateArticle, pages } = useContext(articleContext);

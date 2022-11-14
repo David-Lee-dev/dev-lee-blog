@@ -7,7 +7,6 @@ import imdevlee.blog.service.ArticleService;
 import imdevlee.blog.service.CategoryService;
 import imdevlee.blog.web.FileStore;
 import imdevlee.blog.web.controller.dto.ResponseArticleDto;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -15,10 +14,7 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.util.*;
 
@@ -48,7 +44,7 @@ public class BlogController {
         String dirName = fileStore.getDirName(article.getContents());
         String contentsPath = fileStore.getFullPath(dirName + "/" + article.getContents());
 
-        BufferedReader bf = new BufferedReader(new FileReader(contentsPath));
+        BufferedReader bf = new BufferedReader(new InputStreamReader(new FileInputStream(contentsPath), "utf-8"));
 
         String result = "";
         String str;
@@ -64,7 +60,6 @@ public class BlogController {
     @ResponseBody
     @GetMapping("/images/{dir}/{filename}")
     public Resource downloadImage(@PathVariable String dir, @PathVariable String filename) throws MalformedURLException {
-        System.out.println("filename = " + filename);
         return new UrlResource("file:" + fileStore.getFullPath(dir + "/" + filename));
     }
 
@@ -80,7 +75,7 @@ public class BlogController {
 
         List<ResponseArticleDto> articles = new ArrayList<>();
         articleList.forEach(article -> {
-            articles.add(new ResponseArticleDto(article));
+            articles.add(new ResponseArticleDto(article, getThumbnail(article.getContents(), article.getImages())));
         });
 
         int fromIndex = 10 * (page - 1);
@@ -93,5 +88,13 @@ public class BlogController {
         response.put("count", Math.ceil(articleList.size() / 10d));
 
         return response;
+    }
+
+    private String getThumbnail(String contents, String images) {
+        if (images == null || images.equals("")) {
+            return null;
+        }
+
+        return fileStore.getDirName(contents) + "/" + images.split(" ")[0];
     }
 }

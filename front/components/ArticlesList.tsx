@@ -25,21 +25,12 @@ export default function ArticleList({ type }: Props) {
   return (
     <>
       <SearchBar type={type} />
-      <Box
-        sx={{
-          flexGrow: 1,
-        }}
-        component="article"
-      >
-        <Grid container spacing={2} sx={{ minHeight: 300 }}>
-          {articles &&
-            articles.map((article) => (
-              <Grid item xs={12} key={article.id}>
-                <ArticlePreview article={article} type={type} />
-              </Grid>
-            ))}
-          {pages > 1 && <PageNav type={type} />}
-        </Grid>
+      <Box component="article">
+        {articles &&
+          articles.map((article) => (
+            <ArticlePreview key={article.id} article={article} type={type} />
+          ))}
+        {pages > 1 && <PageNav type={type} />}
       </Box>
     </>
   );
