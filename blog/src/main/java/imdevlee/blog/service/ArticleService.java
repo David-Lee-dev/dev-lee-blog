@@ -3,8 +3,8 @@ package imdevlee.blog.service;
 import imdevlee.blog.domain.Article;
 import imdevlee.blog.domain.Category;
 import imdevlee.blog.repository.dto.ArticleSearchConditionDto;
-import imdevlee.blog.repository.interfaces.ArticleRepository;
-import imdevlee.blog.repository.interfaces.CategoryRepository;
+import imdevlee.blog.repository.ArticleRepository;
+import imdevlee.blog.repository.CategoryRepository;
 import imdevlee.blog.service.dto.SaveArticleDto;
 import imdevlee.blog.service.dto.UpdateArticleDto;
 import lombok.RequiredArgsConstructor;
@@ -40,7 +40,9 @@ public class ArticleService {
                 LocalDate.now().toString()
         );
 
-        articleRepository.save(article, category.getId());
+        article.setCategoryId(category.getId());
+
+        articleRepository.save(article);
     }
 
     @Transactional

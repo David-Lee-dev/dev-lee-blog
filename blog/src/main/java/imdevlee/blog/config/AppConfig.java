@@ -1,9 +1,10 @@
 package imdevlee.blog.config;
 
 
-import imdevlee.blog.repository.*;
-import imdevlee.blog.repository.interfaces.ArticleRepository;
-import imdevlee.blog.repository.interfaces.CategoryRepository;
+import imdevlee.blog.repository.ArticleRepository;
+import imdevlee.blog.repository.CategoryRepository;
+import imdevlee.blog.repository.jdbc.JdbcArticleRepository;
+import imdevlee.blog.repository.jdbc.JdbcCategoryRepository;
 import imdevlee.blog.repository.mapper.ArticleMapper;
 import imdevlee.blog.repository.mapper.CategoryMapper;
 import imdevlee.blog.web.interceptor.LogInterceptor;

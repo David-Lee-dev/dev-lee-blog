@@ -1,4 +1,4 @@
-package imdevlee.blog.repository.interfaces;
+package imdevlee.blog.repository;
 
 import imdevlee.blog.domain.Category;
 

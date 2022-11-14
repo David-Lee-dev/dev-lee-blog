@@ -3,7 +3,7 @@
 <mapper namespace="imdevlee.blog.repository.mapper.ArticleMapper">
     <insert id="save" useGeneratedKeys="true" keyProperty="article.id">
         insert into article (type, title, contents, images, tags, created_time, category_id)
-        values (#{article.type}, #{article.title}, #{article.contents}, #{article.images}, #{article.tags}, #{article.createdTime}, #{categoryId})
+        values (#{article.type}, #{article.title}, #{article.contents}, #{article.images}, #{article.tags}, #{article.createdTime}, #{article.categoryId})
     </insert>
     <update id="update">
         update article

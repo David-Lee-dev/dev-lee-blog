@@ -1,8 +1,8 @@
-package imdevlee.blog.repository;
+package imdevlee.blog.repository.jdbc;
 
 import imdevlee.blog.domain.Article;
 import imdevlee.blog.repository.dto.ArticleSearchConditionDto;
-import imdevlee.blog.repository.interfaces.ArticleRepository;
+import imdevlee.blog.repository.ArticleRepository;
 import imdevlee.blog.repository.mapper.ArticleMapper;
 import lombok.RequiredArgsConstructor;
 
@@ -15,8 +15,8 @@ public class JdbcArticleRepository implements ArticleRepository {
     private final ArticleMapper articleMapper;
 
     @Override
-    public Article save(Article article, Long categoryId) {
-        articleMapper.save(article, categoryId);
+    public Article save(Article article) {
+        articleMapper.save(article);
 
         return article;
     }

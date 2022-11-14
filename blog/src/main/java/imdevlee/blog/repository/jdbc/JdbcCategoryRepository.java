@@ -1,7 +1,7 @@
-package imdevlee.blog.repository;
+package imdevlee.blog.repository.jdbc;
 
 import imdevlee.blog.domain.Category;
-import imdevlee.blog.repository.interfaces.CategoryRepository;
+import imdevlee.blog.repository.CategoryRepository;
 import imdevlee.blog.repository.mapper.CategoryMapper;
 import lombok.RequiredArgsConstructor;
 

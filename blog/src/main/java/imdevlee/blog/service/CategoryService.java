@@ -1,7 +1,7 @@
 package imdevlee.blog.service;
 
 import imdevlee.blog.domain.Category;
-import imdevlee.blog.repository.interfaces.CategoryRepository;
+import imdevlee.blog.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

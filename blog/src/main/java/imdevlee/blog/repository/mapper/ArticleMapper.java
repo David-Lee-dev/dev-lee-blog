@@ -11,8 +11,7 @@ import java.util.Optional;
 @Mapper
 public interface ArticleMapper {
     void save(
-            @Param("article") Article article,
-            @Param("categoryId") Long categoryId
+            @Param("article") Article article
     );
 
     void update(
