@@ -96,8 +96,9 @@
 
 @include mobile {
   .contents {
-    font-weight: 200;
+    font-weight: 400;
     font-size: 16px;
+    padding: 0 50px;
   
     h1 {
       border-bottom: 2px solid $bw-40;

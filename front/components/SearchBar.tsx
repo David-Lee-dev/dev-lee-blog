@@ -4,7 +4,7 @@ import { debounce } from 'lodash';
 import { getArticleListApi } from '../api/requests';
 import { articleContext } from '../contexts/ArticleListContext';
 import TextField from '@mui/material/TextField';
-import { Box } from '@mui/material';
+import Box from '@mui/material/Box';
 
 export default function SearchBar({ type }: Props) {
   const [value, setValue] = useState('');

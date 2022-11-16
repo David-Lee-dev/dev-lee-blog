@@ -7,7 +7,6 @@ import { getCategoryListApi } from '../../../api/requests';
 import { categoryContext } from '../../../contexts/CategoryContext';
 
 import Grid from '@mui/material/Grid';
-import PageNav from '../../../components/PageNav';
 
 export default function Post() {
   const { updateCategory } = useContext(categoryContext);
@@ -20,11 +19,11 @@ export default function Post() {
   }, []);
 
   return (
-    <Grid container spacing={2}>
+    <Grid container spacing={0} sx={{ minHeight: '50vh' }}>
       <Grid item xl={3} lg={2.5} md={2}>
         <SideMenu />
       </Grid>
-      <Grid item xl={6} lg={7} md={8}>
+      <Grid item xl={6} lg={7} md={8} sx={{ width: '100%', padding: '0 10px' }}>
         <ArticlesList type="note" />
       </Grid>
       <Grid item xl={3} lg={2.5} md={2}></Grid>

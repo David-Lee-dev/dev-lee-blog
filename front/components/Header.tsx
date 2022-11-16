@@ -53,9 +53,15 @@ export default function Header() {
       component="header"
       bgcolor="background.default"
     >
-      <Grid container spacing={2}>
+      <Grid container spacing={0}>
         <Grid item xl={3} lg={2.5} md={2}></Grid>
-        <Grid item xl={6} lg={7} md={8}>
+        <Grid
+          item
+          xl={6}
+          lg={7}
+          md={8}
+          sx={{ width: '100%', padding: '0 10px' }}
+        >
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
             <Box sx={{ display: 'flex' }}>
               {navMenu.map((menu) => (
@@ -92,7 +98,7 @@ export default function Header() {
                 </a>
               </Link>
               <Box
-                sx={{ width: 25, cursor: 'pointer' }}
+                sx={{ width: 25, margin: '0 10px', cursor: 'pointer' }}
                 onClick={handleCopyClipBoard}
               >
                 <MailIcon fontSize="large" />

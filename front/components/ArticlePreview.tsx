@@ -3,14 +3,15 @@ import Link from 'next/link';
 import { Article } from '../types';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import Chip from '@mui/material/Chip';
 import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import { styled } from '@mui/material/styles';
 
 export default function ArticlePreview({ article, type }: Props) {
   return (
-    <Card>
+    <Card sx={{ marginBottom: 2 }}>
       <Link href={`/article/${type}/detail/${article.id}`}>
         <a>
           <Grid
@@ -20,52 +21,53 @@ export default function ArticlePreview({ article, type }: Props) {
             container
             spacing={2}
           >
-            <Grid xs={3} item>
-              <CardMedia
-                component="img"
-                width="200"
-                height="200"
-                image={
+            <Grid lg={2.5} md={3} sm={2} xs={3.5} item>
+              <MyCardMedia
+                src={
                   article.thumbnail
                     ? `${process.env.NEXT_PUBLIC_REQUEST_BASE_URL}api/images/${article.thumbnail}`
                     : `/default_thumbnail.png`
                 }
-                alt="default image"
               />
             </Grid>
-            <Grid xs={9} item>
-              <CardContent>
-                <Typography
-                  gutterBottom
-                  variant="h6"
-                  sx={{
-                    whiteSpace: 'nowrap',
-                    overflow: 'hidden',
-                    textOverflow: 'ellipsis',
-                  }}
-                >
-                  {article.title}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  component="div"
-                >
-                  {article.tags.map((tag, idx) => (
-                    <Chip
-                      key={`${idx}--${tag}`}
-                      label={tag}
-                      sx={{ marginRight: 1 }}
-                    ></Chip>
-                  ))}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  sx={{ marginTop: 3 }}
-                >
-                  {article.createdTime}
-                </Typography>
+            <Grid lg={9.5} md={9} sm={10} xs={8.5} item>
+              <CardContent
+                sx={{
+                  height: '100%',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  padding: '8px !important',
+                }}
+              >
+                <MyH6>{article.title}</MyH6>
+                <Box>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    component="div"
+                    sx={{
+                      marginTop: 2,
+                    }}
+                  >
+                    {article.tags.map((tag, idx) => (
+                      <Chip
+                        key={`${idx}--${tag}`}
+                        label={tag}
+                        sx={{ marginRight: 1 }}
+                      ></Chip>
+                    ))}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    sx={{
+                      marginTop: 1,
+                    }}
+                  >
+                    {article.createdTime}
+                  </Typography>
+                </Box>
               </CardContent>
             </Grid>
           </Grid>
@@ -79,3 +81,46 @@ interface Props {
   article: Article;
   type: string;
 }
+
+const MyCardMedia = styled('img')(({ theme }) => ({
+  'display': 'block',
+  '-webkit-background-size': 'cover',
+  'background-size': 'cover',
+  'background-repeat': 'no-repeat',
+  '-webkit-background-position': 'center',
+  'background-position': 'center',
+  'width': '100%',
+  'object-fit': 'cover',
+  [theme.breakpoints.down('md')]: {
+    width: '120px',
+    height: '120px',
+  },
+  [theme.breakpoints.up('md')]: {
+    width: '150px',
+    height: '150px',
+  },
+}));
+
+const MyH6 = styled('h6')(({ theme }) => ({
+  'margin': 0,
+  'font-family': 'Spoqa Han Sans Neo,sans-serif',
+  'margin-bottom': '0.35em',
+  'white-space': 'nowrap',
+  'overflow': 'hidden',
+  'text-overflow': 'ellipsis',
+  [theme.breakpoints.down('md')]: {
+    'font-weight': '500',
+    'font-size': '18px',
+    'line-height': '22px',
+  },
+  [theme.breakpoints.up('md')]: {
+    'font-weight': '500',
+    'font-size': '18px',
+    'line-height': '22px',
+  },
+  [theme.breakpoints.up('lg')]: {
+    'font-weight': '500',
+    'font-size': '20px',
+    'line-height': '25px',
+  },
+}));

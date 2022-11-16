@@ -7,7 +7,6 @@ import { getArticleListApi } from '../api/requests';
 import { categoryContext } from '../contexts/CategoryContext';
 import { useRouter } from 'next/router';
 
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 
@@ -42,8 +41,8 @@ export default function SideMenu() {
       sx={{
         width: '100%',
         position: 'sticky',
-        top: 80,
-        padding: '16px 16px 16px 100px',
+        top: 100,
+        padding: '16px 60px',
       }}
     >
       <Typography
