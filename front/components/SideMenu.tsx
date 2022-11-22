@@ -1,4 +1,4 @@
-import { useContext, useMemo, useState } from 'react';
+import { useContext, useMemo } from 'react';
 import Link from 'next/link';
 
 import { articleContext } from '../contexts/ArticleListContext';
@@ -7,7 +7,6 @@ import { categoryContext } from '../contexts/CategoryContext';
 import { useRouter } from 'next/router';
 
 import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 
 const StyledBox = styled('div')(({ theme }) => ({

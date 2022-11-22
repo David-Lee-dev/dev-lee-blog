@@ -1,5 +1,5 @@
 @function h__tag__size($level) {
-  @return (5 - $level) * 12px;
+  @return (5 - $level) * 10px;
 }
 
 @function h__tag__size__mobile($level) {

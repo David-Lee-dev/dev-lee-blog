@@ -1,10 +1,7 @@
 import { marked } from 'marked';
-import { useEffect } from 'react';
-import Prism from 'prismjs';
 import 'prismjs/themes/prism-tomorrow.css';
 import s from '../styles/ArticleDetail.module.scss';
-
-const renderer = new marked.Renderer();
+import renderer from '../renderer';
 
 marked.use({
   pedantic: false,
@@ -21,12 +18,8 @@ marked.use({
 export default function ArticleDetail({ article }: Props) {
   const contents = article ? marked.parse(article) : '';
 
-  useEffect(() => {
-    Prism.highlightAll();
-  }, [article]);
-
   return (
-    <article>
+    <article className="contents">
       <div
         className={s.contents}
         dangerouslySetInnerHTML={{ __html: contents }}
@@ -39,5 +32,3 @@ export default function ArticleDetail({ article }: Props) {
 interface Props {
   article: string;
 }
-
-const test = JSON.stringify('');
