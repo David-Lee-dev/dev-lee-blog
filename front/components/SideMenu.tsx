@@ -1,6 +1,5 @@
 import { useContext, useMemo, useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 
 import { articleContext } from '../contexts/ArticleListContext';
 import { getArticleListApi } from '../api/requests';
@@ -8,11 +7,15 @@ import { categoryContext } from '../contexts/CategoryContext';
 import { useRouter } from 'next/router';
 
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 import { styled } from '@mui/material/styles';
 
 const StyledBox = styled('div')(({ theme }) => ({
+  [theme.breakpoints.up('lg')]: {
+    padding: '16px 60px',
+  },
   [theme.breakpoints.down('lg')]: {
-    display: 'none',
+    padding: '8px 20px',
   },
 }));
 
@@ -20,12 +23,10 @@ export default function SideMenu() {
   const pathname = useRouter().pathname;
 
   const type = useMemo(() => getArticleType(pathname), []);
-  const [openCategory, setOpenCategory] = useState<boolean>(false);
 
   const { updateArticle, updatePages } = useContext(articleContext);
   const { category } = useContext(categoryContext);
 
-  const sideMenuHandler = () => setOpenCategory((prev) => !prev);
   const selectedHandler = async (id: number) => {
     console.log(type);
     if (type) {
@@ -42,7 +43,6 @@ export default function SideMenu() {
         width: '100%',
         position: 'sticky',
         top: 100,
-        padding: '16px 60px',
       }}
     >
       <Typography

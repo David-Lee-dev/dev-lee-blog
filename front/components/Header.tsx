@@ -1,16 +1,38 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState, useContext } from 'react';
 import { throttle } from 'lodash';
 
+import { categoryContext } from '../contexts/CategoryContext';
+
+import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import MailIcon from '@mui/icons-material/Mail';
 import Grid from '@mui/material/Grid';
+import MenuIcon from '@mui/icons-material/Menu';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import SideMenu from './SideMenu';
+
+const StyledBox = styled('div')(({ theme }) => ({
+  [theme.breakpoints.up('lg')]: {
+    display: 'none',
+  },
+}));
 
 export default function Header() {
   const pathname = useRouter().pathname;
   const [scrollGuage, setScrollGuage] = useState<number>(0);
+  const { category, updateCategory } = useContext(categoryContext);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const scrollHandler = useCallback(
     throttle(() => {
@@ -26,16 +48,6 @@ export default function Header() {
     []
   );
 
-  const handleCopyClipBoard = async () => {
-    try {
-      await navigator.clipboard.writeText('aganga7427@gmail.com');
-
-      alert('메일 주소가 클립보드에 복사되었습니다.');
-    } catch (error) {
-      alert('복사할 수 없습니다.');
-    }
-  };
-
   useEffect(() => {
     window.addEventListener('scroll', scrollHandler);
 
@@ -43,6 +55,18 @@ export default function Header() {
       window.removeEventListener('scroll', scrollHandler);
     };
   }, []);
+
+  useEffect(() => {
+    if (pathname === '/') {
+      return;
+    }
+
+    const type = navMenu.filter((menu) => pathname.search(menu.key) >= 0);
+    if (type.length === 0) return;
+
+    updateCategory(type[0].key);
+  }, [pathname]);
+
   return (
     <Box
       sx={{
@@ -85,30 +109,38 @@ export default function Header() {
                 </Typography>
               ))}
             </Box>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'space-around',
-                alignItems: 'center',
-              }}
-            >
-              <Link href="https://github.com/David-Lee-dev">
-                <a target="_blank" style={{ width: '25px', padding: '0 20px' }}>
-                  <img src="/github.svg" style={{ width: '100%' }} />
-                </a>
-              </Link>
-              <Box
-                sx={{ width: 25, margin: '0 10px', cursor: 'pointer' }}
-                onClick={handleCopyClipBoard}
+            <StyledBox>
+              <Button
+                id="category-menu-button"
+                aria-controls={open ? 'ategory-menu-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={open ? 'true' : undefined}
+                onClick={handleClick}
               >
-                <MailIcon fontSize="large" />
-              </Box>
-            </Box>
+                <MenuIcon />
+              </Button>
+              <Menu
+                id="ategory-menu-menu"
+                aria-labelledby="category-menu-button"
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'left',
+                }}
+              >
+                <SideMenu />
+              </Menu>
+            </StyledBox>
           </Box>
         </Grid>
         <Grid item xl={3} lg={2.5} md={2}></Grid>
       </Grid>
-
       <Box
         sx={{
           height: 4,

@@ -30,8 +30,6 @@ export async function getArticleListApi(
     await api.get(`api/article?type=${type}&${queryString}page=${page}`)
   ).data;
 
-  console.log(response);
-
   const articles = response.articles;
   const count = response.count;
 

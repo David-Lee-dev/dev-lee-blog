@@ -3,13 +3,11 @@ import { useContext, useEffect, useState } from 'react';
 
 import SideMenu from '../../../../components/SideMenu';
 import ArticleDetail from '../../../../components/ArticleDetail';
+import HideOnSmallWindowBox from '../../../../components/HideOnSmalWindowBox';
 
 import Grid from '@mui/material/Grid';
 
-import {
-  getArticleDetailApi,
-  getCategoryListApi,
-} from '../../../../api/requests';
+import { getArticleDetailApi } from '../../../../api/requests';
 import { categoryContext } from '../../../../contexts/CategoryContext';
 
 export default function Detail() {
@@ -21,8 +19,7 @@ export default function Detail() {
     (async () => {
       if (!router.isReady) return;
 
-      const catetoryResponse = await getCategoryListApi('note');
-      updateCategory(catetoryResponse);
+      updateCategory('note');
 
       const contents = await getArticleDetailApi(`${router.query.id}`);
       setArticle(contents);
@@ -32,7 +29,9 @@ export default function Detail() {
   return (
     <Grid container spacing={2}>
       <Grid item xl={3} lg={2.5} md={2}>
-        <SideMenu />
+        <HideOnSmallWindowBox>
+          <SideMenu />
+        </HideOnSmallWindowBox>
       </Grid>
       <Grid item xl={6} lg={7} md={8}>
         <ArticleDetail article={article} />

@@ -83,14 +83,14 @@ interface Props {
 }
 
 const MyCardMedia = styled('img')(({ theme }) => ({
-  'display': 'block',
-  '-webkit-background-size': 'cover',
-  'background-size': 'cover',
-  'background-repeat': 'no-repeat',
-  '-webkit-background-position': 'center',
-  'background-position': 'center',
-  'width': '100%',
-  'object-fit': 'cover',
+  display: 'block',
+  WebkitBackgroundSize: 'cover',
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+  WebkitBackgroundPosition: 'center',
+  backgroundPosition: 'center',
+  width: '100%',
+  objectFit: 'cover',
   [theme.breakpoints.down('md')]: {
     width: '120px',
     height: '120px',
@@ -102,25 +102,25 @@ const MyCardMedia = styled('img')(({ theme }) => ({
 }));
 
 const MyH6 = styled('h6')(({ theme }) => ({
-  'margin': 0,
-  'font-family': 'Spoqa Han Sans Neo,sans-serif',
-  'margin-bottom': '0.35em',
-  'white-space': 'nowrap',
-  'overflow': 'hidden',
-  'text-overflow': 'ellipsis',
+  margin: 0,
+  fontFamily: 'Spoqa Han Sans Neo,sans-serif',
+  marginBottom: '0.35em',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
   [theme.breakpoints.down('md')]: {
-    'font-weight': '500',
-    'font-size': '18px',
-    'line-height': '22px',
+    fontWeight: '500',
+    fontSize: '18px',
+    lineHeight: '22px',
   },
   [theme.breakpoints.up('md')]: {
-    'font-weight': '500',
-    'font-size': '18px',
-    'line-height': '22px',
+    fontWeight: '500',
+    fontSize: '18px',
+    lineHeight: '22px',
   },
   [theme.breakpoints.up('lg')]: {
-    'font-weight': '500',
-    'font-size': '20px',
-    'line-height': '25px',
+    fontWeight: '500',
+    fontSize: '20px',
+    lineHeight: '25px',
   },
 }));

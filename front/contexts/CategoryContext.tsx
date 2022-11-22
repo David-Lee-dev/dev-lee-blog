@@ -1,10 +1,11 @@
 import { createContext, useCallback, useState } from 'react';
+import { getCategoryListApi } from '../api/requests';
 
 import { Category, defaultCategory } from '../types';
 
 interface ValueType {
   category: Category[];
-  updateCategory: (category: Category[]) => void;
+  updateCategory: (type: string) => void;
 }
 
 interface Props {
@@ -13,14 +14,15 @@ interface Props {
 
 export const categoryContext = createContext<ValueType>({
   category: [defaultCategory],
-  updateCategory: (category: Category[]) => {},
+  updateCategory: (category: string) => {},
 });
 
 export default function CategoryProvider({ children }: Props) {
   const [category, setCategory] = useState<Category[]>([]);
 
-  const updateCategory = useCallback((category: Category[]) => {
-    setCategory([defaultCategory, ...category]);
+  const updateCategory = useCallback(async (type: string) => {
+    const response = await getCategoryListApi(type);
+    setCategory([defaultCategory, ...response]);
   }, []);
 
   const value = { category, updateCategory };

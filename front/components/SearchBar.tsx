@@ -30,7 +30,7 @@ export default function SearchBar({ type }: Props) {
 
   return (
     <Box
-      sx={{ position: 'sticky', top: 41, margin: '20px 0' }}
+      sx={{ position: 'sticky', top: 34, margin: '20px 0' }}
       bgcolor="secondary.main"
     >
       <TextField

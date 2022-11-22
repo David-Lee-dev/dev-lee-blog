@@ -43,9 +43,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <CssBaseline />
       <ThemeProvider theme={theme}>
-        <Header />
         <CategoryProvider>
           <ArticleProvider>
+            <Header />
             <Box
               sx={{
                 paddingTop: 5,
