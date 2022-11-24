@@ -27,7 +27,6 @@ export default function SideMenu() {
   const { category } = useContext(categoryContext);
 
   const selectedHandler = async (id: number) => {
-    console.log(type);
     if (type) {
       const response = await getArticleListApi(type, 1, { categoryId: id });
 

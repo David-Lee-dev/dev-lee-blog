@@ -8,10 +8,10 @@ import Header from '../components/Header';
 
 import ArticleProvider from '../contexts/ArticleListContext';
 import CategoryProvider from '../contexts/CategoryContext';
-import '../styles/_global.scss';
-import { Container } from '@mui/material';
 import Box from '@mui/material/Box';
 import Head from 'next/head';
+
+import '../styles/_global.scss';
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -45,19 +45,11 @@ function MyApp({ Component, pageProps }: AppProps) {
       <ThemeProvider theme={theme}>
         <CategoryProvider>
           <ArticleProvider>
-            <Header />
-            <Box
-              sx={{
-                paddingTop: 5,
-                minHeight: '100vh',
-              }}
-              bgcolor="background.default"
-            >
+            <Box bgcolor="background.default">
               <Component {...pageProps} />
             </Box>
           </ArticleProvider>
         </CategoryProvider>
-        <Footer />
       </ThemeProvider>
     </>
   );
@@ -68,10 +60,10 @@ export default MyApp;
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#393e46',
+      main: '#434242',
     },
     secondary: {
-      main: '#929aab',
+      main: '#222222',
     },
     warning: {
       main: '#f0a500',
@@ -80,10 +72,14 @@ const theme = createTheme({
       main: '#ff5656',
     },
     info: {
-      main: '#2185d5',
+      main: '#1D928E',
     },
     success: {
       main: '#6d9886',
+    },
+    background: {
+      default: '#efefe8',
+      paper: '#eaeaea',
     },
   },
   typography: {

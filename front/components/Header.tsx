@@ -20,10 +20,19 @@ const StyledBox = styled('div')(({ theme }) => ({
   },
 }));
 
+const StyledP = styled('p')(({ theme }) => ({
+  'marginRight': 20,
+  'color': theme.palette.background.default,
+  'fontSize': 25,
+  '&.active': {
+    color: theme.palette.info.main,
+  },
+}));
+
 export default function Header() {
   const pathname = useRouter().pathname;
   const [scrollGuage, setScrollGuage] = useState<number>(0);
-  const { category, updateCategory } = useContext(categoryContext);
+  const { updateCategory } = useContext(categoryContext);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -70,12 +79,13 @@ export default function Header() {
   return (
     <Box
       sx={{
-        position: 'fixed',
+        position: 'sticky',
+        top: 0,
         width: '100vw',
         zIndex: 1000,
       }}
       component="header"
-      bgcolor="background.default"
+      bgcolor="primary.main"
     >
       <Grid container spacing={0}>
         <Grid item xl={3} lg={2.5} md={2}></Grid>
@@ -87,26 +97,20 @@ export default function Header() {
           sx={{ width: '100%', padding: '0 10px' }}
         >
           <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-            <Box sx={{ display: 'flex' }}>
+            <Box sx={{ display: 'flex', padding: 1 }}>
               {navMenu.map((menu) => (
-                <Typography
+                <StyledP
                   key={menu.name}
-                  sx={{
-                    marginRight: 5,
-                    fontSize: 20,
-                    color: `
-                      ${
-                        pathname === menu.route ||
-                        pathname.search(menu.key) >= 0
-                          ? '#2185d5'
-                          : '#393e46'
-                      } `,
-                  }}
+                  className={
+                    pathname === menu.route || pathname.search(menu.key) >= 0
+                      ? 'active'
+                      : ''
+                  }
                 >
                   <Link href={`${menu.route}`}>
                     <a>{menu.name}</a>
                   </Link>
-                </Typography>
+                </StyledP>
               ))}
             </Box>
             <StyledBox>
@@ -150,7 +154,7 @@ export default function Header() {
         <Box
           sx={{
             height: 4,
-            backgroundColor: 'primary.main',
+            backgroundColor: 'warning.main',
             transition: 'width 0.1s',
             width: `${scrollGuage}%`,
           }}
