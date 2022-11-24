@@ -6,6 +6,7 @@ import ArticlePreview from './ArticlePreview';
 import PageNav from './PageNav';
 
 import Box from '@mui/material/Box';
+import SearchBar from './SearchBar';
 
 export default function ArticleList({ type }: Props) {
   const { articles, updateArticle, pages, updatePages } =
@@ -22,6 +23,7 @@ export default function ArticleList({ type }: Props) {
 
   return (
     <>
+      <SearchBar type={type} />
       <Box component="article">
         {articles &&
           articles.map((article) => (

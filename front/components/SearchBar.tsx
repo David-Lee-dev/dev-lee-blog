@@ -1,11 +1,22 @@
 import { useCallback, useContext, useState } from 'react';
-import { debounce } from 'lodash';
+import { debounce, unset } from 'lodash';
 
 import { getArticleListApi } from '../api/requests';
 import { articleContext } from '../contexts/ArticleListContext';
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
 
+import Box from '@mui/material/Box';
+import { styled } from '@mui/material/styles';
+
+const StyledInput = styled('input')(({ theme }) => ({
+  all: 'unset',
+  width: '100%',
+  padding: '5px 20px',
+  fontSize: 20,
+  color: theme.palette.background.default,
+  backgroundColor: theme.palette.primary.main,
+  boxSizing: 'border-box',
+  borderRadius: 50,
+}));
 export default function SearchBar({ type }: Props) {
   const [value, setValue] = useState('');
   const { updateArticle, updatePages } = useContext(articleContext);
@@ -30,15 +41,19 @@ export default function SearchBar({ type }: Props) {
 
   return (
     <Box
-      sx={{ position: 'sticky', top: 34, margin: '20px 0' }}
-      bgcolor="secondary.main"
+      sx={{
+        position: 'sticky',
+        display: 'flex',
+        alignItems: 'center',
+        height: 60,
+        top: 45,
+        margin: '20px 0',
+      }}
+      bgcolor="background.default"
     >
-      <TextField
+      <StyledInput
         value={value}
-        variant="standard"
-        label="제목, 태그로 검색하기"
         onChange={(e) => inputHandler(e.target.value)}
-        sx={{ width: '100%' }}
       />
     </Box>
   );

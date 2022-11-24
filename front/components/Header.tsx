@@ -6,7 +6,6 @@ import { throttle } from 'lodash';
 import { categoryContext } from '../contexts/CategoryContext';
 
 import { styled } from '@mui/material/styles';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -121,7 +120,11 @@ export default function Header() {
                 aria-expanded={open ? 'true' : undefined}
                 onClick={handleClick}
               >
-                <MenuIcon />
+                <MenuIcon
+                  sx={{
+                    color: 'background.default',
+                  }}
+                />
               </Button>
               <Menu
                 id="ategory-menu-menu"
