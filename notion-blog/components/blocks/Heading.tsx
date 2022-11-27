@@ -1,5 +1,6 @@
 import React from 'react';
-import { HeadingOneBlock, HeadingThreeBlock, HeadingTwoBlock } from '../../types/notion_api_types';
+import { HeadingOneBlock, HeadingThreeBlock, HeadingTwoBlock, Block as BlockType } from '../../types/notion_api_types';
+import Block from '../Block';
 import RichTexts from '../RichTexts';
 
 interface HeadingProps {
@@ -13,23 +14,24 @@ const Heading: React.FC<HeadingProps> = ({ block }: HeadingProps) => {
     case 'heading_1':
       confirmedBlock = block as HeadingOneBlock;
       return (
-        <h1 className={`depth_${block.depth}`}>
+        <h2 className={`depth_${block.depth}`}>
           <RichTexts richTexts={confirmedBlock.heading_1.rich_text} />
-        </h1>
+          {block.children && block.children.map((child: BlockType) => <Block key={child.id} block={child} />)}
+        </h2>
       );
     case 'heading_2':
       confirmedBlock = block as HeadingTwoBlock;
       return (
-        <h2 className={`depth_${block.depth}`}>
+        <h3 className={`depth_${block.depth}`}>
           <RichTexts richTexts={confirmedBlock.heading_2.rich_text} />
-        </h2>
+        </h3>
       );
     case 'heading_3':
       confirmedBlock = block as HeadingThreeBlock;
       return (
-        <h3 className={`depth_${block.depth}`}>
+        <h4 className={`depth_${block.depth}`}>
           <RichTexts richTexts={confirmedBlock.heading_3.rich_text} />
-        </h3>
+        </h4>
       );
   }
 };

@@ -7,11 +7,11 @@ interface RichTextsProps {
 
 const RichTexts: React.FC<RichTextsProps> = ({ richTexts }: RichTextsProps) => {
   return (
-    <>
+    <p className="break-all inline-block">
       {richTexts.map((richText: RichTextType, index: number) => (
         <RichText key={index} richText={richText} />
       ))}
-    </>
+    </p>
   );
 };
 

@@ -45,7 +45,7 @@ export interface BlockBase {
   created_time: string;
   last_edited_time: string;
   has_children: boolean;
-  children?: Block[]; //addtional
+  children: Block[]; //addtional
   depth: number; //addtional
 }
 export interface ParagraphBlock extends BlockBase {

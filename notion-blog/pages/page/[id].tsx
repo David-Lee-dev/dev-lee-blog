@@ -28,8 +28,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 const PageByIdPage = ({ page, blocks }: { page: PageType; blocks: BlockType[] }) => {
+  console.log(blocks);
+
   return (
-    <div className="container w-screen">
+    <>
       <Head>
         <title>I&apos;m dev-lee | {page.properties.title.title[0].plain_text}</title>
         <meta property="og:title" content={page.properties.title.title[0].plain_text} />
@@ -42,13 +44,19 @@ const PageByIdPage = ({ page, blocks }: { page: PageType; blocks: BlockType[] })
         />
         <meta name="description" content="dev-lee's blog" />
         <link rel="icon" href="/favicon.ico" />
+        <link href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css" rel="stylesheet" type="text/css"></link>
       </Head>
-      <div className="container">
-        {blocks.map((block: BlockType) => (
-          <Block key={block.id} block={block} />
-        ))}
+      <div className="grid gap-1 grid-cols-12 grid-rows-1 mx-auto">
+        <div className="left col-span-1 lg:col-span-2 xl:col-span-3"></div>
+        <div className="center col-span-10 lg:col-span-8 xl:col-span-6">
+          <h1 className="py-5">{page.properties.title.title[0].plain_text}</h1>
+          {blocks.map((block: BlockType) => (
+            <Block key={block.id} block={block} />
+          ))}
+        </div>
+        <div className="right col-span-1 lg:col-span-2 xl:col-span-3"></div>
       </div>
-    </div>
+    </>
   );
 };
 

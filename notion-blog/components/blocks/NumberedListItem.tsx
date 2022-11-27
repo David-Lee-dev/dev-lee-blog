@@ -18,7 +18,7 @@ const OlWrapper: React.FC<OlWrapper> = ({ children, flag }: OlWrapper) => {
 const NumberedListItem: React.FC<NumberedListItemProps> = ({ block }: NumberedListItemProps) => {
   return (
     <>
-      <li className={`depth_${block.depth}`}>
+      <li className={`depth_${block.depth} order list-none`}>
         <RichTexts richTexts={block.numbered_list_item.rich_text} />
       </li>
       {block.children && block.children.map((child: BlockType) => <Block key={child.id} block={child} />)}

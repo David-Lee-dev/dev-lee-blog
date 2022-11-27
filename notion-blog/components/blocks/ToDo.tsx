@@ -1,5 +1,6 @@
 import { ToDoBlock } from '../../types/notion_api_types';
 import RichTexts from '../RichTexts';
+import s from '../../styles/input.module.scss';
 
 interface ToDoProps {
   block: ToDoBlock;
@@ -7,16 +8,10 @@ interface ToDoProps {
 
 const ToDo: React.FC<ToDoProps> = ({ block }: ToDoProps) => {
   return (
-    <>
-      <input
-        type="checkbox"
-        checked={block.to_do.checked}
-        className={`depth_${block.depth} checked:bg-blue-500`}
-        style={{ display: 'inline' }}
-        disabled
-      />
+    <div>
+      <input type="checkbox" checked={block.to_do.checked} className={`depth_${block.depth}`} disabled />
       <RichTexts richTexts={block.to_do.rich_text} />
-    </>
+    </div>
   );
 };
 

@@ -59,7 +59,7 @@ const Block: React.FC<BlockProps> = ({ block }: BlockProps) => {
     case 'table_row':
       return <TableRow block={block} />;
     default:
-      return <div>{block.type} 지원 안함</div>;
+      return <></>;
   }
 };
 

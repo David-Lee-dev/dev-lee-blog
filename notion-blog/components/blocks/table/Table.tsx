@@ -1,6 +1,8 @@
 import { TableBlock, Block as BlockType } from '../../../types/notion_api_types';
 import Block from '../../Block';
 
+import s from '../../../styles/table.module.scss';
+
 interface TableProps {
   block: TableBlock;
 }
@@ -8,13 +10,13 @@ interface TableProps {
 const Table: React.FC<TableProps> = ({ block }: TableProps) => {
   return (
     <table
-      className={`Table ${block.table.has_row_header ? 'highlight__row' : ''}${
-        block.table.has_column_header ? 'highlight__col' : ''
+      className={`${s.table} ${block.table.has_row_header ? s.highlight__row : ''}${
+        block.table.has_column_header ? s.highlight__col : ''
       } depth_${block.depth}`}
     >
       <tbody>
         {block.children &&
-          block.children.map((child: BlockType, index: number) => <Block key={`${index}-${child.id}`} block={child} />)}
+          block.children && block.children.map((child: BlockType, index: number) => <Block key={`${index}-${child.id}`} block={child} />)}
       </tbody>
     </table>
   );

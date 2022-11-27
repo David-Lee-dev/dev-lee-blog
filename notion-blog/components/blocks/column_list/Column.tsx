@@ -7,7 +7,7 @@ interface ColumnProps {
 
 const Column: React.FC<ColumnProps> = ({ block }: ColumnProps) => {
   return (
-    <div className={`Column depth_${block.depth}`}>
+    <div className={`column depth_${block.depth}`}>
       {block.children && block.children.map((child: BlockType) => <Block key={child.id} block={child} />)}
     </div>
   );

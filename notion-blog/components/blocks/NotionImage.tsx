@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { ImageBlock } from '../../types/notion_api_types';
 
 interface ImageProps {
@@ -7,8 +6,8 @@ interface ImageProps {
 
 const NotionImage: React.FC<ImageProps> = ({ block }: ImageProps) => {
   return (
-    <div>
-      <Image src={block.image.file.url} width={500} height={500} alt={'image'} />
+    <div className="flex justify-center">
+      <img src={block.image.file.url} alt={'image'} />
     </div>
   );
 };

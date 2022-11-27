@@ -1,0 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box !important;
+}
+
+body {
+  min-width: 100vh;
+  font-family: 'Spoqa Han Sans Neo', 'sans-serif';
+  font-size: 16px;
+  background-color: #ededea;
+
+  @media (min-width: 768px) {
+    font-size: 18px;
+  }
+}
+
+
+@function depth__margin($depth) {
+  @return $depth * 25px;
+}
+
+@for $i from 0 through 10 {
+  .depth_#{$i} {
+    margin-left: depth__margin($i);
+  }
+  .unorder.depth_#{$i} {
+    margin-left: depth__margin($i) + 25px;
+  }
+  .order.depth_#{$i} {
+    margin-left: depth__margin($i) + 10px;
+  }
+}
+
+@function heading__size($level) {
+  @return (6 - $level) * 10px;
+}
+
+@for $i from 1 through 5 {
+  h#{$i} {
+    font-size: heading__size($i);
+    margin-top: 30px;
+    font-weight: 500;
+  }
+}
+
+.columnList {
+  margin-left: 0;
+  * {
+    margin-left: 0;
+  }
+  li {
+    margin-left: 25px !important;
+  }
+}
