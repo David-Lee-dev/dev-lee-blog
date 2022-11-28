@@ -1,7 +1,6 @@
 [build]
-  command = "npm run build"
-  publish = "build"
+  command = "next build"
+  publish = ".next"
 
-[context.production.environment]
-  TOML_ENV_VAR = "From netlify.toml"
-  NEXT_TOML_ENV_VAR = "From netlify.toml (NEXT_)"
+[[plugins]]
+	package = "@netlify/plugin-nextjs"
