@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { GetServerSideProps } from 'next';
 import Block from '../../components/Block';
-import { getAllBlocks, getPage } from '../../lib/notion';
+import { getAllBlocks, getPage } from '../../library/notion';
 import { Block as BlockType, Page as PageType } from '../../types/notion_api_types';
 
 export const getServerSideProps: GetServerSideProps = async (context) => {

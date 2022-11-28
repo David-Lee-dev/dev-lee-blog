@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { Block as BlockType, Page as PageType } from '../types/notion_api_types';
-import { getAllBlocks, getPage } from '../lib/notion';
+import { getAllBlocks, getPage } from '../library/notion';
 
 import Block from '../components/Block';
 
