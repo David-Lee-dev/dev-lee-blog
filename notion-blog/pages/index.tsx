@@ -43,8 +43,8 @@ export default function Home({ page, blocks }: { page: PageType; blocks: BlockTy
           </div>
           <div className="right col-span-1 lg:col-span-2 xl:col-span-3"></div>
         </div>
+        <div className="w-100 h-40"></div>
       </article>
-      <div className="w-100 h-40"></div>
     </>
   );
 }
