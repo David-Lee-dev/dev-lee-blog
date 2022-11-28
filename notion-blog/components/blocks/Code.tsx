@@ -7,6 +7,7 @@ import 'prismjs/components/prism-bash';
 import 'prismjs/components/prism-cmake';
 import 'prismjs/components/prism-java';
 import 'prismjs/components/prism-yaml';
+import 'prismjs/components/prism-json';
 
 import s from '../../styles/code.module.scss';
 import 'prismjs/themes/prism-tomorrow.css';
@@ -16,6 +17,14 @@ interface CodeProps {
 }
 
 const Code: React.FC<CodeProps> = ({ block }: CodeProps) => {
+  const convert = (line: string) => {
+    try {
+      return Prism.highlight(line, Prism.languages[block.code.language], block.code.language);
+    } catch (e) {
+      return line;
+    }
+  };
+
   const convertedCode = useMemo(() => {
     return block.code.rich_text[0].plain_text
       .split('\n')
@@ -23,11 +32,7 @@ const Code: React.FC<CodeProps> = ({ block }: CodeProps) => {
         (item: string, index: number) => `
 <tr data-line=${index + 1}>
 <td class="line-number" data-number="${index + 1}">${index + 1}</td>
-<td class="line-code" data-number=${index + 1}>${Prism.highlight(
-          item,
-          Prism.languages[block.code.language],
-          block.code.language
-        )}</td>
+<td class="line-code" data-number=${index + 1}>${convert(item)}</td>
 </tr>`
       )
       .join('\n')
@@ -35,7 +40,7 @@ const Code: React.FC<CodeProps> = ({ block }: CodeProps) => {
   }, []);
 
   return (
-    <div className={s.contents}>
+    <div className={`depth_${block.depth} ${s.contents}`}>
       <div className={s.codeblock}>
         <div className={s.top}>
           <p>{block.code.language.toUpperCase()}</p>

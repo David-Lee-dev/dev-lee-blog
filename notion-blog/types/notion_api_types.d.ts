@@ -37,6 +37,7 @@ export declare type Block =
   | ColumnBlock
   | TableBlock
   | TableRowBlock
+  | Divider
   | UnsupportedBlock;
 export interface BlockBase {
   object: 'block';
@@ -111,6 +112,12 @@ export interface ToggleBlock extends BlockBase {
 export interface ChildPageBlock extends BlockBase {
   type: 'child_page';
   child_page: {
+    title: string;
+  };
+}
+export interface Divider extends BlockBase {
+  type: 'divider';
+  driver: {
     title: string;
   };
 }

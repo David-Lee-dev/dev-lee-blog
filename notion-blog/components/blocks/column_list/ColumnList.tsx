@@ -7,10 +7,18 @@ interface ColumnListProps {
 
 const ColumnList: React.FC<ColumnListProps> = ({ block }: ColumnListProps) => {
   return (
-    <div className={`columnList grid gap-1 grid-rows-1 ${getGridColumn(block.children?.length)}`}>
+    // <div className={`columnList grid gap-1 grid-rows-1 ${getGridColumn(block.children?.length)}`}>
+    //   {block.children &&
+    //     block.children.map((child: BlockType) => (
+    //       <div className="col-span-1" key={child.id}>
+    //         <Block block={child} />
+    //       </div>
+    //     ))}
+    // </div>
+    <div className={`columnList flex`}>
       {block.children &&
         block.children.map((child: BlockType) => (
-          <div className="col-span-1" key={child.id}>
+          <div key={child.id} className="mr-3">
             <Block block={child} />
           </div>
         ))}

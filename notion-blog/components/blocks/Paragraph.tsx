@@ -11,7 +11,7 @@ const Paragraph: React.FC<ParagraphProps> = ({ block }: ParagraphProps) => {
   const checkHaveRichTextsOrNot = useCallback((richTexts: RichTextType[]) => richTexts.length > 0, []);
 
   return (
-    <div className={`depth_${block.depth} break-all`}>
+    <div className={`depth_${block.depth}`}>
       {checkHaveRichTextsOrNot(block.paragraph.rich_text) ? (
         <>
           <RichTexts richTexts={block.paragraph.rich_text} />

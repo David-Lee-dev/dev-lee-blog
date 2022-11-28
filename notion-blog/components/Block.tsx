@@ -1,6 +1,5 @@
 import { Block } from '../types/notion_api_types';
 
-import Wrapper from './Wrapper';
 import BulletedListItem from './blocks/BulletedListItem';
 import Callout from './blocks/Callout';
 import Heading from './blocks/Heading';
@@ -17,6 +16,7 @@ import ColumnList from './blocks/column_list/ColumnList';
 import Column from './blocks/column_list/Column';
 import Table from './blocks/table/Table';
 import TableRow from './blocks/table/TableRow';
+import Divider from './blocks/Driver';
 
 interface BlockProps {
   block: Block;
@@ -58,6 +58,8 @@ const Block: React.FC<BlockProps> = ({ block }: BlockProps) => {
       return <Table block={block} />;
     case 'table_row':
       return <TableRow block={block} />;
+    case 'divider':
+      return <Divider />;
     default:
       return <></>;
   }

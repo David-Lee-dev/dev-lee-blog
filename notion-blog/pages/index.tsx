@@ -17,8 +17,6 @@ export const getStaticProps = async () => {
 };
 
 export default function Home({ page, blocks }: { page: PageType; blocks: BlockType[] }) {
-  console.log(blocks);
-
   return (
     <>
       <Head>
@@ -34,16 +32,19 @@ export default function Home({ page, blocks }: { page: PageType; blocks: BlockTy
         <meta name="description" content="dev-lee's blog" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className="grid gap-1 grid-cols-12 grid-rows-1 mx-auto">
-        <div className="left col-span-1 lg:col-span-2 xl:col-span-3"></div>
-        <div className="center col-span-10 lg:col-span-8 xl:col-span-6">
-          <h1 className="py-5">{page.properties.title.title[0].plain_text}</h1>
-          {blocks.map((block: BlockType) => (
-            <Block key={block.id} block={block} />
-          ))}
+      <article>
+        <div className="grid gap-1 grid-cols-12 grid-rows-1 mx-auto">
+          <div className="left col-span-1 lg:col-span-2 xl:col-span-3"></div>
+          <div className="center col-span-10 lg:col-span-8 xl:col-span-6">
+            <h1 className="py-5">{page.properties.title.title[0].plain_text}</h1>
+            {blocks.map((block: BlockType) => (
+              <Block key={block.id} block={block} />
+            ))}
+          </div>
+          <div className="right col-span-1 lg:col-span-2 xl:col-span-3"></div>
         </div>
-        <div className="right col-span-1 lg:col-span-2 xl:col-span-3"></div>
-      </div>
+      </article>
+      <div className="w-100 h-40"></div>
     </>
   );
 }
