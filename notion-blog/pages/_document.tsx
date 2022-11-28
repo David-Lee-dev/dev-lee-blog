@@ -9,10 +9,8 @@ class MyDocument extends Document {
 
   render() {
     return (
-      <Html lang="en">
-        <Head>
-          <link href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css" rel="stylesheet" type="text/css"></link>
-        </Head>
+      <Html lang="kr">
+        <Head></Head>
         <body>
           <Main />
           <NextScript />
