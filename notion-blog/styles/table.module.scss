@@ -1,0 +1,34 @@
+.table {
+	tbody {
+		td {
+			border: 1px solid #919191;
+			padding: 1px 10px;
+		}
+	}
+	margin-bottom: 10px;
+}
+
+.highlight__row {
+	tbody {
+		tr:nth-child(1) {
+			background-color: #bebebe;
+		}
+		td {
+			border: 1px solid #919191;
+			padding: 1px 10px;
+		}
+	}
+}
+
+.highlight__col {
+	tbody {
+		td {
+			border: 1px solid #919191;
+			padding: 1px 10px;
+
+			&:nth-child(1) {
+				background-color: #bebebe;
+			}
+		}
+	}
+}

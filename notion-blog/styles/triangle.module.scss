@@ -1,0 +1,18 @@
+.triangle {
+	display: inline-block;
+	width: 0px;
+  height: 0px;
+  border-bottom: calc( 7px * 1.732 ) solid #666666;
+  border-left: 7px solid transparent ;
+  border-right: 7px solid transparent;
+	transition: transform .2s;
+	transform: rotate(90deg);
+	
+	&.active {
+		transform: rotate(180deg);
+	}
+	
+	&:hover {
+		border-bottom: calc( 7px * 1.732 ) solid #a8a5a5;
+	}
+}
