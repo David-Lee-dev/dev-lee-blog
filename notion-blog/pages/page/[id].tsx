@@ -22,18 +22,18 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { id } = context.params as IParams;
-  const [page, blocks, blockPath] = await Promise.all([
-    getPage(id as string),
-    getAllBlocks(id as string, 0),
-    getBlockPath(id as string),
-  ]);
-  // const page = await getPage(id as string);
-  // const blocks = await getAllBlocks(id as string, 0);
+  // const [page, blocks] = await Promise.all([getPage(id as string), getAllBlocks(id as string, 0)]);
+  const page = await getPage(id as string);
+  const blockPath = await getBlockPath(page as PageType);
+  const blocks = await getAllBlocks(id as string, 0);
 
+  // return { props: { page, blocks } };
   return { props: { page, blocks, blockPath } };
 };
 
+// const PageByIdPage = ({ page, blocks }: { page: PageType; blocks: BlockType[] }) => {
 const PageByIdPage = ({ page, blocks, blockPath }: { page: PageType; blocks: BlockType[]; blockPath: PageType[] }) => {
+  console.log(blockPath);
   return (
     <>
       <Head>
@@ -54,7 +54,7 @@ const PageByIdPage = ({ page, blocks, blockPath }: { page: PageType; blocks: Blo
         <div className="grid gap-1 grid-cols-12 grid-rows-1 mx-auto">
           <div className="left col-span-1 lg:col-span-2 xl:col-span-3"></div>
           <div className="center col-span-10 lg:col-span-8 xl:col-span-6">
-            <div className="pt-5">
+            {/* <div className="pt-5">
               {blockPath.map((block, index) => (
                 <span key={block.id}>
                   <Link href={`${index === 0 ? '/' : block.id}`} className="font-bold hover:underline text-gray-500">
@@ -63,7 +63,7 @@ const PageByIdPage = ({ page, blocks, blockPath }: { page: PageType; blocks: Blo
                   {index < blockPath.length - 1 ? <span className="text-gray-500"> &#62; </span> : null}
                 </span>
               ))}
-            </div>
+            </div> */}
             <h1 className="py-5">{page.properties.title.title[0].plain_text}</h1>
             {blocks.map((block: BlockType) => (
               <Block key={block.id} block={block} />
