@@ -43,6 +43,7 @@ export interface BlockBase {
   object: 'block';
   id: string;
   type: string;
+  parent: ParentDatabase | ParentPage | ParentWorkspace | ParentBlock; //addtional
   created_time: string;
   last_edited_time: string;
   has_children: boolean;
@@ -529,16 +530,18 @@ export interface Sort {
   timestamp?: 'created_time' | 'last_edited_time';
   direction: 'ascending' | 'descending';
 }
+//*********************************edit******************************************
 export interface Page {
   object: 'page';
   id: string;
-  parent: ParentDatabase | ParentPage | ParentWorkspace;
+  parent: ParentDatabase | ParentPage | ParentWorkspace | ParentBlock;
   created_time: string;
   last_edited_time: string;
   archived: boolean;
   properties: PropertyValueMap;
   url: string;
 }
+//*******************************************************************************
 export declare type ParentInput = Omit<ParentDatabase, 'type'> | Omit<ParentPage, 'type'>;
 export declare type ParentPageInput = Omit<ParentPage, 'type'>;
 interface ParentDatabase {
@@ -550,6 +553,13 @@ export interface ParentPage {
   type: 'page_id';
   page_id: string;
 }
+//*********************************************************************
+//***************************add***************************************
+export interface ParentBlock {
+  type: 'block_id';
+  block_id: string;
+}
+
 //*********************************************************************
 interface ParentWorkspace {
   type: 'workspace';

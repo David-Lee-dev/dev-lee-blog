@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { GetServerSideProps, GetStaticProps, GetStaticPaths } from 'next';
+import { GetStaticProps, GetStaticPaths } from 'next';
 import Block from '../../components/Block';
 import { getAllBlocks, getPage } from '../../library/notion';
 import { Block as BlockType, Page as PageType } from '../../types/notion_api_types';
@@ -22,18 +22,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { id } = context.params as IParams;
-  const [page, blocks, blockPath] = await Promise.all([
-    getPage(id as string),
-    getAllBlocks(id as string, 0),
-    getBlockPath(id as string),
-  ]);
-  // const page = await getPage(id as string);
-  // const blocks = await getAllBlocks(id as string, 0);
+  const page = await getPage(id as string);
+  const blockPath = await getBlockPath(page as PageType);
+  const blocks = await getAllBlocks(id as string, 0);
 
   return { props: { page, blocks, blockPath } };
 };
 
 const PageByIdPage = ({ page, blocks, blockPath }: { page: PageType; blocks: BlockType[]; blockPath: PageType[] }) => {
+  console.log(blockPath);
   return (
     <>
       <Head>
