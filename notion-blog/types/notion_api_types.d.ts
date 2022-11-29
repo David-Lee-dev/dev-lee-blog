@@ -545,10 +545,12 @@ interface ParentDatabase {
   type: 'database_id';
   database_id: string;
 }
-interface ParentPage {
+//***************************edit**************************************
+export interface ParentPage {
   type: 'page_id';
   page_id: string;
 }
+//*********************************************************************
 interface ParentWorkspace {
   type: 'workspace';
 }
