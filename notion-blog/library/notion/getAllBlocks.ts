@@ -1,12 +1,19 @@
-import { Block } from '../../types/notion_api_types';
+import { Block, Page } from '../../types/notion_api_types';
 import { getBlocks } from './getBlocks';
 import { getChildrenOfBlock } from './getChildrenOfBlock';
+import { getPage } from './getPage';
 
 export const getAllBlocks = async (blockId: string, depth: number, cursor?: string) => {
   const { blocks, nextCursor } = await getBlocks(blockId, { cursor, page: 100 });
 
   const blocksWithChildren = await Promise.all(
     blocks.map(async (block) => {
+      if (block.type === 'child_page') {
+        block.icon = ((await getPage(block.id)) as Page).icon;
+        block.depth = depth;
+        return block;
+      }
+
       const result = await getChildrenOfBlock(block, depth + depthConvertor(block));
       result.depth = depth;
       if (!result.has_children) result.chilren = [];

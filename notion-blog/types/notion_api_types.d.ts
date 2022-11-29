@@ -112,6 +112,7 @@ export interface ToggleBlock extends BlockBase {
 }
 export interface ChildPageBlock extends BlockBase {
   type: 'child_page';
+  icon: DefaultEmoji | FileEmoji;
   child_page: {
     title: string;
   };
@@ -540,6 +541,7 @@ export interface Page {
   archived: boolean;
   properties: PropertyValueMap;
   url: string;
+  icon: any;
 }
 //*******************************************************************************
 export declare type ParentInput = Omit<ParentDatabase, 'type'> | Omit<ParentPage, 'type'>;
@@ -873,3 +875,14 @@ export interface LastEditedByPropertySchema {
 }
 export {};
 //# sourceMappingURL=api-types.d.ts.map
+//additional
+export interface DefaultEmoji {
+  type: 'emoji';
+  emoji: string;
+}
+export interface FileEmoji {
+  type: 'file';
+  file: {
+    url: string;
+  };
+}

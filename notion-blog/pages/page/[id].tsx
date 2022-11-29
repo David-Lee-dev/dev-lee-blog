@@ -30,7 +30,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 const PageByIdPage = ({ page, blocks, blockPath }: { page: PageType; blocks: BlockType[]; blockPath: PageType[] }) => {
-  console.log(blockPath);
   return (
     <>
       <Head>
