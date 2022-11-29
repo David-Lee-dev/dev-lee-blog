@@ -1,5 +1,4 @@
-import { notion } from '.';
-import { Block, Page, ParentPage } from '../../types/notion_api_types';
+import { Block, Page } from '../../types/notion_api_types';
 import { getBlock } from './getBlock';
 import { getPage } from './getPage';
 
