@@ -3,8 +3,10 @@ import { GetServerSideProps, GetStaticProps, GetStaticPaths } from 'next';
 import Block from '../../components/Block';
 import { getAllBlocks, getPage } from '../../library/notion';
 import { Block as BlockType, Page as PageType } from '../../types/notion_api_types';
-import { pageIdList } from '../../page_id/pageIdList';
+import { idSplitter, pageIdList } from '../../library/page_id/pageIdList';
 import { ParsedUrlQuery } from 'querystring';
+import { getBlockPath } from '../../library/notion/getBlockPath';
+import Link from 'next/link';
 
 interface IParams extends ParsedUrlQuery {
   id: string;
@@ -12,7 +14,7 @@ interface IParams extends ParsedUrlQuery {
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = pageIdList.map((id) => ({
-    params: { id: `${id.slice(0, 8)}-${id.slice(8, 12)}-${id.slice(12, 16)}-${id.slice(16, 20)}-${id.slice(20, 32)}` },
+    params: { id: idSplitter(id) },
   }));
 
   return { paths, fallback: false };
@@ -20,13 +22,18 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { id } = context.params as IParams;
-  const page = await getPage(id as string);
-  const blocks = await getAllBlocks(id as string, 0);
+  const [page, blocks, blockPath] = await Promise.all([
+    getPage(id as string),
+    getAllBlocks(id as string, 0),
+    getBlockPath(id as string),
+  ]);
+  // const page = await getPage(id as string);
+  // const blocks = await getAllBlocks(id as string, 0);
 
-  return { props: { page, blocks } };
+  return { props: { page, blocks, blockPath } };
 };
 
-const PageByIdPage = ({ page, blocks }: { page: PageType; blocks: BlockType[] }) => {
+const PageByIdPage = ({ page, blocks, blockPath }: { page: PageType; blocks: BlockType[]; blockPath: PageType[] }) => {
   return (
     <>
       <Head>
@@ -47,6 +54,16 @@ const PageByIdPage = ({ page, blocks }: { page: PageType; blocks: BlockType[] })
         <div className="grid gap-1 grid-cols-12 grid-rows-1 mx-auto">
           <div className="left col-span-1 lg:col-span-2 xl:col-span-3"></div>
           <div className="center col-span-10 lg:col-span-8 xl:col-span-6">
+            <div className="pt-5">
+              {blockPath.map((block, index) => (
+                <span key={block.id}>
+                  <Link href={`${index === 0 ? '/' : block.id}`} className="font-bold hover:underline text-gray-500">
+                    {block.properties.title.title[0].plain_text}
+                  </Link>
+                  {index < blockPath.length - 1 ? <span className="text-gray-500"> &#62; </span> : null}
+                </span>
+              ))}
+            </div>
             <h1 className="py-5">{page.properties.title.title[0].plain_text}</h1>
             {blocks.map((block: BlockType) => (
               <Block key={block.id} block={block} />
