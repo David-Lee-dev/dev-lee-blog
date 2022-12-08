@@ -1,19 +1,31 @@
 import Head from 'next/head';
+import { GetServerSideProps } from 'next';
 import { Block as BlockType, Page as PageType } from '../types/notion_api_types';
 import { getAllBlocks, getPage } from '../library/notion';
 
 import Block from '../components/Block';
 
-export const getStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const page_id = context.query.id;
+
   const page = await getPage(process.env.NEXT_NOTION_DATABASE_ID as string);
   const blocks = await getAllBlocks(process.env.NEXT_NOTION_DATABASE_ID as string, 0);
-  return {
-    props: {
-      page,
-      blocks,
-    },
-    revalidate: 64,
-  };
+
+  if (page && blocks) {
+    return {
+      props: {
+        page,
+        blocks,
+      },
+    };
+  } else {
+    return {
+      props: {
+        page: null,
+        blocks: null,
+      },
+    };
+  }
 };
 
 export default function Home({ page, blocks }: { page: PageType; blocks: BlockType[] }) {
