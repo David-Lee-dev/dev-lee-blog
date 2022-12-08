@@ -1,39 +1,32 @@
 import Head from 'next/head';
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next';
 import Block from '../../components/Block';
 import { getAllBlocks, getPage } from '../../library/notion';
 import { Block as BlockType, Page as PageType } from '../../types/notion_api_types';
 import { ParsedUrlQuery } from 'querystring';
 import { getBlockPath } from '../../library/notion/getBlockPath';
 import Link from 'next/link';
+import { idSplitter, pageIdList } from '../../library/page_id/pageIdList';
 
 interface IParams extends ParsedUrlQuery {
   id: string;
 }
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const page_id = context.query.id;
+export const getStaticPaths: GetStaticPaths = async () => {
+  const paths = pageIdList.map((id) => ({
+    params: { id: idSplitter(id) },
+  }));
 
-  const page = await getPage(page_id as string);
-  const blocks = await getAllBlocks(page_id as string, 0);
+  return { paths, fallback: false };
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const { id } = context.params as IParams;
+  const page = await getPage(id as string);
   const blockPath = await getBlockPath(page as PageType);
+  const blocks = await getAllBlocks(id as string, 0);
 
-  if (page && blocks) {
-    return {
-      props: {
-        page,
-        blocks,
-        blockPath,
-      },
-    };
-  } else {
-    return {
-      props: {
-        page: null,
-        blocks: null,
-      },
-    };
-  }
+  return { props: { page, blocks, blockPath } };
 };
 
 const PageByIdPage = ({ page, blocks, blockPath }: { page: PageType; blocks: BlockType[]; blockPath: PageType[] }) => {

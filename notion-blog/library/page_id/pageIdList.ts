@@ -1,10 +1,10 @@
 export const pageIdList = [
   // aws 서비스
   '6315309388544b62b7e486f8e3725a2a',
-  '4f79eed8dab944dc9e840991673b24c5', //iam
-  'f7a02f608e7c432a9be8d16755602166', //ec2
-  'e410b32e09ec4aba8ffc049846d1a95b', //볼륨
-  '0c2e9f3f611444fdb9e87ae420cc0a54', //스냅샷
+  '4f79eed8dab944dc9e840991673b24c5',
+  'f7a02f608e7c432a9be8d16755602166',
+  'e410b32e09ec4aba8ffc049846d1a95b',
+  '0c2e9f3f611444fdb9e87ae420cc0a54',
   '21efb4069b6047b7a4459d35d2e659f5',
   '6bf6c195843f4a3780dcc12dc64d3672',
   'bd7e316eaee449f5a58d0c4a621356b9',
@@ -33,6 +33,9 @@ export const pageIdList = [
   'ffc537acfed54de5be28182bcd4c3c99',
   'e6441896334c4f338d09b0a116344b70',
   '1fb6cf729d224c5697e65aca72bc6d52',
+  // post-express
+  'f634dc8df07b4df092d28da7a79bf216',
+  '7b15d6f455cd4ae595a717984af49e16',
   // note-장고
   '4180aa65edfa4c5483a1762e425d50c8',
   '4d985467935249e8a8b18e3af731e470',
