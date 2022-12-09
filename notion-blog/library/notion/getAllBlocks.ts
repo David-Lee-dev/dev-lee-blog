@@ -16,9 +16,7 @@ export const getAllBlocks = async (blockId: string, depth: number, cursor?: stri
         return block;
       }
 
-      if (block.type === 'image') {
-        block.image.file.url = await imageDownloader(block.image.file.url);
-      }
+      if (block.type === 'image') block.image.file.url = await imageDownloader(block.image.file.url);
 
       const result = await getChildrenOfBlock(block, depth + depthConvertor(block));
       result.depth = depth;

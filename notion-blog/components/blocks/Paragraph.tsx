@@ -1,4 +1,5 @@
 import { useCallback } from 'react';
+import fontColorConverter from '../../library/utils/colorConverter';
 import { RichText as RichTextType, ParagraphBlock, Block as BlockType } from '../../types/notion_api_types';
 import Block from '../Block';
 import RichTexts from '../RichTexts';
@@ -11,7 +12,7 @@ const Paragraph: React.FC<ParagraphProps> = ({ block }: ParagraphProps) => {
   const checkHaveRichTextsOrNot = useCallback((richTexts: RichTextType[]) => richTexts.length > 0, []);
 
   return (
-    <div className={`depth_${block.depth}`}>
+    <div className={`depth_${block.depth} ${fontColorConverter(block.paragraph.color)}`}>
       {checkHaveRichTextsOrNot(block.paragraph.rich_text) ? (
         <>
           <RichTexts richTexts={block.paragraph.rich_text} />

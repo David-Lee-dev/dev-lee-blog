@@ -53,6 +53,7 @@ export interface BlockBase {
 export interface ParagraphBlock extends BlockBase {
   type: 'paragraph';
   paragraph: {
+    color: 'string'; // additional
     rich_text: RichText[];
     children?: Block[];
   };
