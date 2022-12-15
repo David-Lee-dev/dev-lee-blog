@@ -8,6 +8,6 @@ export default async function connectTracker(title: string): Promise<void> {
     ip = response.data.ip;
   } catch (error) {}
 
-  mixpanel.init('5ad120c99d08c2583f87b598ab073cb2', { debug: true, ignore_dnt: true });
+  mixpanel.init(process.env.NEXT_PUBLIC_MIXPANEL_API_TOKEN as string, { debug: true, ignore_dnt: true });
   mixpanel.track(`${ip} - ${title}`);
 }
