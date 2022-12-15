@@ -1,12 +1,16 @@
 import Head from 'next/head';
-import { GetServerSideProps, GetStaticPaths, GetStaticProps } from 'next';
-import Block from '../../components/Block';
-import { getAllBlocks, getPage } from '../../library/notion';
-import { Block as BlockType, Page as PageType } from '../../types/notion_api_types';
-import { ParsedUrlQuery } from 'querystring';
-import { getBlockPath } from '../../library/notion/getBlockPath';
 import Link from 'next/link';
+import { GetStaticPaths, GetStaticProps } from 'next';
+import { ParsedUrlQuery } from 'querystring';
+import { useEffect } from 'react';
+
+import { Block as BlockType, Page as PageType } from '../../types/notion_api_types';
+import { getBlockPath } from '../../library/notion/getBlockPath';
 import { idSplitter, pageIdList } from '../../library/page_id/pageIdList';
+import connectTracker from '../../library/utils/connectTracker';
+import { getAllBlocks, getPage } from '../../library/notion';
+
+import Block from '../../components/Block';
 
 interface IParams extends ParsedUrlQuery {
   id: string;
@@ -30,6 +34,13 @@ export const getStaticProps: GetStaticProps = async (context) => {
 };
 
 const PageByIdPage = ({ page, blocks, blockPath }: { page: PageType; blocks: BlockType[]; blockPath: PageType[] }) => {
+  useEffect(() => {
+    if (process.env.NEXT_PUBLIC_NOTION_DEVELOP !== 'develop') {
+      (async function () {
+        await connectTracker(page.properties.title.title[0].plain_text);
+      })();
+    }
+  }, []);
   return (
     <>
       <Head>
@@ -44,7 +55,6 @@ const PageByIdPage = ({ page, blocks, blockPath }: { page: PageType; blocks: Blo
         />
         <meta name="description" content="dev-lee's blog" />
         <link rel="icon" href="/favicon.ico" />
-        <link href="//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css" rel="stylesheet" type="text/css"></link>
       </Head>
       <article>
         <div className="grid gap-1 grid-cols-12 grid-rows-1 mx-auto">

@@ -1,11 +1,15 @@
 import Head from 'next/head';
+import { useEffect } from 'react';
+
 import { Block as BlockType, Page as PageType } from '../types/notion_api_types';
 import { getAllBlocks, getPage } from '../library/notion';
+import connectTracker from '../library/utils/connectTracker';
+
 import Block from '../components/Block';
 
 export const getStaticProps = async () => {
-  const page = await getPage(process.env.NEXT_NOTION_DATABASE_ID as string);
-  const blocks = await getAllBlocks(process.env.NEXT_NOTION_DATABASE_ID as string, 0);
+  const page = await getPage(process.env.NEXT_PUBLIC_NOTION_DATABASE_ID as string);
+  const blocks = await getAllBlocks(process.env.NEXT_PUBLIC_NOTION_DATABASE_ID as string, 0);
   return {
     props: {
       page,
@@ -14,7 +18,15 @@ export const getStaticProps = async () => {
   };
 };
 
-export default function Home({ page, blocks }: { page: PageType; blocks: BlockType[] }) {
+export default function Home({ page, blocks }: { page: PageType; blocks: BlockType[]; ip: string }) {
+  useEffect(() => {
+    if (process.env.NEXT_PUBLIC_NOTION_DEVELOP !== 'develop') {
+      (async function () {
+        await connectTracker(page.properties.title.title[0].plain_text);
+      })();
+    }
+  }, []);
+
   return (
     <>
       <Head>
