@@ -3,7 +3,7 @@ import { getBlock } from './getBlock';
 import { getPage } from './getPage';
 
 export const getBlockPath = async (notionOjbect: Page | Block): Promise<Page[]> => {
-  if (notionOjbect.id === process.env.NEXT_NOTION_DATABASE_ID) return [];
+  if (notionOjbect.id === process.env.NEXT_PUBLIC_NOTION_DATABASE_ID) return [];
 
   const result = [];
   if (notionOjbect.object === 'page') result.push(notionOjbect);
