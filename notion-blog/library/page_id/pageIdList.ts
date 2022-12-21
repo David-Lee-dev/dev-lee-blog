@@ -37,6 +37,7 @@ export const pageIdList = [
   'f634dc8df07b4df092d28da7a79bf216',
   '7b15d6f455cd4ae595a717984af49e16',
   '90f24f5cdd72421cbf2a55dffb1b50dc',
+  '94ac6bb3502045d7907cd12e393843bf',
   // note-장고
   '4180aa65edfa4c5483a1762e425d50c8',
   '4d985467935249e8a8b18e3af731e470',
