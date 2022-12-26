@@ -30,6 +30,7 @@ export const getAllBlocks = async (
         block,
         depth + depthConvertor(block)
       );
+
       result.depth = depth;
       if (!result.has_children) result.chilren = [];
 

@@ -58,7 +58,7 @@ const Vue = [
   '2567847b54da41b1ae5e198e38d1e52f', // 컴포넌트 간 데이터 전달(Props & Emit)
   '1b21b6773f9e40c9acf8c94df9811880', // Slot
   '510453ccc6e345a6a5e9cbdfad97d80a', // Composition API
-  '968d216fcc3e4e7fa6fc4822c81390bd', // Composition API 기본
+  '615cbec1f864491ebbd63dee8e1eabfb', // Composition API 기본
   '68158116ded14dc185963ae3e7792c56', // Setup
 ];
 

@@ -14,6 +14,7 @@ import connectTracker from '../../library/utils/connectTracker';
 import { getAllBlocks, getPage } from '../../library/notion';
 
 import Block from '../../components/Block';
+import { preventOverRate } from '../../library/notion/preventOverRate';
 
 interface IParams extends ParsedUrlQuery {
   id: string;

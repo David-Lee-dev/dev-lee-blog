@@ -1,5 +1,6 @@
 import { notion } from '.';
 import { Block } from '../../types/notion_api_types';
+import { preventOverRate } from './preventOverRate';
 
 export const getBlocks = async (
   blockId: string,
@@ -10,6 +11,7 @@ export const getBlocks = async (
     start_cursor: cursor,
     page_size: page ?? 100,
   });
+
   return {
     blocks: response.results as Block[],
     nextCursor: response.next_cursor,
