@@ -25,7 +25,7 @@ const Django = [
   '83d95472b3d4425b9fc02e3ca083475f', // Django Form의 Work flow
   'e7050199c3b14cd3aca04c8ee70d9c7b', // Static file & Media file
   'c305c55bf9f14551a6cb57681338981b', // Django 사용자 인증
-  '963f9159adc547d4befbea7da86d046b', // 로그인 & 로그아웃
+  '49987d5ba8b54c40a023fa799795b078', // 로그인 & 로그아웃
   '0e6ec2d3455d4b99b5d4f61c284c418f', // 회원가입 & 탈퇴
   '015d87d04d174d1e9f3438f6d737b779', // Django DB 설정
 ];
