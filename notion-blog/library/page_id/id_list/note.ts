@@ -57,9 +57,6 @@ const Vue = [
   'c16ae3b46f97457f97a5b582a569209a', // Form Input 요소와 양방향 통신(v-model)
   '2567847b54da41b1ae5e198e38d1e52f', // 컴포넌트 간 데이터 전달(Props & Emit)
   '1b21b6773f9e40c9acf8c94df9811880', // Slot
-  '510453ccc6e345a6a5e9cbdfad97d80a', // Composition API
-  '615cbec1f864491ebbd63dee8e1eabfb', // Composition API 기본
-  '68158116ded14dc185963ae3e7792c56', // Setup
 ];
 
 const NFT = [
