@@ -1,5 +1,10 @@
 import React from 'react';
-import { HeadingOneBlock, HeadingThreeBlock, HeadingTwoBlock, Block as BlockType } from '../../types/notion_api_types';
+import {
+  HeadingOneBlock,
+  HeadingThreeBlock,
+  HeadingTwoBlock,
+  Block as BlockType,
+} from '../../types/notion_api_types';
 import Block from '../Block';
 import RichTexts from '../RichTexts';
 
@@ -16,7 +21,10 @@ const Heading: React.FC<HeadingProps> = ({ block }: HeadingProps) => {
       return (
         <h2 className={`depth_${block.depth}`}>
           <RichTexts richTexts={confirmedBlock.heading_1.rich_text} />
-          {block.children && block.children.map((child: BlockType) => <Block key={child.id} block={child} />)}
+          {block.children &&
+            block.children.map((child: BlockType) => (
+              <Block key={child.id} block={child} />
+            ))}
         </h2>
       );
     case 'heading_2':

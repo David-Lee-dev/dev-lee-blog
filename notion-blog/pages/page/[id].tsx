@@ -4,7 +4,10 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { useEffect } from 'react';
 
-import { Block as BlockType, Page as PageType } from '../../types/notion_api_types';
+import {
+  Block as BlockType,
+  Page as PageType,
+} from '../../types/notion_api_types';
 import { getBlockPath } from '../../library/notion/getBlockPath';
 import { idSplitter, pageIdList } from '../../library/page_id/pageIdList';
 import connectTracker from '../../library/utils/connectTracker';
@@ -33,7 +36,15 @@ export const getStaticProps: GetStaticProps = async (context) => {
   return { props: { page, blocks, blockPath } };
 };
 
-const PageByIdPage = ({ page, blocks, blockPath }: { page: PageType; blocks: BlockType[]; blockPath: PageType[] }) => {
+const PageByIdPage = ({
+  page,
+  blocks,
+  blockPath,
+}: {
+  page: PageType;
+  blocks: BlockType[];
+  blockPath: PageType[];
+}) => {
   useEffect(() => {
     if (process.env.NEXT_PUBLIC_NOTION_DEVELOP !== 'develop') {
       (async function () {
@@ -44,10 +55,21 @@ const PageByIdPage = ({ page, blocks, blockPath }: { page: PageType; blocks: Blo
   return (
     <>
       <Head>
-        <title>I&apos;m dev-lee | {page.properties.title.title[0].plain_text}</title>
-        <meta property="og:title" content={page.properties.title.title[0].plain_text} />
-        <meta property="og:description" content="안녕하세요. 개발자 이주현입니다." />
-        <meta property="og:url" content={`https://im-dev-lee.site/page/${page.id}`} />
+        <title>
+          I&apos;m dev-lee | {page.properties.title.title[0].plain_text}
+        </title>
+        <meta
+          property="og:title"
+          content={page.properties.title.title[0].plain_text}
+        />
+        <meta
+          property="og:description"
+          content="안녕하세요. 개발자 이주현입니다."
+        />
+        <meta
+          property="og:url"
+          content={`https://im-dev-lee.site/page/${page.id}`}
+        />
         <meta property="og:type" content="website" />
         <meta
           property="og:image"
@@ -63,14 +85,21 @@ const PageByIdPage = ({ page, blocks, blockPath }: { page: PageType; blocks: Blo
             <div className="pt-5">
               {blockPath.map((block, index) => (
                 <span key={block.id}>
-                  <Link href={`${index === 0 ? '/' : block.id}`} className="font-bold hover:underline text-gray-500">
+                  <Link
+                    href={`${index === 0 ? '/' : block.id}`}
+                    className="font-bold hover:underline text-gray-500"
+                  >
                     {block.properties.title.title[0].plain_text}
                   </Link>
-                  {index < blockPath.length - 1 ? <span className="text-gray-500"> &#62; </span> : null}
+                  {index < blockPath.length - 1 ? (
+                    <span className="text-gray-500"> &#62; </span>
+                  ) : null}
                 </span>
               ))}
             </div>
-            <h1 className="py-5">{page.properties.title.title[0].plain_text}</h1>
+            <h1 className="py-5">
+              {page.properties.title.title[0].plain_text}
+            </h1>
             {blocks.map((block: BlockType) => (
               <Block key={block.id} block={block} />
             ))}

@@ -6,7 +6,11 @@ interface ListWrapperType {
   depth: number | undefined;
 }
 
-const Wrapper: React.FC<ListWrapperType> = ({ children, type, depth }: ListWrapperType) => {
+const Wrapper: React.FC<ListWrapperType> = ({
+  children,
+  type,
+  depth,
+}: ListWrapperType) => {
   const check = useMemo(() => {
     if (depth && depth > 0) return 'no-wrap';
     else if (type === 'bulleted_list_item') return 'ul';

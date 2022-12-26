@@ -1,15 +1,23 @@
 import Head from 'next/head';
 import { useEffect } from 'react';
 
-import { Block as BlockType, Page as PageType } from '../types/notion_api_types';
+import {
+  Block as BlockType,
+  Page as PageType,
+} from '../types/notion_api_types';
 import { getAllBlocks, getPage } from '../library/notion';
 import connectTracker from '../library/utils/connectTracker';
 
 import Block from '../components/Block';
 
 export const getStaticProps = async () => {
-  const page = await getPage(process.env.NEXT_PUBLIC_NOTION_DATABASE_ID as string);
-  const blocks = await getAllBlocks(process.env.NEXT_PUBLIC_NOTION_DATABASE_ID as string, 0);
+  const page = await getPage(
+    process.env.NEXT_PUBLIC_NOTION_DATABASE_ID as string
+  );
+  const blocks = await getAllBlocks(
+    process.env.NEXT_PUBLIC_NOTION_DATABASE_ID as string,
+    0
+  );
   return {
     props: {
       page,
@@ -18,7 +26,14 @@ export const getStaticProps = async () => {
   };
 };
 
-export default function Home({ page, blocks }: { page: PageType; blocks: BlockType[]; ip: string }) {
+export default function Home({
+  page,
+  blocks,
+}: {
+  page: PageType;
+  blocks: BlockType[];
+  ip: string;
+}) {
   useEffect(() => {
     if (process.env.NEXT_PUBLIC_NOTION_DEVELOP !== 'develop') {
       (async function () {
@@ -32,7 +47,10 @@ export default function Home({ page, blocks }: { page: PageType; blocks: BlockTy
       <Head>
         <title>I&apos;m dev-lee | Home</title>
         <meta property="og:title" content="I'm dev-lee" />
-        <meta property="og:description" content="안녕하세요. 개발자 이주현입니다." />
+        <meta
+          property="og:description"
+          content="안녕하세요. 개발자 이주현입니다."
+        />
         <meta property="og:url" content="https://im-dev-lee.site/" />
         <meta property="og:type" content="website" />
         <meta
@@ -46,7 +64,9 @@ export default function Home({ page, blocks }: { page: PageType; blocks: BlockTy
         <div className="grid gap-1 grid-cols-12 grid-rows-1 mx-auto">
           <div className="left col-span-1 lg:col-span-2 xl:col-span-3"></div>
           <div className="center col-span-10 lg:col-span-8 xl:col-span-6">
-            <h1 className="py-5">{page.properties.title.title[0].plain_text}</h1>
+            <h1 className="py-5">
+              {page.properties.title.title[0].plain_text}
+            </h1>
             {blocks.map((block: BlockType) => (
               <Block key={block.id} block={block} />
             ))}

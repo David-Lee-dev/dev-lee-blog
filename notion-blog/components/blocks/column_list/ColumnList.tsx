@@ -1,4 +1,7 @@
-import { ColumnListBlock, Block as BlockType } from '../../../types/notion_api_types';
+import {
+  ColumnListBlock,
+  Block as BlockType,
+} from '../../../types/notion_api_types';
 import Block from '../../Block';
 
 interface ColumnListProps {

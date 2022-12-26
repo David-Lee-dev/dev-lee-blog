@@ -19,7 +19,11 @@ interface CodeProps {
 const Code: React.FC<CodeProps> = ({ block }: CodeProps) => {
   const convert = (line: string) => {
     try {
-      return Prism.highlight(line, Prism.languages[block.code.language], block.code.language);
+      return Prism.highlight(
+        line,
+        Prism.languages[block.code.language],
+        block.code.language
+      );
     } catch (e) {
       return line;
     }

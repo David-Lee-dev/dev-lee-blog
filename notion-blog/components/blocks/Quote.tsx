@@ -9,13 +9,19 @@ interface QuoteProps {
 const Quote: React.FC<QuoteProps> = ({ block }: QuoteProps) => {
   return (
     <>
-      <div className={`depth_${block.depth} flex`} style={{ width: '100%', wordBreak: 'break-all' }}>
+      <div
+        className={`depth_${block.depth} flex`}
+        style={{ width: '100%', wordBreak: 'break-all' }}
+      >
         <div className="bg-gray-400 mr-2" style={{ minWidth: 4 }}></div>
         <div>
           <div className="py-1">
             <RichTexts richTexts={block.quote.rich_text} />
           </div>
-          {block.children && block.children.map((child: BlockType) => <Block key={child.id} block={child} />)}
+          {block.children &&
+            block.children.map((child: BlockType) => (
+              <Block key={child.id} block={child} />
+            ))}
         </div>
       </div>
     </>

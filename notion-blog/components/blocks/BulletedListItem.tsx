@@ -1,4 +1,7 @@
-import { BulletedListItemBlock, Block as BlockType } from '../../types/notion_api_types';
+import {
+  BulletedListItemBlock,
+  Block as BlockType,
+} from '../../types/notion_api_types';
 import Block from '../Block';
 import RichTexts from '../RichTexts';
 
@@ -6,14 +9,19 @@ interface BulletedListItemProps {
   block: BulletedListItemBlock;
 }
 
-const BulletedListItem: React.FC<BulletedListItemProps> = ({ block }: BulletedListItemProps) => {
+const BulletedListItem: React.FC<BulletedListItemProps> = ({
+  block,
+}: BulletedListItemProps) => {
   return (
     <>
       <li className={`depth_${block.depth} unorder relative list-none`}>
         {listStyleBuidler(block.depth)}
         <RichTexts richTexts={block.bulleted_list_item.rich_text} />
       </li>
-      {block.children && block.children.map((child: BlockType) => <Block key={child.id} block={child} />)}
+      {block.children &&
+        block.children.map((child: BlockType) => (
+          <Block key={child.id} block={child} />
+        ))}
     </>
   );
 };
@@ -32,7 +40,9 @@ const EmptyCricle: React.FC = () => {
   );
 };
 const FilledSquare: React.FC = () => {
-  return <div className="absolute bg-black w-[6px] h-[6px] top-1/2 -left-3 -translate-x-2/4 -translate-y-2/4"></div>;
+  return (
+    <div className="absolute bg-black w-[6px] h-[6px] top-1/2 -left-3 -translate-x-2/4 -translate-y-2/4"></div>
+  );
 };
 const EmptyedSquare: React.FC = () => {
   return (

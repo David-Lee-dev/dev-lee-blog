@@ -10,7 +10,9 @@ export interface PaginationParameters {
   start_cursor?: string;
   page_size?: number;
 }
-export interface PaginatedList<O extends APISingularObject = APISingularObject> {
+export interface PaginatedList<
+  O extends APISingularObject = APISingularObject
+> {
   object: 'list';
   results: O[];
   has_more: boolean;
@@ -545,7 +547,9 @@ export interface Page {
   icon: any;
 }
 //*******************************************************************************
-export declare type ParentInput = Omit<ParentDatabase, 'type'> | Omit<ParentPage, 'type'>;
+export declare type ParentInput =
+  | Omit<ParentDatabase, 'type'>
+  | Omit<ParentPage, 'type'>;
 export declare type ParentPageInput = Omit<ParentPage, 'type'>;
 interface ParentDatabase {
   type: 'database_id';
@@ -586,7 +590,10 @@ export declare type PropertyValue =
   | CreatedByPropertyValue
   | LastEditedTimePropertyValue
   | LastEditedByPropertyValue;
-export declare type PropertyValueWithoutId = DistributiveOmit<PropertyValue, 'id'>;
+export declare type PropertyValueWithoutId = DistributiveOmit<
+  PropertyValue,
+  'id'
+>;
 export declare type InputPropertyValue = DistributiveExtend<
   DistributiveOmit<InputPropertyValueWithRequiredId, 'id'>,
   {
@@ -653,7 +660,11 @@ export interface DatePropertyValue extends PropertyValueBase {
 }
 export interface FormulaPropertyValue extends PropertyValueBase {
   type: 'formula';
-  formula: StringFormulaValue | NumberFormulaValue | BooleanFormulaValue | DateFormulaValue;
+  formula:
+    | StringFormulaValue
+    | NumberFormulaValue
+    | BooleanFormulaValue
+    | DateFormulaValue;
 }
 export interface StringFormulaValue {
   type: 'string';
@@ -729,8 +740,14 @@ export interface LastEditedByPropertyValue extends PropertyValueBase {
   type: 'last_edited_by';
   last_edited_by: User;
 }
-export declare type RichText = RichTextText | RichTextMention | RichTextEquation;
-export declare type RichTextInput = RichTextTextInput | RichTextMention | RichTextEquation;
+export declare type RichText =
+  | RichTextText
+  | RichTextMention
+  | RichTextEquation;
+export declare type RichTextInput =
+  | RichTextTextInput
+  | RichTextMention
+  | RichTextEquation;
 export interface RichTextBaseInput {
   plain_text?: string;
   href?: string;
@@ -747,8 +764,14 @@ export interface RichTextTextInput extends RichTextBaseInput {
     };
   };
 }
-export declare type RichTextBase = RequiredBy<RichTextBaseInput, 'plain_text' | 'annotations'>;
-export declare type RichTextText = RequiredBy<RichTextTextInput, 'plain_text' | 'annotations'>;
+export declare type RichTextBase = RequiredBy<
+  RichTextBaseInput,
+  'plain_text' | 'annotations'
+>;
+export declare type RichTextText = RequiredBy<
+  RichTextTextInput,
+  'plain_text' | 'annotations'
+>;
 export interface RichTextMention extends RichTextBase {
   type: 'mention';
   mention: UserMention | PageMention | DatabaseMention | DateMention;

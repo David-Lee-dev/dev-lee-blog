@@ -8,7 +8,10 @@ interface RichTextProps {
 }
 
 const RichText: React.FC<RichTextProps> = ({ richText }: RichTextProps) => {
-  const { bold, code, color, italic, strikethrough, underline } = useMemo(() => richText.annotations, []);
+  const { bold, code, color, italic, strikethrough, underline } = useMemo(
+    () => richText.annotations,
+    []
+  );
 
   return (
     <>
@@ -21,7 +24,16 @@ const RichText: React.FC<RichTextProps> = ({ richText }: RichTextProps) => {
           {richText.text.content}
         </Link>
       ) : (
-        <span className={`${propertiesBuilder(bold, code, color, italic, strikethrough, underline)}leading-[25px]`}>
+        <span
+          className={`${propertiesBuilder(
+            bold,
+            code,
+            color,
+            italic,
+            strikethrough,
+            underline
+          )}leading-[25px]`}
+        >
           {richText.text.content}
         </span>
       )}

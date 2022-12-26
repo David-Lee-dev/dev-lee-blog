@@ -26,7 +26,9 @@ const ChildPage: React.FC<ChildPageProps> = ({ block }: ChildPageProps) => {
             )}
           </>
         )} */}
-        <span className="underline ml-1 hover:text-amber-600 text-gray-500">{block.child_page.title}</span>
+        <span className="underline ml-1 hover:text-amber-600 text-gray-500">
+          {block.child_page.title}
+        </span>
       </Link>
     </div>
   );

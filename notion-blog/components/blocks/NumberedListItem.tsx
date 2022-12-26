@@ -1,4 +1,7 @@
-import { NumberedListItemBlock, Block as BlockType } from '../../types/notion_api_types';
+import {
+  NumberedListItemBlock,
+  Block as BlockType,
+} from '../../types/notion_api_types';
 import Block from '../Block';
 import RichTexts from '../RichTexts';
 
@@ -15,13 +18,18 @@ const OlWrapper: React.FC<OlWrapper> = ({ children, flag }: OlWrapper) => {
   return flag ? <ol>{children}</ol> : <>{children}</>;
 };
 
-const NumberedListItem: React.FC<NumberedListItemProps> = ({ block }: NumberedListItemProps) => {
+const NumberedListItem: React.FC<NumberedListItemProps> = ({
+  block,
+}: NumberedListItemProps) => {
   return (
     <>
       <li className={`depth_${block.depth} order list-none`}>
         <RichTexts richTexts={block.numbered_list_item.rich_text} />
       </li>
-      {block.children && block.children.map((child: BlockType) => <Block key={child.id} block={child} />)}
+      {block.children &&
+        block.children.map((child: BlockType) => (
+          <Block key={child.id} block={child} />
+        ))}
     </>
   );
 };

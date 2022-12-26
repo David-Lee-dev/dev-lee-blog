@@ -1,6 +1,10 @@
 import { useCallback } from 'react';
 import fontColorConverter from '../../library/utils/colorConverter';
-import { RichText as RichTextType, ParagraphBlock, Block as BlockType } from '../../types/notion_api_types';
+import {
+  RichText as RichTextType,
+  ParagraphBlock,
+  Block as BlockType,
+} from '../../types/notion_api_types';
 import Block from '../Block';
 import RichTexts from '../RichTexts';
 
@@ -9,10 +13,17 @@ interface ParagraphProps {
 }
 
 const Paragraph: React.FC<ParagraphProps> = ({ block }: ParagraphProps) => {
-  const checkHaveRichTextsOrNot = useCallback((richTexts: RichTextType[]) => richTexts.length > 0, []);
+  const checkHaveRichTextsOrNot = useCallback(
+    (richTexts: RichTextType[]) => richTexts.length > 0,
+    []
+  );
 
   return (
-    <div className={`depth_${block.depth} ${fontColorConverter(block.paragraph.color)}`}>
+    <div
+      className={`depth_${block.depth} ${fontColorConverter(
+        block.paragraph.color
+      )}`}
+    >
       {checkHaveRichTextsOrNot(block.paragraph.rich_text) ? (
         <>
           <RichTexts richTexts={block.paragraph.rich_text} />
@@ -20,7 +31,10 @@ const Paragraph: React.FC<ParagraphProps> = ({ block }: ParagraphProps) => {
       ) : (
         <br />
       )}
-      {block.children && block.children.map((child: BlockType) => <Block key={child.id} block={child} />)}
+      {block.children &&
+        block.children.map((child: BlockType) => (
+          <Block key={child.id} block={child} />
+        ))}
     </div>
   );
 };

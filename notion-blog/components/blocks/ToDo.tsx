@@ -9,7 +9,12 @@ interface ToDoProps {
 const ToDo: React.FC<ToDoProps> = ({ block }: ToDoProps) => {
   return (
     <div>
-      <input type="checkbox" checked={block.to_do.checked} className={`depth_${block.depth}`} disabled />
+      <input
+        type="checkbox"
+        checked={block.to_do.checked}
+        className={`depth_${block.depth}`}
+        disabled
+      />
       <RichTexts richTexts={block.to_do.rich_text} />
     </div>
   );

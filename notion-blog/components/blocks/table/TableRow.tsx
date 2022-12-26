@@ -1,4 +1,7 @@
-import { CellOfTableType, TableRowBlock } from '../../../types/notion_api_types';
+import {
+  CellOfTableType,
+  TableRowBlock,
+} from '../../../types/notion_api_types';
 import Cell from './Cell';
 
 interface TableRowProps {

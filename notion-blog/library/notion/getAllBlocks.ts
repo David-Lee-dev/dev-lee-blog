@@ -4,8 +4,15 @@ import { getChildrenOfBlock } from './getChildrenOfBlock';
 import { getPage } from './getPage';
 import { imageDownloader } from '../utils';
 
-export const getAllBlocks = async (blockId: string, depth: number, cursor?: string) => {
-  const { blocks, nextCursor } = await getBlocks(blockId, { cursor, page: 100 });
+export const getAllBlocks = async (
+  blockId: string,
+  depth: number,
+  cursor?: string
+) => {
+  const { blocks, nextCursor } = await getBlocks(blockId, {
+    cursor,
+    page: 100,
+  });
 
   const blocksWithChildren = await Promise.all(
     blocks.map(async (block) => {
@@ -16,9 +23,13 @@ export const getAllBlocks = async (blockId: string, depth: number, cursor?: stri
         return block;
       }
 
-      if (block.type === 'image') block.image.file.url = await imageDownloader(block.image.file.url);
+      if (block.type === 'image')
+        block.image.file.url = await imageDownloader(block.image.file.url);
 
-      const result = await getChildrenOfBlock(block, depth + depthConvertor(block));
+      const result = await getChildrenOfBlock(
+        block,
+        depth + depthConvertor(block)
+      );
       result.depth = depth;
       if (!result.has_children) result.chilren = [];
 
