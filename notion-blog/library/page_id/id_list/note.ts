@@ -3,7 +3,7 @@ const Webpack = ['2cc7ffcdebb04db7970eb502e264bcce'];
 
 const Linux = [
   '30cdf9950b3f4196a7be710c03d64f70',
-  'd8ca96d727d84b60a0e8e774ff7dfd6f', // 리눅스 기초
+  '3c5b568bdee648f7a5138571f9b62934', // 리눅스 기초
   'b6179bac0e4b461394f08c2976e67d7e', // 리눅스 | 사용자 & 디스크 관리
   'dcf22daccaee43e0870ff5f6c378cb5e', // 리눅스 | 로그, 부트, 패키지, 네트워크
   '6dde74331994475eb69e577bdc6272d9', // 리눅스 | 보안
