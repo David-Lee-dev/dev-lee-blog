@@ -70,10 +70,7 @@ const NFT = [
   'a1b6e6e8d3314364947a0c34fd5f2716', // NFT 튜토리얼
 ];
 
-const SQL = [
-  '243277945d624e9c84226628c861e0f3',
-  '27a0683fa1ee4299a6731121f1ee6d85', // SQL 문법 정리
-];
+const SQL = ['243277945d624e9c84226628c861e0f3'];
 
 export const NOTE = [
   ...Anisble,
