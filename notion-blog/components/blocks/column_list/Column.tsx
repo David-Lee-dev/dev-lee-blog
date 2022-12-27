@@ -13,7 +13,7 @@ const Column: React.FC<ColumnProps> = ({ block }: ColumnProps) => {
     <div className={`column depth_${block.depth}`}>
       {block.children &&
         block.children.map((child: BlockType) => (
-          <Block key={child.id} block={child} />
+          <Block key={child.id} block={child} pDepth={block.depth} />
         ))}
     </div>
   );

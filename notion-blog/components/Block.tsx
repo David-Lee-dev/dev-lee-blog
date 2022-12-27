@@ -20,9 +20,10 @@ import Divider from './blocks/Driver';
 
 interface BlockProps {
   block: Block;
+  level?: number;
 }
 
-const Block: React.FC<BlockProps> = ({ block }: BlockProps) => {
+const BlockRenderor = (block: Block, level: number) => {
   switch (block.type) {
     case 'paragraph':
       return <Paragraph block={block} />;
@@ -35,9 +36,9 @@ const Block: React.FC<BlockProps> = ({ block }: BlockProps) => {
     case 'quote':
       return <Quote block={block} />;
     case 'bulleted_list_item':
-      return <BulletedListItem block={block} />;
+      return <BulletedListItem block={block} level={level} />;
     case 'numbered_list_item':
-      return <NumberedListItem block={block} />;
+      return <NumberedListItem block={block} level={level} />;
     case 'to_do':
       return <ToDo block={block} />;
     case 'toggle':
@@ -63,6 +64,10 @@ const Block: React.FC<BlockProps> = ({ block }: BlockProps) => {
     default:
       return <></>;
   }
+};
+
+const Block: React.FC<BlockProps> = ({ block, level = 0 }: BlockProps) => {
+  return <div className="py-1">{BlockRenderor(block, level)}</div>;
 };
 
 export default Block;

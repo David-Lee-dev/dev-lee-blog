@@ -22,7 +22,7 @@ const ColumnList: React.FC<ColumnListProps> = ({ block }: ColumnListProps) => {
       {block.children &&
         block.children.map((child: BlockType) => (
           <div key={child.id} className="mr-3">
-            <Block block={child} />
+            <Block block={child} pDepth={block.depth} />
           </div>
         ))}
     </div>

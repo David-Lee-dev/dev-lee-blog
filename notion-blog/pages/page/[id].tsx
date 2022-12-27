@@ -25,6 +25,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
     params: { id: idSplitter(id) },
   }));
 
+  if (process.env.NEXT_PUBLIC_ENV === 'dev')
+    return { paths: [], fallback: true };
+
   return { paths, fallback: false };
 };
 

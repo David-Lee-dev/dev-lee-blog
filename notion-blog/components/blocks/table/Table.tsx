@@ -23,7 +23,11 @@ const Table: React.FC<TableProps> = ({ block }: TableProps) => {
         {block.children &&
           block.children &&
           block.children.map((child: BlockType, index: number) => (
-            <Block key={`${index}-${child.id}`} block={child} />
+            <Block
+              key={`${index}-${child.id}`}
+              block={child}
+              pDepth={block.depth}
+            />
           ))}
       </tbody>
     </table>

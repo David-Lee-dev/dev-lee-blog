@@ -7,20 +7,22 @@ import RichTexts from '../RichTexts';
 
 interface BulletedListItemProps {
   block: BulletedListItemBlock;
+  level: number;
 }
 
 const BulletedListItem: React.FC<BulletedListItemProps> = ({
   block,
+  level = 0,
 }: BulletedListItemProps) => {
   return (
     <>
       <li className={`depth_${block.depth} unorder relative list-none`}>
-        {listStyleBuidler(block.depth)}
+        {listStyleBuidler(level)}
         <RichTexts richTexts={block.bulleted_list_item.rich_text} />
       </li>
       {block.children &&
         block.children.map((child: BlockType) => (
-          <Block key={child.id} block={child} />
+          <Block key={child.id} block={child} level={level + 1} />
         ))}
     </>
   );

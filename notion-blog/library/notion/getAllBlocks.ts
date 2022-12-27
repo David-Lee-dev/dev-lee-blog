@@ -1,7 +1,6 @@
-import { Block, Page } from '../../types/notion_api_types';
+import { Block } from '../../types/notion_api_types';
 import { getBlocks } from './getBlocks';
 import { getChildrenOfBlock } from './getChildrenOfBlock';
-import { getPage } from './getPage';
 import { imageDownloader } from '../utils';
 
 export const getAllBlocks = async (
@@ -16,23 +15,17 @@ export const getAllBlocks = async (
 
   const blocksWithChildren = await Promise.all(
     blocks.map(async (block) => {
-      if (block.type === 'child_page') {
-        // block.icon = ((await getPage(block.id)) as Page).icon;
-        // block.depth = depth;
-        // if (block.icon && block.icon.type === 'file') block.icon.file.url = await imageDownloader(block.icon.file.url);
-        return block;
-      }
+      if (block.type === 'child_page') return block;
 
-      if (block.type === 'image')
-        block.image.file.url = await imageDownloader(block.image.file.url);
+      await blockProcessor(block);
 
       const result = await getChildrenOfBlock(
         block,
         depth + depthConvertor(block)
       );
 
-      result.depth = depth;
       if (!result.has_children) result.chilren = [];
+      result.depth = depth;
 
       return result;
     })
@@ -44,12 +37,18 @@ export const getAllBlocks = async (
   return blocksWithChildren;
 };
 
-function depthConvertor(block: Block) {
+const depthConvertor = (block: Block) => {
   switch (block.type) {
     case 'quote':
+    case 'toggle':
     case 'column':
       return 0;
     default:
       return 1;
   }
-}
+};
+
+const blockProcessor = async (block: Block) => {
+  if (block.type === 'image')
+    block.image.file.url = await imageDownloader(block.image.file.url);
+};
